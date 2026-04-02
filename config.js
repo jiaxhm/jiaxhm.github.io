@@ -27,10 +27,10 @@ news: [
     { date: "2025.01", badge: "New",   text: "Paper accepted at Conference 2025!" },
     { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
   ],
-  publications: [
+  publications: [{
     
-      year,   2026,
-      {
+      year:   2026,
+      
       title:    "Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
       authors:  "Xiaohong Jia, Yonghui Li, Yunchao Wei",
       venue:    "International Journal of Fuzzy Systems 2026",
@@ -46,6 +46,7 @@ news: [
       
       abstract: "A brief summary of your paper's contributions and findings.",
     },
+  
       {
       year:     2026,
       title:    "Wavelet pooling group Swin Transformer for superpixel segmentation",
@@ -104,6 +105,7 @@ news: [
       tags: ["Python", "PyTorch"],
       url:  "#",
     },
+  
   ],
 
   
