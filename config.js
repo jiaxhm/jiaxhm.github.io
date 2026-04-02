@@ -29,11 +29,11 @@ news: [
   ],
   publications: [
     {
-      year:     2025,
-      title:    "Your Paper Title Here",
-      authors:  "Your Name, Co-Author 1, Co-Author 2",
-      venue:    "Conference / Journal Name 2025",
-      links:    { pdf: "#", code: "#" },
+      year:     2026,
+      title:    "Super-aware fuzzy c-means clustering for hyperspectral image segmentation,",
+      authors:  "加小红, 李永辉, 魏云超",
+      venue:    "International Journal of Fuzzy Systems 2026",
+      links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "#" },
       abstract: "A brief summary of your paper's contributions and findings.",
     },
     {
