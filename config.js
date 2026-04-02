@@ -27,25 +27,31 @@ news: [
     { date: "2025.01", badge: "New",   text: "Paper accepted at Conference 2025!" },
     { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
   ],
-  publications: [{
-    
-      year:   2026,
-      
-      title:    "Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
-      authors:  "Xiaohong Jia, Yonghui Li, Yunchao Wei",
-      venue:    "International Journal of Fuzzy Systems 2026",
-      links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "#" },
-      
-      abstract: "A brief summary of your paper's contributions and findings.",
+  publications: [
+    {
+      year: 2026,
+      title: "第一篇论文标题：Super-aware fuzzy c-means clustering...",
+      authors: "Xiaohong Jia, Yonghui Li, Yunchao Wei",
+      venue: "International Journal of Fuzzy Systems 2026",
+      links: { pdf: "https://doi.org/10.1007/s40815-025-02201-y", code: "#" },
+      abstract: "简短介绍第一项研究成果。"
+    }, // <--- 注意这个逗号，它是连接下一篇论文的关键
+    {
+      year: 2026,
+      title: "第二篇论文标题：The design and application of steerable side window",
+      authors: "Xiaohong Jia, Tao Lei, Yingbo Wang",
+      venue: "Neural Computing and Applications 2026",
+      links: { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
+      abstract: "简短介绍第二项研究成果。"
     },
-      {
-      title:    "The design and application of steerable side window",
-      authors:  "Xiaohong Jia,Tao Lei, Yingbo Wang",
-      venue:    "Neural Computing and Applications 2026",
-      links:    { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
-      
-      abstract: "A brief summary of your paper's contributions and findings.",
-    },
+    {
+      year: 2026,
+      title: "第三篇论文标题：Wavelet pooling group Swin Transformer...",
+      authors: "Xiaohong Jia, Tao Lei, Xiaomei Guo",
+      venue: "IEEE ICASSP 2026",
+      links: { pdf: "#", code: "#" },
+      abstract: "简短介绍第三项研究成果。"
+    }, // <--- 最后一篇后面可以不加逗号
   
       {
       year:     2026,
