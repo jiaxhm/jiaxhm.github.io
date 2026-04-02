@@ -30,29 +30,20 @@ news: [
   publications: [
     {
       year: 2026,
-      title: "第一篇论文标题：Super-aware fuzzy c-means clustering...",
-      authors: "Xiaohong Jia, Yonghui Li, Yunchao Wei",
-      venue: "International Journal of Fuzzy Systems 2026",
-      links: { pdf: "https://doi.org/10.1007/s40815-025-02201-y", code: "#" },
-      abstract: "简短介绍第一项研究成果。"
-    }, // <--- 注意这个逗号，它是连接下一篇论文的关键
-    {
-      year: 2026,
-      title: "第二篇论文标题：The design and application of steerable side window",
-      authors: "Xiaohong Jia, Tao Lei, Yingbo Wang",
-      venue: "Neural Computing and Applications 2026",
-      links: { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
-      abstract: "简短介绍第二项研究成果。"
+      title1: "Super-aware fuzzy c-means clustering...",
+      authors1: "Xiaohong Jia, Yonghui Li, Yunchao Wei",
+      venue1: "International Journal of Fuzzy Systems 2026",
+      links1: { pdf: "https://doi.org/10.1007/s40815-025-02201-y", code: "#" },
+      
+      abstract1: "简短介绍第一项研究成果。",
+    
+      title2: "The design and application of steerable side window",
+      authors2: "Xiaohong Jia, Tao Lei, Yingbo Wang",
+      venue2: "Neural Computing and Applications 2026",
+      links2: { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
+      abstract2: "简短介绍第二项研究成果。"
     },
-    {
-      year: 2026,
-      title: "第三篇论文标题：Wavelet pooling group Swin Transformer...",
-      authors: "Xiaohong Jia, Tao Lei, Xiaomei Guo",
-      venue: "IEEE ICASSP 2026",
-      links: { pdf: "#", code: "#" },
-      abstract: "简短介绍第三项研究成果。"
-    }, // <--- 最后一篇后面可以不加逗号
-  
+
       {
       year:     2026,
       title:    "Wavelet pooling group Swin Transformer for superpixel segmentation",
