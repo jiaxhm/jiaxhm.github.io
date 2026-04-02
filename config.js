@@ -28,14 +28,16 @@ news: [
     { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
   ],
   publications: [
-    {
+    
       year:     2026,
+      {
       title:    "Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
       authors:  "Xiaohong Jia, Yonghui Li, Yunchao Wei",
       venue:    "International Journal of Fuzzy Systems 2026",
       links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "#" },
       
-      abstract: "A brief summary of your paper's contributions and findings.",
+      abstract: "A brief summary of your paper's contributions and findings.",},
+      {
       title:    "The design and application of steerable side window",
       authors:  "Xiaohong Jia,Tao Lei, Yingbo Wang",
       venue:    "Neural Computing and Applications 2026",
