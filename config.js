@@ -30,24 +30,25 @@ news: [
   publications: [
     {
       year: 2026,
-      title1: "Super-aware fuzzy c-means clustering...",
-      authors1: "Xiaohong Jia, Yonghui Li, Yunchao Wei",
-      venue1: "International Journal of Fuzzy Systems 2026",
-      links1: { pdf: "https://doi.org/10.1007/s40815-025-02201-y", code: "#" },
-      
-      abstract1: "简短介绍第一项研究成果。",
-    
-      title2: "The design and application of steerable side window",
-      authors2: "Xiaohong Jia, Tao Lei, Yingbo Wang",
-      venue2: "Neural Computing and Applications 2026",
-      links2: { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
-     
-      abstract2: "简短介绍第二项研究成果。"
+      title: "Hybrid offline-online learning of fuzzy cognitive maps for forecasting nonstationary streaming time series",
+      authors: "Xiaohong Jia, et al.",
+      venue: "IEEE Transactions on Fuzzy Systems, 2026.",
+      // 这里的 labels 对应图中蓝、紫色的圆角标签
+      labels: ["SCI一区 Top", "IF 10.7"], 
+      links: { pdf: "https://doi.org/10.1007/...", code: "#" },
+      abstract: "这里写论文的简要介绍..."
     },
-
-     
+    {
+      year: 2026,
+      title: "TacticalCalib: End-to-End 6-DoF Camera Pose Regression for Tactical Camera Calibration",
+      authors: "Xiaohong Jia, et al.",
+      venue: "WACV, 2026, pp. 6547-6556.",
+      // 这里的 labels 对应图中绿色的圆角标签
+      labels: ["计算机视觉顶级会议"],
+      links: { pdf: "https://doi.org/10.1007/...", code: "#" },
+      abstract: "这里写第二篇论文的简要介绍..."
+    }
   ],
-
   projects: [
     {
       name: "Project Name",
