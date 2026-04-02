@@ -23,7 +23,10 @@ const USER_CONFIG = {
     twitter: "",          // leave empty to hide
     cv:      "assets/cv.pdf",
   },
-
+news: [
+    { date: "2025.01", badge: "New",   text: "Paper accepted at Conference 2025!" },
+    { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
+  ],
   publications: [
     {
       year:     2025,
@@ -52,10 +55,7 @@ const USER_CONFIG = {
     },
   ],
 
-  news: [
-    { date: "2025.01", badge: "New",   text: "Paper accepted at Conference 2025!" },
-    { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
-  ],
+  
 
   education: [
     { period: "2020–Present", degree: "Ph.D. in Computer Science", institution: "Your University" },
