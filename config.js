@@ -4,7 +4,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const USER_CONFIG = {
-  name:       "Your Name",
+  name:       "加小红",
   initials:   "YN",
   role:       "PhD Candidate",
   university: "Your University",
