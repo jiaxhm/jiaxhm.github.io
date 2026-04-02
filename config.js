@@ -34,14 +34,13 @@ news: [
       authors:  "Xiaohong Jia, Yonghui Li, Yunchao Wei",
       venue:    "International Journal of Fuzzy Systems 2026",
       links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "#" },
+      
       abstract: "A brief summary of your paper's contributions and findings.",
-    },
-    {
-      year:     2026,
       title:    "The design and application of steerable side window",
       authors:  "Xiaohong Jia,Tao Lei, Yingbo Wang",
       venue:    "Neural Computing and Applications 2026",
       links:    { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
+      
       abstract: "A brief summary of your paper's contributions and findings.",
     },
       {
@@ -84,6 +83,7 @@ news: [
       links:    { pdf: "", code: "#" },
       abstract: "A brief summary of your paper's contributions and findings.",
     },
+
     {
       year:     2024,
       title:    "Another Paper Title",
