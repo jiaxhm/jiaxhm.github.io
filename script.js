@@ -111,18 +111,17 @@ function populateLists(cfg) {
       const papers = yearGroup.papers;
       const total = papers.length;
 
-      // 生成年份卡片（年份居中，所有论文在下面）
       pubHTML += `
-      <article class="pub-card" data-year="${year}">
-        <!-- 年份：居中显示 -->
-        <div class="pub-year year-header">${year}</div>
+      <article class="pub-card">
+        <!-- 年份：最顶部、居中、靠左对齐 -->
+        <div class="pub-year year-title">${year}</div>
+        
         <div class="pub-content">
       `;
 
-      // 遍历论文，最多显示前三篇，其余放入下拉菜单
+      // 默认显示前 3 篇
       papers.forEach((p, idx) => {
         if (idx < 3) {
-          // 前三篇直接显示
           pubHTML += `
             <div class="pub-item">
               <div class="pub-header">
@@ -136,14 +135,17 @@ function populateLists(cfg) {
         }
       });
 
-      // 如果有超过3篇，添加下拉菜单
+      // 超过 3 篇就显示 more/less 按钮
       if (total > 3) {
         pubHTML += `
-          <div class="more-papers-container">
-            <button class="more-toggle" onclick="toggleMorePapers(this)">more</button>
-            <div class="more-papers-list">
+          <div class="more-container">
+            <button class="more-btn" onclick="toggleMorePapers(this)">
+              <span class="more-text">more</span>
+              <span class="more-arrow">▼</span>
+            </button>
+            <div class="more-papers">
               ${papers.slice(3).map(p => `
-                <div class="pub-item more-paper">
+                <div class="pub-item">
                   <div class="pub-header">
                     <h3 class="pub-title">${p.title}</h3>
                     <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
@@ -162,6 +164,7 @@ function populateLists(cfg) {
 
     pubList.innerHTML = pubHTML;
   }
+
   const projGrid = document.getElementById('cfg-projects');
   if (projGrid && cfg.projects?.length) {
     projGrid.innerHTML = cfg.projects.map(p => `
@@ -191,13 +194,15 @@ function populateLists(cfg) {
     if (html) expGrid.innerHTML = html;
   }
 }
-// 👇 添加下拉菜单控制函数（放在 script.js 末尾即可）
+// 下拉控制函数
 function toggleMorePapers(btn) {
-  const list = btn.nextElementSibling;
+  const list = btn.querySelector('.more-papers');
+  const text = btn.querySelector('.more-text');
+  const arrow = btn.querySelector('.more-arrow');
+
   const isOpen = list.style.display === 'block';
-  
-  // 切换显示状态
+
   list.style.display = isOpen ? 'none' : 'block';
-  // 切换按钮文字
-  btn.textContent = isOpen ? 'more' : 'less';
+  text.textContent = isOpen ? 'more' : 'less';
+  arrow.textContent = isOpen ? '▼' : '▲';
 }

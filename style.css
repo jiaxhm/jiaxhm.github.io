@@ -1019,69 +1019,63 @@ img {
 .pub-item:last-child {
   border-bottom: none;
 }
+
 /* ==============================================
-   论文列表：年份居中 + 下拉菜单 样式
+   你的新需求：年份置顶、论文靠左、more 居中
    ============================================== */
 
-/* 年份标题：居中 */
-.year-header {
-  text-align: center;
+/* 年份标题：只在最顶部，靠左 */
+.year-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #007bff; /* 保持你原来的蓝色 */
+  color: #0066cc;
   margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #f0f0f0;
+  text-align: left;  /* 靠左 */
 }
 
-/* 单篇论文：靠左对齐 */
+/* 整个论文内容区域：全部靠左 */
+.pub-content {
+  padding-left: 0;
+}
+
+/* 单篇论文：靠左 */
 .pub-item {
-  margin-bottom: 24px;
+  text-align: left;
 }
 
-/* 下拉容器 */
-.more-papers-container {
-  margin-top: 16px;
+/* more 按钮：居中 */
+.more-container {
+  margin-top: 12px;
+  text-align: center;
 }
 
-/* 更多按钮 */
-.more-toggle {
+.more-btn {
   background: none;
   border: 1px solid #007bff;
   color: #007bff;
-  padding: 4px 12px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.2s;
 }
 
-.more-toggle:hover {
-  background-color: #007bff;
+.more-btn:hover {
+  background: #007bff;
   color: white;
 }
 
-/* 下拉列表：默认隐藏 */
-.more-papers-list {
+/* 箭头图标 */
+.more-arrow {
+  margin-left: 6px;
+}
+
+/* 隐藏的论文区域 */
+.more-papers {
+  display: none;
   margin-top: 12px;
-  display: none; /* 默认关闭 */
 }
 
-/* 下拉的论文样式 */
-.more-paper {
-  padding-left: 16px;
-  border-left: 2px solid #eee;
-  margin-bottom: 16px;
-}
-
-/* 优化链接按钮位置 */
-.pub-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.pub-links {
-  flex-shrink: 0;
-  margin-left: 16px;
+/* 论文标题/作者/期刊 一律靠左 */
+.pub-title, .pub-authors, .pub-venue {
+  text-align: left;
 }
