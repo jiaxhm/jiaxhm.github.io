@@ -273,29 +273,39 @@ function populateLists(cfg) {
     </div>`;
   }
 
-  // === 新增：渲染专利 ===
-  const patentsList = document.getElementById('cfg-patents');
-  if (patentsList && cfg.patents) {
-    let patentsHTML = '';
-    cfg.patents.forEach(yearGroup => {
-      patentsHTML += `<article class="pub-card"><div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
-      yearGroup.list.forEach(p => {
-        patentsHTML += `
-        <div class="pub-item">
-            <div class="pub-header">
-                <h3 class="pub-title">${p.title}</h3>
-                <div class="pub-links">
-                    ${Object.entries(p.links || {}).map(([k, v]) => `<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
-                </div>
-            </div>
-            <p class="pub-authors">${p.authors}</p>
-            <p class="pub-venue">专利号：${p.number} | ${p.status}</p>
-        </div>`;
-      });
-      patentsHTML += `</div></article>`;
+  // 渲染专利（无 undefined 版本）
+const patentsList = document.getElementById('cfg-patents');
+if (patentsList && cfg.patents) {
+  let patentsHTML = '';
+  cfg.patents.forEach(yearGroup => {
+    patentsHTML += `<article class="pub-card">`;
+    patentsHTML += `<div class="pub-year">${yearGroup.year}</div>`;
+    patentsHTML += `<div class="pub-content">`;
+
+    yearGroup.list.forEach(p => {
+      // 拼接专利号和状态，状态为空时只显示专利号
+      let venueText = `专利号: ${p.number}`;
+      if (p.status) {
+        venueText += ` | ${p.status}`;
+      }
+
+      patentsHTML += `
+      <div class="pub-item">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">
+            ${p.links ? Object.entries(p.links).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('') : ''}
+          </div>
+        </div>
+        <p class="pub-authors">${p.authors}</p>
+        <p class="pub-venue">${venueText}</p>
+      </div>`;
     });
-    patentsList.innerHTML = patentsHTML;
-  }
+
+    patentsHTML += `</div></article>`;
+  });
+  patentsList.innerHTML = patentsHTML;
+}
 
 
   pubList.innerHTML = html;
