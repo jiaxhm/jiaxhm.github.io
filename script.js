@@ -105,7 +105,6 @@ function populateLists(cfg) {
   if (pubList && cfg.publications?.length) {
     let pubHTML = '';
 
-    // 遍历每一年
     cfg.publications.forEach(yearGroup => {
       const year = yearGroup.year;
       const papers = yearGroup.papers;
@@ -113,50 +112,54 @@ function populateLists(cfg) {
 
       pubHTML += `
       <article class="pub-card">
-        <!-- 年份：最顶部、居中、靠左对齐 -->
+        <!-- 年份：第一行，靠左 -->
         <div class="pub-year year-title">${year}</div>
         
         <div class="pub-content">
       `;
 
-      // 默认显示前 3 篇
+      // 前3篇直接显示
       papers.forEach((p, idx) => {
         if (idx < 3) {
           pubHTML += `
-            <div class="pub-item">
-              <div class="pub-header">
+          <div class="pub-item">
+            <div class="pub-header">
+              <div class="pub-info">
                 <h3 class="pub-title">${p.title}</h3>
-                <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
+                <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+                <p class="pub-venue">${p.venue}</p>
               </div>
-              <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-              <p class="pub-venue">${p.venue}</p>
+              <div class="pub-links">
+                ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
+              </div>
             </div>
-          `;
+          </div>`;
         }
       });
 
-      // 超过 3 篇就显示 more/less 按钮
+      // 超过3篇显示下拉按钮
       if (total > 3) {
         pubHTML += `
-          <div class="more-container">
-            <button class="more-btn" onclick="toggleMorePapers(this)">
-              <span class="more-text">more</span>
-              <span class="more-arrow">▼</span>
-            </button>
-            <div class="more-papers">
-              ${papers.slice(3).map(p => `
-                <div class="pub-item">
-                  <div class="pub-header">
-                    <h3 class="pub-title">${p.title}</h3>
-                    <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
-                  </div>
+        <div class="more-container">
+          <button class="more-btn" onclick="toggleMorePapers(this)">
+            more <span class="more-arrow">▼</span>
+          </button>
+          <div class="more-papers">
+            ${papers.slice(3).map(p => `
+            <div class="pub-item">
+              <div class="pub-header">
+                <div class="pub-info">
+                  <h3 class="pub-title">${p.title}</h3>
                   <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
                   <p class="pub-venue">${p.venue}</p>
                 </div>
-              `).join('')}
-            </div>
+                <div class="pub-links">
+                  ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
+                </div>
+              </div>
+            </div>`).join('')}
           </div>
-        `;
+        </div>`;
       }
 
       pubHTML += `</div></article>`;
@@ -164,6 +167,7 @@ function populateLists(cfg) {
 
     pubList.innerHTML = pubHTML;
   }
+
 
   const projGrid = document.getElementById('cfg-projects');
   if (projGrid && cfg.projects?.length) {
@@ -194,15 +198,12 @@ function populateLists(cfg) {
     if (html) expGrid.innerHTML = html;
   }
 }
-// 下拉控制函数
 function toggleMorePapers(btn) {
-  const list = btn.querySelector('.more-papers');
-  const text = btn.querySelector('.more-text');
+  const morePapers = btn.nextElementSibling;
   const arrow = btn.querySelector('.more-arrow');
 
-  const isOpen = list.style.display === 'block';
-
-  list.style.display = isOpen ? 'none' : 'block';
-  text.textContent = isOpen ? 'more' : 'less';
+  const isOpen = morePapers.style.display === 'block';
+  morePapers.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? 'more ' : 'less ';
   arrow.textContent = isOpen ? '▼' : '▲';
-}
+  btn.appendChild(arrow);

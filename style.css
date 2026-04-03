@@ -1024,58 +1024,74 @@ img {
    你的新需求：年份置顶、论文靠左、more 居中
    ============================================== */
 
-/* 年份标题：只在最顶部，靠左 */
+/* 年份：第一行靠左 */
 .year-title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #0066cc;
-  margin-bottom: 16px;
-  text-align: left;  /* 靠左 */
+  color: #007bff;
+  margin-bottom: 1.2rem;
 }
 
-/* 整个论文内容区域：全部靠左 */
-.pub-content {
-  padding-left: 0;
+/* 取消分栏布局，改为上下排列 */
+.pub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-/* 单篇论文：靠左 */
+.pub-info {
+  flex: 1;
+}
+
+/* 论文内容：首行缩进2字符 */
+.pub-title {
+  margin: 0;
+  padding-left: 2em; /* 首行缩进 */
+  text-indent: -2em; /* 修正缩进，只缩进第一行 */
+}
+
+.pub-authors, .pub-venue {
+  margin: 0.3rem 0;
+  padding-left: 2em; /* 统一缩进，和标题对齐 */
+}
+
+/* 按钮组靠右，不影响缩进 */
+.pub-links {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: 1rem;
+}
+
+/* 论文之间的分隔线 */
 .pub-item {
-  text-align: left;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+.pub-item:last-child {
+  border-bottom: none;
 }
 
-/* more 按钮：居中 */
+/* 按钮居中 */
 .more-container {
-  margin-top: 12px;
   text-align: center;
+  margin-top: 1rem;
 }
 
 .more-btn {
   background: none;
   border: 1px solid #007bff;
   color: #007bff;
-  padding: 6px 14px;
+  padding: 0.4rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
 }
 
-.more-btn:hover {
-  background: #007bff;
-  color: white;
-}
-
-/* 箭头图标 */
 .more-arrow {
-  margin-left: 6px;
+  margin-left: 0.3rem;
 }
 
 /* 隐藏的论文区域 */
 .more-papers {
   display: none;
-  margin-top: 12px;
-}
-
-/* 论文标题/作者/期刊 一律靠左 */
-.pub-title, .pub-authors, .pub-venue {
-  text-align: left;
+  margin-top: 1rem;
 }
