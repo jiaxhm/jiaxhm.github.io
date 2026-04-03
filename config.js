@@ -28,35 +28,96 @@ news: [
     { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
   ],
   publications: [
-    {
-      year: 2026,
-      title: "Hybrid offline-online learning of fuzzy cognitive maps for forecasting nonstationary streaming time series",
-      authors: "Xiaohong Jia, et al.",
-      venue: "IEEE Transactions on Fuzzy Systems, 2026.",
-      // 这里的 labels 对应图中蓝、紫色的圆角标签
-      labels: ["SCI一区 Top", "IF 10.7"], 
-      links: { pdf: "https://doi.org/10.1007/...", code: "#" },
-      abstract: "这里写论文的简要介绍..."
+     {
+      year:     2026,
+      title:    "Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
+      authors:  "Xiaohong Jia  Yonghui Li  Yunchao Wei  Yao Zhao  Wenwen Chang",
+      venue:    "International Journal of Fuzzy Systems 2026",
+      links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "#" },
+
     },
     {
-      year: 2026,
-      title: "TacticalCalib: End-to-End 6-DoF Camera Pose Regression for Tactical Camera Calibration",
-      authors: "Xiaohong Jia, et al.",
-      venue: "WACV, 2026, pp. 6547-6556.",
-      // 这里的 labels 对应图中绿色的圆角标签
-      labels: ["计算机视觉顶级会议"],
-      links: { pdf: "https://doi.org/10.1007/...", code: "#" },
-      abstract: "这里写第二篇论文的简要介绍..."
-    }
-  ],
-  projects: [
-    {
-      name: "Project Name",
-      desc: "Brief description of your project and its impact.",
-      tags: ["Python", "PyTorch"],
-      url:  "#",
+      year:     2026,
+      title:    "The design and application of steerable side window",
+      authors:  "Xiaohong Jia  Tao Lei  Yingbo Wang  Xuejun Zhang  Guanghui Yan  Asoke K. Nandi",
+      venue:    "Neural Computing and Applications 2026",
+      links:    { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
+      
+      
     },
-  
+    {
+      year:     2026,
+      title:    "Wavelet pooling group Swin Transformer for superpixel segmentation",
+      authors:  "Xiaohong Jia  Yonghui Li  Xiaomei Guo  Yao Zhao  Guanghui Yan  Zhengwen Huang",
+      venue:    "IEEE International Conference on Acoustics, Speech, and Signal Processing 2026",
+      links:    { pdf: "", code: "#" },
+    
+    },
+      {
+      year:     2026,
+      title:    "KAN-Based Superpixel Segmentation with Boundary Constraint and Semantic Guidance",
+      authors:  "Xiaohong Jia  Fuhai Wang  Tong Tong  Long Ma  Guanghui Yan",
+      venue:    "International Joint Conference on Neural Networks 2026",
+      links:    { pdf: "", code: "#" },
+      
+    },
+      {
+      year:     2026,
+      title:    "Simple multiple kernel k-means with heat kernel diffusion",
+      authors:  "Zhiwei Xia  Xiaohong Jia  Xuejun Zhang  Yao Zhao  Wenqian Yu",
+      venue:    "IEEE International Joint Conference on Neural Network 2026",
+      links:    { pdf: "", code: "#" },
+      
+    },
+      {
+      year:     2025,
+      title:    "Unsupervised region-based image editing of denoising diffusion models",
+      authors:  "Zixiang Li  Yue Song  Renshuai Tao  Xiaohong Jia  Yao Zhao  Wei Wang",
+      venue:    "in Proceedings of the AAAI Conference on Artificial Intelligence 2026",
+      links:    { pdf: "", code: "#" },
+      
+    },
+    {
+      year:     2025,
+      title:    "CNN与Transformer协同的多模态边缘检测网络",
+      authors:  "李永辉(研究生)  赵耀  加小红  魏琛珍  常文文",
+      venue:    "计算机工程与应用 2025",
+      links:    { pdf: "", code: "#" },
+      
+    },
+    {
+      year:     2025,
+      title:    "SSMamba: Superpixel segmentation with Mamba",
+      authors:  "Xiaohong Jia  Yonghui Li  Jianjun Jiao  Yao Zhao  Zhiwei Xia",
+      venue:    "IEEE Signal Processing Letters 2025",
+      links:    { pdf: "", code: "#" },
+      
+    },
+{
+      year:     2025,
+      title:    "Fuzzy C-means clustering with region constraints for superpixel generation",
+      authors:  "Xiaohong Jia  Yao Zhao  Bin Zhang  Xuejun Zhang  Ganghui Yan",
+      venue:    "International Journal of Fuzzy Systems 2025",
+      links:    { pdf: "Doi: https://doi.org/10.1007/s40815-025-02017-w" },
+      
+    },
+
+    {
+      year:     2024,
+      title:    "MAS-Net: Multi-Attention Hybrid Network for Superpixel Segmentation",
+      authors:  "Guanghui Yan  Chenzhen Wei  Xiaohong Jia  Yonghui Li  Wenwen Chang",
+      venue:    "Symmetry 2024",
+      links:    { pdf: "#" },
+      
+    },
+    {
+      year:     2022,
+      title:    "Fuzzy Student’s t-distribution model based on richer spatial combination",
+      authors:  "Tao Lei  Xiaohong Jia  Dinghua Xue  Qi Wang  Hongying Meng  Asoke K. Nandi",
+      venue:    "IEEE Transactions on Fuzzy Systems 2022",
+      links:    { pdf: "#" },
+      
+    },
   ],
 
   
