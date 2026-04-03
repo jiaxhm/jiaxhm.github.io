@@ -997,41 +997,57 @@ img {
 
 
 
-/* 正确论文样式：年份置顶 + 无分栏 + 首行缩进 + 下拉按钮 */
+/* 最终论文样式：年份缩进+放大，全文本左对齐 */
 .pub-card {
   display: block !important;
   padding: 16px !important;
 }
+
 .pub-year {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
   color: var(--accent-primary) !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 16px !important;
   text-align: left !important;
+  text-indent: 2em !important; /* 年份也缩进2字符 */
 }
+
 .pub-title {
   text-indent: 2em !important;
+  margin-bottom: 4px !important;
 }
+
 .pub-authors,
 .pub-venue {
   padding-left: 2em !important;
+  margin: 2px 0 !important;
+  text-align: left !important; /* 确保所有文字左对齐 */
 }
+
 .pub-item {
-  margin-bottom: 12px !important;
+  margin-bottom: 16px !important;
 }
+
 .more-wrapper {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 12px;
 }
+
 .more-btn {
   background: transparent;
   border: 1px solid var(--accent-primary);
   color: var(--accent-primary);
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 0.9rem;
 }
+
+.more-btn span {
+  margin-left: 6px;
+}
+
 .papers-hidden {
   display: none;
-  margin-top: 8px;
+  margin-top: 12px;
 }
