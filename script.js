@@ -108,58 +108,50 @@ function populateLists(cfg) {
     cfg.publications.forEach(yearGroup => {
       const year = yearGroup.year;
       const papers = yearGroup.papers;
-      const total = papers.length;
 
       pubHTML += `
       <article class="pub-card">
-        <!-- 年份：第一行，靠左 -->
-        <div class="pub-year year-title">${year}</div>
-        
+        <div class="pub-year">${year}</div>
         <div class="pub-content">
       `;
 
-      // 前3篇直接显示
-      papers.forEach((p, idx) => {
-        if (idx < 3) {
-          pubHTML += `
+      papers.slice(0,3).forEach(p => {
+        pubHTML += `
           <div class="pub-item">
             <div class="pub-header">
-              <div class="pub-info">
-                <h3 class="pub-title">${p.title}</h3>
-                <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-                <p class="pub-venue">${p.venue}</p>
-              </div>
+              <h3 class="pub-title">${p.title}</h3>
               <div class="pub-links">
                 ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
               </div>
             </div>
-          </div>`;
-        }
+            <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+            <p class="pub-venue">${p.venue}</p>
+          </div>
+        `;
       });
 
-      // 超过3篇显示下拉按钮
-      if (total > 3) {
+      if (papers.length > 3) {
         pubHTML += `
-        <div class="more-container">
-          <button class="more-btn" onclick="toggleMorePapers(this)">
-            more <span class="more-arrow">▼</span>
-          </button>
-          <div class="more-papers">
-            ${papers.slice(3).map(p => `
-            <div class="pub-item">
-              <div class="pub-header">
-                <div class="pub-info">
-                  <h3 class="pub-title">${p.title}</h3>
+          <div class="more-wrapper">
+            <button class="more-btn" onclick="togglePapers(this)">
+              more <span>▼</span>
+            </button>
+            <div class="papers-hidden">
+              ${papers.slice(3).map(p => `
+                <div class="pub-item">
+                  <div class="pub-header">
+                    <h3 class="pub-title">${p.title}</h3>
+                    <div class="pub-links">
+                      ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
+                    </div>
+                  </div>
                   <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
                   <p class="pub-venue">${p.venue}</p>
                 </div>
-                <div class="pub-links">
-                  ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
-                </div>
-              </div>
-            </div>`).join('')}
+              `).join('')}
+            </div>
           </div>
-        </div>`;
+        `;
       }
 
       pubHTML += `</div></article>`;
@@ -167,6 +159,7 @@ function populateLists(cfg) {
 
     pubList.innerHTML = pubHTML;
   }
+
 
 
   const projGrid = document.getElementById('cfg-projects');

@@ -1020,78 +1020,58 @@ img {
   border-bottom: none;
 }
 
-/* ==============================================
-   你的新需求：年份置顶、论文靠左、more 居中
-   ============================================== */
-
-/* 年份：第一行靠左 */
-.year-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #007bff;
-  margin-bottom: 1.2rem;
+/* 重置论文卡片为上下结构，取消左右分栏 */
+.pub-card {
+  display: block !important;
+  padding: 20px !important;
 }
 
-/* 取消分栏布局，改为上下排列 */
-.pub-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+/* 年份置顶、靠左 */
+.pub-year {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--accent-primary) !important;
+  margin-bottom: 16px !important;
+  text-align: left !important;
+  padding: 0 !important;
 }
 
-.pub-info {
-  flex: 1;
-}
-
-/* 论文内容：首行缩进2字符 */
+/* 论文内容全部靠左、首行缩进 */
 .pub-title {
-  margin: 0;
-  padding-left: 2em; /* 首行缩进 */
-  text-indent: -2em; /* 修正缩进，只缩进第一行 */
+  text-indent: 2em !important;
+  margin-bottom: 4px !important;
+}
+.pub-authors,
+.pub-venue {
+  padding-left: 2em !important;
+  margin: 2px 0 !important;
 }
 
-.pub-authors, .pub-venue {
-  margin: 0.3rem 0;
-  padding-left: 2em; /* 统一缩进，和标题对齐 */
-}
-
-/* 按钮组靠右，不影响缩进 */
-.pub-links {
-  display: flex;
-  gap: 0.6rem;
-  margin-left: 1rem;
-}
-
-/* 论文之间的分隔线 */
+/* 论文间距 */
 .pub-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
-}
-.pub-item:last-child {
-  border-bottom: none;
+  margin-bottom: 16px !important;
 }
 
-/* 按钮居中 */
-.more-container {
+/* more 按钮居中 */
+.more-wrapper {
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 12px;
 }
-
 .more-btn {
-  background: none;
-  border: 1px solid #007bff;
-  color: #007bff;
-  padding: 0.4rem 1rem;
+  background: transparent;
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 0.9rem;
+}
+.more-btn span {
+  margin-left: 6px;
 }
 
-.more-arrow {
-  margin-left: 0.3rem;
-}
-
-/* 隐藏的论文区域 */
-.more-papers {
+/* 隐藏区域默认关闭 */
+.papers-hidden {
   display: none;
-  margin-top: 1rem;
+  margin-top: 12px;
 }
