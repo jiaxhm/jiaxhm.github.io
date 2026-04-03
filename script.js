@@ -93,6 +93,25 @@ function populateSimpleFields(cfg) {
     const av = document.querySelector('.image-placeholder, .hero-photo');
     if (av) av.innerHTML = `<img src="${cfg.photo}" alt="${cfg.name}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`;
   }
+  
+
+if (cfg.stats && cfg.stats.length > 0) {
+    const statsContainer = document.getElementById('hero-stats');
+    if (statsContainer) {
+      let statsHTML = '';
+      cfg.stats.forEach(stat => {
+        statsHTML += `
+          <div class="stat">
+            <div class="stat-number">${stat.value}</div>
+            <div class="stat-label">${stat.label}</div>
+          </div>
+        `;
+      });
+      statsContainer.innerHTML = statsHTML;
+    }
+  }
+
+
 }
 
 function boldName(authors, name) {
