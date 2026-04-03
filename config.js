@@ -24,8 +24,8 @@ const USER_CONFIG = {
     cv:      "assets/cv.pdf",
   },
 news: [
-    { date: "2025.01", badge: "New",   text: "Paper accepted at Conference 2025!" },
-    { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
+    { date: "2026.03.21", badge: "New",   text: "Zhiwei Xia's Paper accepted at CCF-C 2026!" },
+    { date: "2026.03.21", badge: "New",   text: "Fuhai Wang's Paper accepted at CCF-C 2026!" },
   ],
    publications: [
     {
