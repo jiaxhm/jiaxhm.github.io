@@ -116,7 +116,7 @@ function populateLists(cfg) {
     html += `<div class="pub-content">`;
 
     // 显示前 3 篇
-    papers.slice(0, 3).forEach(p => {
+    papers.slice(0, 5).forEach(p => {
       html += `
       <div class="pub-item">
         <div class="pub-header">
@@ -136,7 +136,7 @@ function populateLists(cfg) {
       <div class="more-wrapper">
         <button class="more-btn" onclick="togglePapers(this)">more <span>▼</span></button>
         <div class="papers-hidden">
-          ${papers.slice(3).map(p => `
+          ${papers.slice(5).map(p => `
           <div class="pub-item">
             <div class="pub-header">
               <h3 class="pub-title">${p.title}</h3>
