@@ -27,10 +27,10 @@ news: [
     { date: "2025.01", badge: "New",   text: "Paper accepted at Conference 2025!" },
     { date: "2024.09", badge: "Award", text: "Received fellowship / award." },
   ],
-  const publications=[
+   publications: [
     {
-      year:     2026
-      papers:[
+      year:     2026,
+      papers: [
      { 
       title:    "Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
       authors:  "Xiaohong Jia  Yonghui Li  Yunchao Wei  Yao Zhao  Wenwen Chang",
@@ -70,7 +70,7 @@ news: [
   ],
 },
    { 
-    year:     2025
+    year:     2025,
       papers:[
       {
       title:    "Unsupervised region-based image editing of denoising diffusion models",
