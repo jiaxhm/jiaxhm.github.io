@@ -991,16 +991,31 @@ img {
 /* ---- Skip Link ---- */
 .skip-link { position: absolute; top: -40px; left: 0; background: var(--accent-primary); color: #fff; padding: 8px 16px; z-index: 9999; font-size: 0.875rem; transition: top 0.2s; }
 .skip-link:focus { top: 0; }
-/* 同一年份论文容器 */
-.year-group {
-  margin-bottom: 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  background: #fff;
-  padding: 10px;
+/* 年份组大卡片布局 */
+.year-group-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-/* 年份只在第一篇显示，所以隐藏重复年份 */
-.year-group [data-year]:not(:first-child) .pub-year {
-  display: none;
+/* 左侧年份容器：垂直居中 */
+.pub-year-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+}
+
+/* 右侧论文容器 */
+.pub-content-container {
+  flex: 1;
+}
+
+/* 单篇论文的分隔线 */
+.pub-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+.pub-item:last-child {
+  border-bottom: none;
 }

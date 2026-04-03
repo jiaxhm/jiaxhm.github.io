@@ -106,31 +106,30 @@ function populateLists(cfg) {
     let pubHTML = '';
 
     // ==============================================
-    // 👇 这是你要的【同一年合并成一个卡片】的最终代码
+    // 👇 为你定制的「左侧年份居中 + 右侧论文列表」渲染逻辑
     // ==============================================
     cfg.publications.forEach(yearGroup => {
       const year = yearGroup.year;
 
-      // 同一年所有论文放在一个大卡片里
-      pubHTML += `<div class="year-group" data-year="${year}">`;
-
-      yearGroup.papers.forEach((p, idx) => {
-        // 每篇论文是小卡片，嵌套在年份大卡片里
-        pubHTML += `
-        <article class="pub-card" data-year="${year}">
-          <div class="pub-year">${idx === 0 ? year : ''}</div>
-          <div class="pub-content">
-            <div class="pub-header">
-              <h3 class="pub-title">${p.title}</h3>
-              <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
+      // 外层大卡片：左侧年份 + 右侧论文容器
+      pubHTML += `
+      <article class="pub-card year-group-card" data-year="${year}">
+        <div class="pub-year-container">
+          <div class="pub-year">${year}</div>
+        </div>
+        <div class="pub-content-container">
+          ${yearGroup.papers.map(p => `
+            <div class="pub-item">
+              <div class="pub-header">
+                <h3 class="pub-title">${p.title}</h3>
+                <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
+              </div>
+              <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+              <p class="pub-venue">${p.venue}</p>
             </div>
-            <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-            <p class="pub-venue">${p.venue}</p>
-          </div>
-        </article>`;
-      });
-
-      pubHTML += `</div>`; // 结束年份分组
+          `).join('')}
+        </div>
+      </article>`;
     });
 
     pubList.innerHTML = pubHTML;
