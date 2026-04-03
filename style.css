@@ -991,3 +991,16 @@ img {
 /* ---- Skip Link ---- */
 .skip-link { position: absolute; top: -40px; left: 0; background: var(--accent-primary); color: #fff; padding: 8px 16px; z-index: 9999; font-size: 0.875rem; transition: top 0.2s; }
 .skip-link:focus { top: 0; }
+/* 同一年份论文容器 */
+.year-group {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px;
+}
+
+/* 年份只在第一篇显示，所以隐藏重复年份 */
+.year-group [data-year]:not(:first-child) .pub-year {
+  display: none;
+}
