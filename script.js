@@ -102,63 +102,94 @@ function boldName(authors, name) {
 
 function populateLists(cfg) {
   const pubList = document.getElementById('cfg-publications');
-  if (pubList && cfg.publications?.length) {
-    let pubHTML = '';
+  if (!pubList || !cfg.publications) return;
 
-    cfg.publications.forEach(yearGroup => {
-      const year = yearGroup.year;
-      const papers = yearGroup.papers;
+  let html = '';
 
-      pubHTML += `
-      <article class="pub-card">
-        <div class="pub-year">${year}</div>
-        <div class="pub-content">
-      `;
+  // 只遍历前 2 个年份（2026、2025）
+  cfg.publications.slice(0, 2).forEach(yearGroup => {
+    const year = yearGroup.year;
+    const papers = yearGroup.papers;
 
-      papers.slice(0,3).forEach(p => {
-        pubHTML += `
+    html += `<article class="pub-card">`;
+    html += `<div class="pub-year">${year}</div>`;
+    html += `<div class="pub-content">`;
+
+    // 显示前 3 篇
+    papers.slice(0, 3).forEach(p => {
+      html += `
+      <div class="pub-item">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">
+            ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}
+          </div>
+        </div>
+        <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+        <p class="pub-venue">${p.venue}</p>
+      </div>`;
+    });
+
+    // 多于 3 篇，显示 more 按钮
+    if (papers.length > 3) {
+      html += `
+      <div class="more-wrapper">
+        <button class="more-btn" onclick="togglePapers(this)">more <span>▼</span></button>
+        <div class="papers-hidden">
+          ${papers.slice(3).map(p => `
           <div class="pub-item">
             <div class="pub-header">
               <h3 class="pub-title">${p.title}</h3>
               <div class="pub-links">
-                ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
+                ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}
               </div>
             </div>
             <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
             <p class="pub-venue">${p.venue}</p>
-          </div>
-        `;
-      });
+          </div>`).join('')}
+        </div>
+      </div>`;
+    }
 
-      if (papers.length > 3) {
-        pubHTML += `
-          <div class="more-wrapper">
-            <button class="more-btn" onclick="togglePapers(this)">
-              more <span>▼</span>
-            </button>
-            <div class="papers-hidden">
-              ${papers.slice(3).map(p => `
-                <div class="pub-item">
-                  <div class="pub-header">
-                    <h3 class="pub-title">${p.title}</h3>
-                    <div class="pub-links">
-                      ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
-                    </div>
+    html += `</div></article>`;
+  });
+
+  // ==============================
+  // 关键：剩余年份（从第3个开始）放到一个 "更多年份" 的折叠块里
+  // ==============================
+  if (cfg.publications.length > 2) {
+    html += `
+    <div class="more-years-wrapper">
+      <button class="more-btn" onclick="toggleYears(this)">
+        more years <span>▼</span>
+      </button>
+      <div class="years-hidden">
+        ${cfg.publications.slice(2).map(yearGroup => {
+          const year = yearGroup.year;
+          return `
+          <article class="pub-card">
+            <div class="pub-year">${year}</div>
+            <div class="pub-content">
+              ${yearGroup.papers.map(p => `
+              <div class="pub-item">
+                <div class="pub-header">
+                  <h3 class="pub-title">${p.title}</h3>
+                  <div class="pub-links">
+                    ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}
                   </div>
-                  <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-                  <p class="pub-venue">${p.venue}</p>
                 </div>
-              `).join('')}
+                <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+                <p class="pub-venue">${p.venue}</p>
+              </div>`).join('')}
             </div>
-          </div>
-        `;
-      }
-
-      pubHTML += `</div></article>`;
-    });
-
-    pubList.innerHTML = pubHTML;
+          </article>`;
+        }).join('')}
+      </div>
+    </div>`;
   }
+
+  pubList.innerHTML = html;
+}
 
 
 
@@ -190,11 +221,27 @@ function populateLists(cfg) {
     if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
     if (html) expGrid.innerHTML = html;
   }
-}
+
 function togglePapers(btn) {
   const target = btn.nextElementSibling;
   if (!target) return;
   const isOpen = target.style.display === 'block';
   target.style.display = isOpen ? 'none' : 'block';
   btn.innerHTML = isOpen ? 'more <span>▼</span>' : 'less <span>▲</span>';
+}
+
+
+
+// 切换论文展开/收起
+function togglePapers(btn) {
+  const hidden = btn.nextElementSibling;
+  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+  btn.innerHTML = btn.innerHTML.includes('more') ? 'less <span>▲</span>' : 'more <span>▼</span>';
+}
+
+// 切换年份折叠/展开
+function toggleYears(btn) {
+  const hidden = btn.nextElementSibling;
+  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+  btn.innerHTML = btn.innerHTML.includes('more') ? 'less years <span>▲</span>' : 'more years <span>▼</span>';
 }
