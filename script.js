@@ -105,21 +105,17 @@ function populateLists(cfg) {
   if (pubList && cfg.publications?.length) {
     let pubHTML = '';
 
-    // ==============================================
-    // 👇 为你定制的「左侧年份居中 + 右侧论文列表」渲染逻辑
-    // ==============================================
+    // 为每个年份生成一个卡片，年份只显示一次在顶部
     cfg.publications.forEach(yearGroup => {
       const year = yearGroup.year;
 
-      // 外层大卡片：左侧年份 + 右侧论文容器
       pubHTML += `
-      <article class="pub-card year-group-card" data-year="${year}">
-        <div class="pub-year-container">
-          <div class="pub-year">${year}</div>
-        </div>
-        <div class="pub-content-container">
-          ${yearGroup.papers.map(p => `
-            <div class="pub-item">
+      <article class="pub-card">
+        <!-- 年份只在卡片最顶部显示一次，左对齐 -->
+        <div class="pub-year">${year}</div>
+        <div class="pub-content">
+          ${yearGroup.papers.map((p, idx) => `
+            <div class="pub-item" style="${idx > 0 ? 'border-top: 1px solid #eee; padding-top: 1.2rem;' : ''}">
               <div class="pub-header">
                 <h3 class="pub-title">${p.title}</h3>
                 <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
