@@ -191,12 +191,10 @@ function populateLists(cfg) {
     if (html) expGrid.innerHTML = html;
   }
 }
-function toggleMorePapers(btn) {
-  const morePapers = btn.nextElementSibling;
-  const arrow = btn.querySelector('.more-arrow');
-
-  const isOpen = morePapers.style.display === 'block';
-  morePapers.style.display = isOpen ? 'none' : 'block';
-  btn.textContent = isOpen ? 'more ' : 'less ';
-  arrow.textContent = isOpen ? '▼' : '▲';
-  btn.appendChild(arrow);
+function togglePapers(btn) {
+  const target = btn.nextElementSibling;
+  if (!target) return;
+  const isOpen = target.style.display === 'block';
+  target.style.display = isOpen ? 'none' : 'block';
+  btn.innerHTML = isOpen ? 'more <span>▼</span>' : 'less <span>▲</span>';
+}
