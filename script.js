@@ -104,12 +104,21 @@ function populateLists(cfg) {
   const pubList = document.getElementById('cfg-publications');
   if (pubList && cfg.publications?.length) {
     let pubHTML = '';
+
+    // ==============================================
+    // 👇 这是你要的【同一年合并成一个卡片】的最终代码
+    // ==============================================
     cfg.publications.forEach(yearGroup => {
       const year = yearGroup.year;
-      yearGroup.papers.forEach(p => {
+
+      // 同一年所有论文放在一个大卡片里
+      pubHTML += `<div class="year-group" data-year="${year}">`;
+
+      yearGroup.papers.forEach((p, idx) => {
+        // 每篇论文是小卡片，嵌套在年份大卡片里
         pubHTML += `
         <article class="pub-card" data-year="${year}">
-          <div class="pub-year">${year}</div>
+          <div class="pub-year">${idx === 0 ? year : ''}</div>
           <div class="pub-content">
             <div class="pub-header">
               <h3 class="pub-title">${p.title}</h3>
@@ -120,6 +129,8 @@ function populateLists(cfg) {
           </div>
         </article>`;
       });
+
+      pubHTML += `</div>`; // 结束年份分组
     });
 
     pubList.innerHTML = pubHTML;
