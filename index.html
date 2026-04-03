@@ -110,9 +110,31 @@
     </div>
 </section>
 
+
+
 <section id="publications" class="section">
     <div class="section-container">
         <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="pubsTitle">Publications</span></h2>
+        
+        <!-- 选项卡按钮：论文 / 专利 -->
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('publications')">Publications</button>
+            <button class="tab-btn" onclick="switchTab('patents')">Patents</button>
+        </div>
+        <!-- 论文板块 -->
+        <div id="publications-tab" class="tab-content active">
+            <div class="publications-list" id="cfg-publications">
+                <!-- 这里保留你原来的论文列表代码 -->
+            </div>
+        </div>
+        <!-- 专利板块（新增） -->
+        <div id="patents-tab" class="tab-content">
+            <div class="patents-list" id="cfg-patents">
+                <!-- 专利会从 config.js 动态渲染 -->
+            </div>
+        </div>
+
+        
         <div class="publications-list" id="cfg-publications">
             <article class="pub-card" data-year="2025">
                 <div class="pub-year">2025</div>

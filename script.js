@@ -273,6 +273,31 @@ function populateLists(cfg) {
     </div>`;
   }
 
+  // === 新增：渲染专利 ===
+  const patentsList = document.getElementById('cfg-patents');
+  if (patentsList && cfg.patents) {
+    let patentsHTML = '';
+    cfg.patents.forEach(yearGroup => {
+      patentsHTML += `<article class="pub-card"><div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
+      yearGroup.list.forEach(p => {
+        patentsHTML += `
+        <div class="pub-item">
+            <div class="pub-header">
+                <h3 class="pub-title">${p.title}</h3>
+                <div class="pub-links">
+                    ${Object.entries(p.links || {}).map(([k, v]) => `<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}
+                </div>
+            </div>
+            <p class="pub-authors">${p.authors}</p>
+            <p class="pub-venue">专利号：${p.number} | ${p.status}</p>
+        </div>`;
+      });
+      patentsHTML += `</div></article>`;
+    });
+    patentsList.innerHTML = patentsHTML;
+  }
+
+
   pubList.innerHTML = html;
 }
 
@@ -323,4 +348,21 @@ function toggleYears(btn) {
   const hidden = btn.nextElementSibling;
   hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
   btn.innerHTML = btn.innerHTML.includes('more') ? '收起年份 <span>▲</span>' : '更多年份 <span>▼</span>';
+}
+
+
+
+// 切换论文/专利选项卡
+function switchTab(tab) {
+    // 切换按钮高亮
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+
+    // 切换内容显示
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`${tab}-tab`).classList.add('active');
 }
