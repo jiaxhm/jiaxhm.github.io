@@ -131,7 +131,7 @@ function populateLists(cfg) {
     });
 
     // 多于 3 篇，显示 more 按钮
-    if (papers.length > 3) {
+    if (papers.length > 5) {
       html += `
       <div class="more-wrapper">
         <button class="more-btn" onclick="togglePapers(this)">more <span>▼</span></button>
@@ -222,13 +222,7 @@ function populateLists(cfg) {
     if (html) expGrid.innerHTML = html;
   }
 
-function togglePapers(btn) {
-  const target = btn.nextElementSibling;
-  if (!target) return;
-  const isOpen = target.style.display === 'block';
-  target.style.display = isOpen ? 'none' : 'block';
-  btn.innerHTML = isOpen ? 'more <span>▼</span>' : 'less <span>▲</span>';
-}
+
 
 
 
@@ -243,5 +237,5 @@ function togglePapers(btn) {
 function toggleYears(btn) {
   const hidden = btn.nextElementSibling;
   hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
-  btn.innerHTML = btn.innerHTML.includes('more') ? 'less years <span>▲</span>' : 'more years <span>▼</span>';
+  btn.innerHTML = btn.innerHTML.includes('more') ? '收起年份 <span>▲</span>' : '更多年份 <span>▼</span>';
 }
