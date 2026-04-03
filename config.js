@@ -9,7 +9,7 @@ const USER_CONFIG = {
   university: "兰州交通大学",
   email:      "your.email@university.edu",
   bio:        "主要从事机器学习和模式识别研究，先后主持国家自然科学基金1项，甘肃省青年科技基金1项，省部级开放课题1项，在国内外权威期刊及会议IEEE TIP、IEEE TFS、电子学报、IEEE FG等上发表学术论文20余篇，其中2篇论文入选ESI高被引，且单篇最高引用550余次，同时获得授权专利5项，并担任IEEE TFS、IEEE TCYB、IEEE TNNLS、IEEE TCSVT等国际期刊审稿人。",
-  photo:      "",   // optional: path to your photo, e.g. "assets/photo.jpg"
+  photo:      "assets/jiaxiaohong.jpg",   // optional: path to your photo, e.g. "assets/photo.jpg"
 
   stats: [
     { value: "20+",  label: "Publications" },
