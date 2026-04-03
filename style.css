@@ -1019,3 +1019,69 @@ img {
 .pub-item:last-child {
   border-bottom: none;
 }
+/* ==============================================
+   论文列表：年份居中 + 下拉菜单 样式
+   ============================================== */
+
+/* 年份标题：居中 */
+.year-header {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #007bff; /* 保持你原来的蓝色 */
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* 单篇论文：靠左对齐 */
+.pub-item {
+  margin-bottom: 24px;
+}
+
+/* 下拉容器 */
+.more-papers-container {
+  margin-top: 16px;
+}
+
+/* 更多按钮 */
+.more-toggle {
+  background: none;
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.more-toggle:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 下拉列表：默认隐藏 */
+.more-papers-list {
+  margin-top: 12px;
+  display: none; /* 默认关闭 */
+}
+
+/* 下拉的论文样式 */
+.more-paper {
+  padding-left: 16px;
+  border-left: 2px solid #eee;
+  margin-bottom: 16px;
+}
+
+/* 优化链接按钮位置 */
+.pub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pub-links {
+  flex-shrink: 0;
+  margin-left: 16px;
+}

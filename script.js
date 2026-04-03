@@ -105,17 +105,26 @@ function populateLists(cfg) {
   if (pubList && cfg.publications?.length) {
     let pubHTML = '';
 
-    // 为每个年份生成一个卡片，年份只显示一次在顶部
+    // 遍历每一年
     cfg.publications.forEach(yearGroup => {
       const year = yearGroup.year;
+      const papers = yearGroup.papers;
+      const total = papers.length;
 
+      // 生成年份卡片（年份居中，所有论文在下面）
       pubHTML += `
-      <article class="pub-card">
-        <!-- 年份只在卡片最顶部显示一次，左对齐 -->
-        <div class="pub-year">${year}</div>
+      <article class="pub-card" data-year="${year}">
+        <!-- 年份：居中显示 -->
+        <div class="pub-year year-header">${year}</div>
         <div class="pub-content">
-          ${yearGroup.papers.map((p, idx) => `
-            <div class="pub-item" style="${idx > 0 ? 'border-top: 1px solid #eee; padding-top: 1.2rem;' : ''}">
+      `;
+
+      // 遍历论文，最多显示前三篇，其余放入下拉菜单
+      papers.forEach((p, idx) => {
+        if (idx < 3) {
+          // 前三篇直接显示
+          pubHTML += `
+            <div class="pub-item">
               <div class="pub-header">
                 <h3 class="pub-title">${p.title}</h3>
                 <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
@@ -123,9 +132,32 @@ function populateLists(cfg) {
               <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
               <p class="pub-venue">${p.venue}</p>
             </div>
-          `).join('')}
-        </div>
-      </article>`;
+          `;
+        }
+      });
+
+      // 如果有超过3篇，添加下拉菜单
+      if (total > 3) {
+        pubHTML += `
+          <div class="more-papers-container">
+            <button class="more-toggle" onclick="toggleMorePapers(this)">more</button>
+            <div class="more-papers-list">
+              ${papers.slice(3).map(p => `
+                <div class="pub-item more-paper">
+                  <div class="pub-header">
+                    <h3 class="pub-title">${p.title}</h3>
+                    <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('')}</div>
+                  </div>
+                  <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+                  <p class="pub-venue">${p.venue}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      pubHTML += `</div></article>`;
     });
 
     pubList.innerHTML = pubHTML;
@@ -158,4 +190,14 @@ function populateLists(cfg) {
     if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
     if (html) expGrid.innerHTML = html;
   }
+}
+// 👇 添加下拉菜单控制函数（放在 script.js 末尾即可）
+function toggleMorePapers(btn) {
+  const list = btn.nextElementSibling;
+  const isOpen = list.style.display === 'block';
+  
+  // 切换显示状态
+  list.style.display = isOpen ? 'none' : 'block';
+  // 切换按钮文字
+  btn.textContent = isOpen ? 'more' : 'less';
 }
