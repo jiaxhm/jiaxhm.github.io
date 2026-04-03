@@ -998,39 +998,50 @@ img {
 
 
 /* 最终论文样式：年份缩进+放大，全文本左对齐 */
+/* ==============================
+   最终完美版：全部元素缩进 2 字符
+   ============================== */
+
+/* 1. 取消分栏，恢复正常结构 */
 .pub-card {
   display: block !important;
   padding: 16px !important;
+  border: none !important; /* 去掉多余边框 */
 }
 
+/* 2. 年份：字号更大 + 靠左 */
 .pub-year {
-  font-size: 1.2rem !important;
-  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  font-weight: bold !important;
   color: var(--accent-primary) !important;
-  margin-bottom: 16px !important;
+  margin-bottom: 12px !important;
   text-align: left !important;
-  text-indent: 2em !important; /* 年份也缩进2字符 */
 }
 
+/* 3. 所有论文内容：统一缩进 2 字符 */
 .pub-title {
   text-indent: 2em !important;
-  margin-bottom: 4px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
 }
 
+/* 4. 作者 + 期刊：统一缩进 2 字符，恢复正常对齐 */
 .pub-authors,
 .pub-venue {
-  padding-left: 2em !important;
+  text-indent: 2em !important; /* 关键：缩进两个字符 */
   margin: 2px 0 !important;
-  text-align: left !important; /* 确保所有文字左对齐 */
+  text-align: left !important; /* 确保左对齐 */
 }
 
+/* 5. 论文之间的间距 */
 .pub-item {
   margin-bottom: 16px !important;
 }
 
+/* 6. more 按钮居中 */
 .more-wrapper {
   text-align: center;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .more-btn {
@@ -1047,6 +1058,7 @@ img {
   margin-left: 6px;
 }
 
+/* 7. 隐藏论文默认不显示 */
 .papers-hidden {
   display: none;
   margin-top: 12px;
