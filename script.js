@@ -1,6 +1,6 @@
-// ==============================================
-// 中英文切换逻辑
-// ==============================================
+// ==========================
+// 中英文切换
+// ==========================
 let currentLang = localStorage.getItem('lang') || 'en';
 
 const langText = {
@@ -18,7 +18,7 @@ const langText = {
     projectsTitle: "Projects",
     experienceTitle: "Experience",
     contactTitle: "Contact",
-    feelFree: "Feel free to reach out!",
+    feelFree: "Feel free to reach out!"
   },
   zh: {
     about: "关于我",
@@ -34,11 +34,10 @@ const langText = {
     projectsTitle: "科研项目",
     experienceTitle: "教育经历",
     contactTitle: "联系方式",
-    feelFree: "欢迎随时联系！",
+    feelFree: "欢迎随时联系！"
   }
 };
 
-// 切换语言
 function applyLang() {
   document.querySelectorAll('[data-locale]').forEach(el => {
     const key = el.dataset.locale;
@@ -50,10 +49,8 @@ function applyLang() {
   document.documentElement.lang = currentLang;
 }
 
-// 点击左上角 [YN] 位置切换
 document.addEventListener('DOMContentLoaded', () => {
   applyLang();
-
   const btn = document.getElementById('langSwitch');
   btn.addEventListener('click', (e) => {
     e.preventDefault();
