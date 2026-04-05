@@ -19,8 +19,7 @@ const langText = {
     experienceTitle: "Experience",
     contactTitle: "Contact",
     feelFree: "Feel free to reach out!",
-    teaching: "Teaching",
-    teachingTitle: "Teaching & Education"
+    teachingTitle: "Teaching"
   },
   zh: {
     about: "关于我",
@@ -37,8 +36,7 @@ const langText = {
     experienceTitle: "教育经历",
     contactTitle: "联系方式",
     feelFree: "欢迎随时联系！",
-    teaching: "教育教学",
-    teachingTitle: "教育教学",
+    teachingTitle: "教育教学"
   }
 };
 
@@ -406,6 +404,21 @@ if (workContainer && cfg.workExperience?.length) {
   </div>`).join('');
 }
 
+// 渲染学生信息
+const studentsContainer = document.getElementById('cfg-students');
+if (studentsContainer && cfg.students?.length) {
+  let studentsHTML = '';
+  cfg.students.forEach(group => {
+    studentsHTML += `<div class="pub-item">`;
+    studentsHTML += `<p style="color:red; font-weight:bold;">${group.title}</p>`;
+    group.list.forEach(item => {
+      studentsHTML += `<p>${item}</p>`;
+    });
+    studentsHTML += `</div>`;
+  });
+  studentsContainer.innerHTML = studentsHTML;
+}
+
   pubList.innerHTML = html;
 }
 
@@ -481,12 +494,18 @@ function switchExpTab(tabName) {
 
 
 
-// 教育教学选项卡切换
-function switchTeachTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById(tab).classList.add('active');
+// 教学板块选项卡切换
+function switchTeachingTab(tabName) {
+  const container = document.getElementById('teaching');
+  if (!container) return;
+
+  // 切换按钮高亮
+  container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  container.querySelector(`.tab-btn[onclick="switchTeachingTab('${tabName}')"]`).classList.add('active');
+
+  // 切换内容
+  container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  document.getElementById(`${tabName}-tab`).classList.add('active');
 }
 
 
