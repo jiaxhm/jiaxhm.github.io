@@ -320,7 +320,7 @@ if (fundsContainer && cfg.funds) {
     fundsHTML += `
     <div class="pub-item">
       <h3 class="pub-title">${index+1}. ${item.name}</h3>
-      <p class="pub-authors">编号：${item.number} | $时间：{item.time}</p>
+      <p class="pub-authors">编号：${item.number} | 时间：${item.time}</p>
     </div>`;
   });
 
@@ -375,15 +375,32 @@ function toggleFunds(btn) {
       </div>`).join('');
   }
 
-  // 渲染经历
-  const expGrid = document.getElementById('cfg-experience');
-  if (expGrid) {
-    const edu = cfg.education||[], exp = cfg.experience||[];
-    let html = '';
-    if (edu.length) html += `<div class="exp-category"><h3>Education</h3>${edu.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.degree}</h4><p>${e.school}</p></div></div>`).join('')}</div>`;
-    if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.school}</p></div></div>`).join('')}</div>`;
-    if (html) expGrid.innerHTML = html;
-  }
+  // ==========================
+// ✅ 修复经历模块（只改这里）
+// ==========================
+const eduContainer = document.getElementById('cfg-education');
+if (eduContainer && cfg.education?.length) {
+  eduContainer.innerHTML = cfg.education.map(item => `
+  <div class="exp-item">
+    <div class="exp-period">${item.period}</div>
+    <div class="exp-details">
+      <h4>${item.degree}</h4>
+      <p>${item.school}</p>
+    </div>
+  </div>`).join('');
+}
+
+const workContainer = document.getElementById('cfg-work');
+if (workContainer && cfg.workExperience?.length) {
+  workContainer.innerHTML = cfg.workExperience.map(item => `
+  <div class="exp-item">
+    <div class="exp-period">${item.period}</div>
+    <div class="exp-details">
+      <h4>${item.position}</h4>
+      <p>${item.school}</p>
+    </div>
+  </div>`).join('');
+}
 
   pubList.innerHTML = html;
 }
