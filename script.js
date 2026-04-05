@@ -393,11 +393,11 @@ function switchExpTab(tab) {
   document.getElementById(`${tab}Tab`).classList.add('active');
 }
 
-// 渲染教育和工作经历
+// 渲染教育和工作经历（完全匹配你的字段名）
 function renderExperience(config) {
   // 渲染教育经历
   const eduList = document.getElementById('eduList');
-  if (eduList && config.education) {
+  if (eduList && config.education?.length) {
     eduList.innerHTML = config.education.map(item => `
       <div class="exp-item">
         <div class="exp-period">${item.period}</div>
@@ -411,7 +411,7 @@ function renderExperience(config) {
 
   // 渲染工作经历
   const workList = document.getElementById('workList');
-  if (workList && config.workExperience) {
+  if (workList && config.workExperience?.length) {
     workList.innerHTML = config.workExperience.map(item => `
       <div class="exp-item">
         <div class="exp-period">${item.period}</div>
@@ -424,7 +424,7 @@ function renderExperience(config) {
   }
 }
 
-// 页面加载时调用渲染
+// 页面加载时执行
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof USER_CONFIG !== 'undefined') {
     renderExperience(USER_CONFIG);
