@@ -518,5 +518,12 @@ function switchTeachingTab(tabName) {
   document.getElementById(tabName).classList.add('active');
 }
 
-
+// ==============================
+// 自动加粗论文里的名字
+// ==============================
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.pub-authors').forEach(el => {
+    el.innerHTML = el.innerHTML.replace(/Xiaohong Jia/g, '<strong>Xiaohong Jia</strong>');
+  });
+});
 

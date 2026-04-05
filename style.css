@@ -1279,11 +1279,12 @@ img {
 
 .contact-content {
   text-align: center;
-  padding: 2rem 0;
+  padding: 1rem 0; /* 从2rem改为1rem，减少上下空白 */
 }
 .contact-content p {
-  margin: 0.5rem 0;
+  margin: 0.3rem 0; /* 行间距缩小，整体更紧凑 */
 }
+
 .contact-content a {
   color: var(--accent-color);
 }
