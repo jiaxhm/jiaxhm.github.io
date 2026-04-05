@@ -353,41 +353,7 @@ if (patentsList && cfg.patents) {
 
 
 
-  // 渲染基金项目
-const fundsContainer = document.getElementById('cfg-projects');
-if (fundsContainer && cfg.funds) {
-  let fundsHTML = '';
-  cfg.funds.forEach(item => {
-    fundsHTML += `
-    <div class="fund-item">
-      <div class="fund-time">${item.time}</div>
-      <div class="fund-info">
-        <h4 class="fund-name">${item.name}</h4>
-        <p class="fund-number">编号：${item.number}</p>
-      </div>
-    </div>`;
-  });
-  fundsContainer.innerHTML = fundsHTML;
-}
-  const newsList = document.getElementById('cfg-news');
-  if (newsList && cfg.news?.length) {
-    newsList.innerHTML = cfg.news.map(n => `
-      <div class="news-item">
-        <span class="news-date">${n.date}</span>
-        <div class="news-content">
-          <span class="news-badge">${n.badge}</span>
-          <span class="news-text">${n.text}</span>
-        </div>
-      </div>`).join('');
-  }
-  const expGrid = document.getElementById('cfg-experience');
-  if (expGrid) {
-    const edu = cfg.education||[], exp = cfg.experience||[];
-    let html = '';
-    if (edu.length) html += `<div class="exp-category"><h3>Education</h3>${edu.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.degree}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
-    if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
-    if (html) expGrid.innerHTML = html;
-  }
+  
 
 
 
