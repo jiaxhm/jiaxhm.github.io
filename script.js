@@ -308,31 +308,29 @@ if (patentsList && cfg.patents) {
 }
  // ==========================
 // ✅ 基金项目渲染（最终修复版）
-// --------------------------
-// 基金项目：一行一个 + 超过5个折叠
 // ==========================
-// ✅ 基金：完全和论文一样（一行一条 + 折叠）
+// 基金：一行一条 + 超过5条折叠
 // ==========================
 const fundsContainer = document.getElementById('cfg-projects');
 if (fundsContainer && cfg.funds) {
-  let f = '';
+  let fundsHTML = '';
 
-  // 前 5 条
-  cfg.funds.slice(0,5).forEach((item,i)=>{
-    f+=`
+  // 前5条
+  cfg.funds.slice(0,5).forEach((item, index) => {
+    fundsHTML += `
     <div class="pub-item">
-      <h3 class="pub-title">${i+1}. ${item.name}</h3>
+      <h3 class="pub-title">${index+1}. ${item.name}</h3>
       <p class="pub-authors">编号：${item.number} | ${item.time}</p>
     </div>`;
   });
 
-  // 超过 5 条折叠
-  if(cfg.funds.length>5){
-    f+=`
+  // 超过5条折叠
+  if (cfg.funds.length > 5) {
+    fundsHTML += `
     <div class="more-wrapper">
       <button class="more-btn" onclick="toggleFunds(this)">more ▼</button>
-      <div class="funds-hidden">
-        ${cfg.funds.slice(5).map((item,i)=>`
+      <div class="funds-hidden" style="display:none;">
+        ${cfg.funds.slice(5).map((item, i) => `
         <div class="pub-item">
           <h3 class="pub-title">${5+i+1}. ${item.name}</h3>
           <p class="pub-authors">编号：${item.number} | ${item.time}</p>
@@ -341,8 +339,10 @@ if (fundsContainer && cfg.funds) {
     </div>`;
   }
 
-  fundsContainer.innerHTML = f;
+  fundsContainer.innerHTML = fundsHTML;
 }
+
+
 
 
 
@@ -428,11 +428,13 @@ function switchTab(tab) {
     });
     document.getElementById(`${tab}-tab`).classList.add('active');
 }
-// 展开/收起
-function toggleFunds(btn){
-  const h=btn.nextElementSibling;
-  h.style.display=h.style.display=='block'?'none':'block';
-  btn.innerHTML=h.style.display=='block'?'less ▲':'more ▼';
+
+
+
+function toggleFunds(btn) {
+  const h = btn.nextElementSibling;
+  h.style.display = h.style.display === 'none' ? 'block' : 'none';
+  btn.innerHTML = h.style.display === 'block' ? 'less ▲' : 'more ▼';
 }
 
 

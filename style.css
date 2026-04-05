@@ -1223,3 +1223,18 @@ img {
 }
 .funds-hidden { display: none; }
 #cfg-projects .pub-item { display: block !important; width: 100% !important; }
+/* 强制基金 一行一条 垂直排列 */
+#cfg-projects {
+  display: block !important;
+  width: 100% !important;
+}
+#cfg-projects .fund-item,
+#cfg-projects .pub-item {
+  display: block !important;
+  width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  margin: 0 !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #ddd !important;
+}
