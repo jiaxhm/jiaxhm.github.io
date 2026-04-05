@@ -128,13 +128,30 @@ news: [
   
 
   education: [
-    { period: "2020–Present", degree: "Ph.D. in Computer Science", institution: "Your University" },
-    { period: "2016–2020",    degree: "B.S. in Computer Science",  institution: "Your University" },
+    {
+      period: "2018 - 2022",
+      degree: "计算机科学与技术 本科",
+      school: "XX大学"
+    },
+    {
+      period: "2022 - 2025",
+      degree: "计算机应用技术 硕士",
+      school: "YY大学"
+    }
   ],
-
-  experience: [
-    { period: "Summer 2024", role: "Research Intern", institution: "Research Lab / Company" },
-  ],
+  workExperience: [
+    {
+      period: "2022.05-2025.12",
+      position: "讲师",
+      company: "兰州交通大学"
+    },
+    {
+      period: "2026.01-至今",
+      position: "副教授",
+      company: "兰州交通大学"
+    }
+  ]
+};
 
 patents: [
     {

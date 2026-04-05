@@ -376,3 +376,57 @@ function switchTab(tab) {
     });
     document.getElementById(`${tab}-tab`).classList.add('active');
 }
+
+
+
+
+
+
+// 切换经历选项卡
+function switchExpTab(tab) {
+  // 切换按钮状态
+  document.querySelectorAll('#experience .tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`#experience .tab-btn[onclick="switchExpTab('${tab}')"]`).classList.add('active');
+
+  // 切换内容显示
+  document.querySelectorAll('#experience .tab-content').forEach(content => content.classList.remove('active'));
+  document.getElementById(`${tab}Tab`).classList.add('active');
+}
+
+// 渲染教育和工作经历
+function renderExperience(config) {
+  // 渲染教育经历
+  const eduList = document.getElementById('eduList');
+  if (eduList && config.education) {
+    eduList.innerHTML = config.education.map(item => `
+      <div class="exp-item">
+        <div class="exp-period">${item.period}</div>
+        <div class="exp-details">
+          <h4>${item.degree}</h4>
+          <p>${item.school}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 渲染工作经历
+  const workList = document.getElementById('workList');
+  if (workList && config.workExperience) {
+    workList.innerHTML = config.workExperience.map(item => `
+      <div class="exp-item">
+        <div class="exp-period">${item.period}</div>
+        <div class="exp-details">
+          <h4>${item.position}</h4>
+          <p>${item.company}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+// 页面加载时调用渲染
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof USER_CONFIG !== 'undefined') {
+    renderExperience(USER_CONFIG);
+  }
+});
