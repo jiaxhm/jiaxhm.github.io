@@ -434,3 +434,28 @@ document.addEventListener('DOMContentLoaded', function() {
         renderExperience(USER_CONFIG);
     }
 });
+
+
+
+// 渲染基金项目
+function renderFunds(cfg) {
+  const fundsEl = document.getElementById('cfg-funds');
+  if (!fundsEl || !cfg.funds) return;
+
+  fundsEl.innerHTML = cfg.funds.map(item => `
+    <div class="fund-item">
+      <div class="fund-time">${item.time}</div>
+      <div class="fund-info">
+        <h4 class="fund-name">${item.name}</h4>
+        <p class="fund-number">编号：${item.number}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// 页面加载时执行
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof USER_CONFIG !== 'undefined') {
+    renderFunds(USER_CONFIG);
+  }
+});
