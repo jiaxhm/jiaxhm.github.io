@@ -1192,21 +1192,23 @@ img {
 
 
 
-/* 基金项目样式（和论文完全统一） */
-.pub-item {
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--border-color);
+/* 基金样式：一行一个 */
+.fund-item {
+    display: flex;
+    flex-direction: column; /* 上下排列 */
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
 }
-.pub-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0 0 0.4rem 0;
+.fund-period {
+    color: var(--text-secondary);
+    font-weight: 500;
 }
-.pub-authors {
-  color: var(--text-secondary);
-  margin: 0 0 0.2rem 0;
+.fund-details h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.2rem;
 }
-.pub-venue {
-  color: var(--text-muted);
-  margin: 0;
+.fund-details p {
+    margin: 0;
+    color: var(--text-muted);
 }

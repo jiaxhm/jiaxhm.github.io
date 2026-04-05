@@ -143,12 +143,12 @@ news: [
     {
       period: "2022.05-2025.12",
       position: "讲师",
-      company: "兰州交通大学"
+      school: "兰州交通大学"
     },
     {
       period: "2026.01-至今",
       position: "副教授",
-      company: "兰州交通大学"
+      school: "兰州交通大学"
     }
   ],
 

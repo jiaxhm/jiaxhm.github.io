@@ -308,20 +308,23 @@ if (patentsList && cfg.patents) {
 }
   // 渲染基金项目
  // 渲染基金项目（和论文格式一致：标题/编号+时间两行）
-const fundsContainer = document.getElementById('cfg-projects');
-if (fundsContainer && cfg.funds) {
-  let fundsHTML = '';
-  cfg.funds.forEach(item => {
-    fundsHTML += `
-    <div class="pub-item">
-      <div class="pub-header">
-        <h3 class="pub-title">${item.name}</h3>
-      </div>
-      <p class="pub-authors">编号：${item.number}</p>
-      <p class="pub-venue">${item.time}</p>
-    </div>`;
-  });
-  fundsContainer.innerHTML = fundsHTML;
+// ========== 基金板块渲染（修复版：一行一个） ==========
+function renderFunds(cfg) {
+    const fundsContainer = document.getElementById('cfg-funds');
+    if (!fundsContainer || !cfg.funds?.length) return;
+
+    // 遍历基金数据，按行生成（每一行一个基金）
+    const fundsHTML = cfg.funds.map(item => `
+        <div class="fund-item">
+            <div class="fund-period">${item.period}</div>
+            <div class="fund-details">
+                <h4>${item.name}</h4>
+                <p>${item.description}</p>
+            </div>
+        </div>
+    `).join('');
+
+    fundsContainer.innerHTML = fundsHTML;
 }
 
   // 渲染新闻
@@ -342,8 +345,8 @@ if (fundsContainer && cfg.funds) {
   if (expGrid) {
     const edu = cfg.education||[], exp = cfg.experience||[];
     let html = '';
-    if (edu.length) html += `<div class="exp-category"><h3>Education</h3>${edu.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.degree}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
-    if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
+    if (edu.length) html += `<div class="exp-category"><h3>Education</h3>${edu.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.degree}</h4><p>${e.school}</p></div></div>`).join('')}</div>`;
+    if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.school}</p></div></div>`).join('')}</div>`;
     if (html) expGrid.innerHTML = html;
   }
 
