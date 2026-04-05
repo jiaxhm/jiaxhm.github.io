@@ -419,16 +419,20 @@ if (studentsContainer && cfg.students?.length) {
   studentsContainer.innerHTML = studentsHTML;
 }
 
-  pubList.innerHTML = html;
+
+// 渲染联系信息
+const contactMessage = document.getElementById("contact-message");
+const contactEmail = document.getElementById("contact-email");
+const contactTel = document.getElementById("contact-tel");
+
+if (contactMessage && contactEmail && contactTel && config.contact) {
+  contactMessage.textContent = config.contact.message;
+  contactEmail.innerHTML = `Email: <a href="mailto:${config.contact.email}">${config.contact.email}</a>`;
+  contactTel.innerHTML = `Tel: ${config.contact.tel}`;
 }
 
- 
-
-
-
-  
-
-
+  pubList.innerHTML = html;
+}
 
 
 
