@@ -320,7 +320,7 @@ if (fundsContainer && cfg.funds) {
     fundsHTML += `
     <div class="pub-item">
       <h3 class="pub-title">${index+1}. ${item.name}</h3>
-      <p class="pub-authors">编号：${item.number} | ${item.time}</p>
+      <p class="pub-authors">编号：${item.number} | $时间：{item.time}</p>
     </div>`;
   });
 

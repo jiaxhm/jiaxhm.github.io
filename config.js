@@ -80,7 +80,7 @@ news: [
     },
     {
       title:    "2. CNN与Transformer协同的多模态边缘检测网络",
-      authors:  "李永辉(研究生), 赵耀, 加小红, 魏琛珍, 常文文",
+      authors:  "李永辉, 赵耀, 加小红, 魏琛珍, 常文文",
       venue:    "计算机工程与应用 2025",
       links:    { pdf: "", code: "#" },
     },
@@ -88,7 +88,7 @@ news: [
       title:    "3. SSMamba: Superpixel segmentation with Mamba",
       authors:  "Xiaohong Jia, Yonghui Li, Jianjun Jiao, Yao Zhao, Zhiwei Xia",
       venue:    "IEEE Signal Processing Letters 2025",
-      links:    { pdf: "", code: "#" },
+      links:    { pdf: "", code: "https://github.com/jiaxhm/SSMamba" },
       
     },
 {
