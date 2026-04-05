@@ -170,26 +170,35 @@
     </div>
 </section>
 
-<!-- ======================
-教育教学板块
-======================= -->
 <section id="teaching" class="section">
-  <div class="container">
-    <h2 class="section-title scroll-animate">
-      <span data-locale="teachingTitle">教育教学</span>
+  <div class="section-container">
+    <h2 class="section-title">
+      <span class="title-icon">//</span>
+      <span data-locale="teachingTitle">Teaching & Education</span>
     </h2>
 
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTeachTab('admission')">招生信息</button>
-      <button class="tab-btn" onclick="switchTeachTab('students')">学生信息</button>
+    <!-- 选项卡按钮（和论文样式一致） -->
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="switchTeachingTab('admission')">招生信息</button>
+      <button class="tab-btn" onclick="switchTeachingTab('students')">学生信息</button>
     </div>
 
+    <!-- 选项卡内容 -->
     <div class="tab-content-wrapper">
-      <!-- 固定显示：研究方向 -->
-      <div class="research-direction" style="margin-top: 2rem; padding-top:1rem; border-top:1px solid #ddd;">
-        <p style="font-size:1rem; font-weight:500;">
-          研究方向：数据挖掘、图像处理的工程实践与理论研究
-        </p>
+      <!-- 招生信息：包含固定的研究方向 -->
+      <div id="admission-tab" class="tab-content active">
+          <div class="research-direction" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+            <p style="font-weight: 500; color: var(--text-secondary);">
+              研究方向：数据挖掘、图像处理的工程实践与理论研究
+            </p>
+        </div>
+      </div>
+
+      <!-- 学生信息 -->
+      <div id="students-tab" class="tab-content">
+        <div class="pub-item">
+          <p>已指导多名学生获得校级、省级创新项目，并协助发表多篇学术论文。</p>
+        </div>
       </div>
     </div>
   </div>
