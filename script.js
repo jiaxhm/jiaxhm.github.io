@@ -382,51 +382,55 @@ function switchTab(tab) {
 
 
 
-// 切换经历选项卡
-function switchExpTab(tab) {
-  // 切换按钮状态
-  document.querySelectorAll('#experience .tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelector(`#experience .tab-btn[onclick="switchExpTab('${tab}')"]`).classList.add('active');
+// ========== 经历模块渲染 ==========
+// 切换选项卡
+function switchExpTab(tabName) {
+    const container = document.getElementById('experience');
+    if (!container) return;
 
-  // 切换内容显示
-  document.querySelectorAll('#experience .tab-content').forEach(content => content.classList.remove('active'));
-  document.getElementById(`${tab}Tab`).classList.add('active');
+    // 切换按钮状态
+    container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    container.querySelector(`.tab-btn[onclick="switchExpTab('${tabName}')"]`).classList.add('active');
+
+    // 切换内容
+    container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(`${tabName}Tab`).classList.add('active');
 }
 
-// 渲染教育和工作经历（完全匹配你的字段名）
-function renderExperience(config) {
-  // 渲染教育经历
-  const eduList = document.getElementById('eduList');
-  if (eduList && config.education?.length) {
-    eduList.innerHTML = config.education.map(item => `
-      <div class="exp-item">
-        <div class="exp-period">${item.period}</div>
-        <div class="exp-details">
-          <h4>${item.degree}</h4>
-          <p>${item.school}</p>
-        </div>
-      </div>
-    `).join('');
-  }
+// 渲染数据
+function renderExperience(cfg) {
+    // 教育经历
+    const eduContainer = document.getElementById('cfg-education');
+    if (eduContainer && cfg.education?.length) {
+        eduContainer.innerHTML = cfg.education.map(item => `
+            <div class="exp-item">
+                <div class="exp-period">${item.period}</div>
+                <div class="exp-details">
+                    <h4>${item.degree}</h4>
+                    <p>${item.school}</p>
+                </div>
+            </div>
+        `).join('');
+    }
 
-  // 渲染工作经历
-  const workList = document.getElementById('workList');
-  if (workList && config.workExperience?.length) {
-    workList.innerHTML = config.workExperience.map(item => `
-      <div class="exp-item">
-        <div class="exp-period">${item.period}</div>
-        <div class="exp-details">
-          <h4>${item.position}</h4>
-          <p>${item.company}</p>
-        </div>
-      </div>
-    `).join('');
-  }
+    // 工作经历
+    const workContainer = document.getElementById('cfg-work');
+    if (workContainer && cfg.workExperience?.length) {
+        workContainer.innerHTML = cfg.workExperience.map(item => `
+            <div class="exp-item">
+                <div class="exp-period">${item.period}</div>
+                <div class="exp-details">
+                    <h4>${item.position}</h4>
+                    <p>${item.company}</p>
+                </div>
+            </div>
+        `).join('');
+    }
 }
 
-// 页面加载时执行
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof USER_CONFIG !== 'undefined') {
-    renderExperience(USER_CONFIG);
-  }
+// 页面加载完成后自动执行
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof USER_CONFIG !== 'undefined') {
+        renderExperience(USER_CONFIG);
+    }
 });
