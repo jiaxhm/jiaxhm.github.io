@@ -1221,3 +1221,5 @@ img {
 .hidden-funds {
     display: none;
 }
+.funds-hidden { display: none; }
+#cfg-projects .pub-item { display: block !important; width: 100% !important; }
