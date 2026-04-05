@@ -313,15 +313,22 @@ if (patentsList && cfg.patents) {
 
 
 
-  const projGrid = document.getElementById('cfg-projects');
-  if (projGrid && cfg.projects?.length) {
-    projGrid.innerHTML = cfg.projects.map(p => `
-      <article class="project-card">
-        <h3 class="project-title">${p.name}</h3>
-        <p class="project-desc">${p.desc}</p>
-        <div class="project-tags">${(p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      </article>`).join('');
-  }
+  // 渲染基金项目
+const fundsContainer = document.getElementById('cfg-projects');
+if (fundsContainer && cfg.funds) {
+  let fundsHTML = '';
+  cfg.funds.forEach(item => {
+    fundsHTML += `
+    <div class="fund-item">
+      <div class="fund-time">${item.time}</div>
+      <div class="fund-info">
+        <h4 class="fund-name">${item.name}</h4>
+        <p class="fund-number">编号：${item.number}</p>
+      </div>
+    </div>`;
+  });
+  fundsContainer.innerHTML = fundsHTML;
+}
   const newsList = document.getElementById('cfg-news');
   if (newsList && cfg.news?.length) {
     newsList.innerHTML = cfg.news.map(n => `

@@ -75,7 +75,7 @@ news: [
       {
       title:    "1. Unsupervised region-based image editing of denoising diffusion models",
       authors:  "Zixiang Li, Yue Song, Renshuai Tao, Xiaohong Jia, Yao Zhao, Wei Wang",
-      venue:    "in Proceedings of the AAAI Conference on Artificial Intelligence 2026",
+      venue:    "in Proceedings of the AAAI Conference on Artificial Intelligence 2025",
       links:    { pdf: "", code: "#" },
     },
     {
