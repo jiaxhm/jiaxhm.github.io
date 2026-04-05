@@ -95,7 +95,7 @@ news: [
       title:    "4. Fuzzy C-means clustering with region constraints for superpixel generation",
       authors:  "Xiaohong Jia, Yao Zhao, Bin Zhang, Xuejun Zhang, Ganghui Yan",
       venue:    "International Journal of Fuzzy Systems 2025",
-      links:    { pdf: "Doi: https://doi.org/10.1007/s40815-025-02017-w" },
+      links:    { pdf: "https://doi.org/10.1007/s40815-025-02017-w", code: "#"  },
       
     },
   ],
@@ -106,7 +106,7 @@ news: [
   title:    "MAS-Net: Multi-Attention Hybrid Network for Superpixel Segmentation",
       authors:  "Guanghui Yan, Chenzhen Wei, Xiaohong Jia, Yonghui Li, Wenwen Chang",
       venue:    "Symmetry 2024",
-      links:    { pdf: "#" },
+      links:    { pdf: "#" , code: "#" },
       
     },
   ],
