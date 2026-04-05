@@ -1192,22 +1192,23 @@ img {
 
 
 
+/* Projects 下的基金样式 */
 .fund-item {
-  display: flex;
-  gap: 2rem;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border-color);
 }
 .fund-time {
-  min-width: 160px;
-  color: var(--text-secondary);
-  font-weight: 500;
+    min-width: 160px;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
-.fund-info h4 {
-  margin: 0 0 0.4rem 0;
-  font-size: 1.15rem;
+.fund-name {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.2rem;
 }
-.fund-info p {
-  margin: 0;
-  color: var(--text-secondary);
+.fund-number {
+    margin: 0;
+    color: var(--text-muted);
 }

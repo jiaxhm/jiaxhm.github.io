@@ -35,7 +35,7 @@ news: [
       title:    "1. Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
       authors:  "Xiaohong Jia, Yonghui Li, Yunchao Wei, Yao Zhao, Wenwen Chang",
       venue:    "International Journal of Fuzzy Systems 2026",
-      links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "#" },
+      links:    { pdf: "Doi: 10.1007/s40815-025-02201-y", code: "https://github.com/jiaxhm/SAFCM" },
 
     },
     {
