@@ -7,40 +7,34 @@ const langText = {
   en: {
     about: "About Me",
     publications: "Publications",
-    patents: "Patents",
     projects: "Projects",
     news: "News",
     experience: "Experience",
     contact: "Contact",
     viewPubs: "View Publications",
-    contactMe: "Contact Me",
+    getInTouch: "Get in Touch",
     newsTitle: "News",
     pubsTitle: "Research",
     projectsTitle: "Projects",
     experienceTitle: "Experience",
     contactTitle: "Contact",
-    feelFree: "Feel free to reach out!",
-    educationTitle: "Education",
-    workTitle: "Work Experience"
+    feelFree: "Feel free to reach out!"
   },
   zh: {
     about: "关于我",
     publications: "论文",
-    patents: "专利",
-    projects: "科研项目",
-    news: "新闻动态",
-    experience: "工作经历",
-    contact: "联系方式",
+    projects: "项目",
+    news: "新闻",
+    experience: "经历",
+    contact: "联系",
     viewPubs: "查看论文",
-    contactMe: "联系我",
+    getInTouch: "联系我",
     newsTitle: "新闻动态",
-    pubsTitle: "研究成果",
+    pubsTitle: "科研成果",
     projectsTitle: "科研项目",
-    experienceTitle: "工作经历",
+    experienceTitle: "教育经历",
     contactTitle: "联系方式",
-    feelFree: "欢迎随时联系我！",
-    educationTitle: "教育经历",
-    workTitle: "工作经历"
+    feelFree: "欢迎随时联系！"
   }
 };
 
@@ -55,171 +49,415 @@ function applyLang() {
   document.documentElement.lang = currentLang;
 }
 
-// ==========================
-// 主题切换
-// ==========================
-function toggleTheme() {
-  const html = document.documentElement;
-  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('theme', html.dataset.theme);
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  const btn = document.getElementById('langSwitch');
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    localStorage.setItem('lang', currentLang);
+    applyLang();
+  });
+});
+
+
+
+
+
+// Theme Toggle (Light/Dark)
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', savedTheme);
+updateThemeLabel();
+
+function updateThemeLabel() {
+    const label = document.querySelector('.theme-label');
+    if (label) {
+        label.textContent = html.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark';
+    }
 }
 
-// ==========================
-// 选项卡切换（论文/专利）
-// ==========================
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-  document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
-  document.getElementById(`${tab}-tab`).classList.add('active');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeLabel();
+    });
 }
 
-// ==========================
-// 经历选项卡切换
-// ==========================
-function switchExpTab(tabName) {
-  const container = document.getElementById('experience');
-  if (!container) return;
-  container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  container.querySelector(`.tab-btn[onclick="switchExpTab('${tabName}')"]`).classList.add('active');
-  container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-  document.getElementById(`${tabName}Tab`).classList.add('active');
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// Navbar scroll state
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Scroll animations
+const scrollElements = document.querySelectorAll('.scroll-animate');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+scrollElements.forEach(el => observer.observe(el));
+
+// Back to top button
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }
 
-// ==========================
-// 核心渲染函数（所有内容都在这里）
-// ==========================
+// Prevent placeholder href="#" links from scrolling to top
+document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+// ── Config Population ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof USER_CONFIG === 'undefined') return;
+  populateSimpleFields(USER_CONFIG);
+  populateLists(USER_CONFIG);
+});
+
+function populateSimpleFields(cfg) {
+  document.querySelectorAll('[data-config]').forEach(el => {
+    const key = el.dataset.config;
+    if (key === 'role_university') el.textContent = `${cfg.role} at ${cfg.university}`;
+    else if (cfg[key] !== undefined) el.textContent = cfg[key];
+  });
+  if (cfg.name) document.title = `${cfg.name} | Academic Homepage`;
+  if (cfg.photo) {
+    const av = document.querySelector('.image-placeholder, .hero-photo');
+    if (av) av.innerHTML = `<img src="${cfg.photo}" alt="${cfg.name}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`;
+  }
+  
+
+if (cfg.stats && cfg.stats.length > 0) {
+    const statsContainer = document.getElementById('hero-stats');
+    if (statsContainer) {
+      let statsHTML = '';
+      cfg.stats.forEach(stat => {
+        statsHTML += `
+          <div class="stat">
+            <div class="stat-number">${stat.value}</div>
+            <div class="stat-label">${stat.label}</div>
+          </div>
+        `;
+      });
+      statsContainer.innerHTML = statsHTML;
+    }
+  }
+
+
+}
+
+function boldName(authors, name) {
+  if (!name) return authors;
+  return authors.replace(name, `<strong>${name}</strong>`);
+}
+
 function populateLists(cfg) {
-  // 渲染论文
-  const pubsList = document.getElementById('cfg-publications');
-  if (pubsList && cfg.publications) {
-    let pubsHTML = '';
-    cfg.publications.forEach(yearGroup => {
-      pubsHTML += `<article class="pub-card"><div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
-      yearGroup.list.forEach(pub => {
-        pubsHTML += `
-        <div class="pub-item">
-          <div class="pub-header">
-            <h3 class="pub-title">${pub.title}</h3>
-            <div class="pub-links">
-              ${pub.links ? Object.entries(pub.links).map(([k, v]) => `<a href="${v}" class="pub-link">${k.toUpperCase()}</a>`).join('') : ''}
-            </div>
-          </div>
-          <p class="pub-authors">${pub.authors}</p>
-          <p class="pub-venue">${pub.venue}</p>
-        </div>`;
-      });
-      pubsHTML += `</div></article>`;
-    });
-    pubsList.innerHTML = pubsHTML;
-  }
+  const pubList = document.getElementById('cfg-publications');
+  if (!pubList || !cfg.publications) return;
 
-  // 渲染专利
-  const patentsList = document.getElementById('cfg-patents');
-  if (patentsList && cfg.patents) {
-    let patentsHTML = '';
-    cfg.patents.forEach(yearGroup => {
-      patentsHTML += `<article class="pub-card"><div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
-      yearGroup.list.forEach(p => {
-        let venueText = `专利号: ${p.number}`;
-        if (p.status) venueText += ` | ${p.status}`;
-        patentsHTML += `
-        <div class="pub-item">
-          <div class="pub-header">
-            <h3 class="pub-title">${p.title}</h3>
-            <div class="pub-links">
-              ${p.links ? Object.entries(p.links).map(([k, v]) => `<a href="${v}" class="pub-link">${k}</a>`).join('') : ''}
-            </div>
-          </div>
-          <p class="pub-authors">${p.authors}</p>
-          <p class="pub-venue">${venueText}</p>
-        </div>`;
-      });
-      patentsHTML += `</div></article>`;
-    });
-    patentsList.innerHTML = patentsHTML;
-  }
+  let html = '';
 
-  // ==========================
-  // ✅ 基金项目渲染（已放在正确位置）
-  // ==========================
-  const fundsContainer = document.getElementById('cfg-projects');
-  if (fundsContainer && cfg.funds) {
-    let fundsHTML = '';
-    cfg.funds.forEach(item => {
-      fundsHTML += `
-      <div class="fund-item">
-        <div class="fund-time">${item.time}</div>
-        <div class="fund-info">
-          <h4 class="fund-name">${item.name}</h4>
-          <p class="fund-number">编号：${item.number}</p>
+  // 只遍历前 2 个年份（2026、2025）
+  cfg.publications.slice(0, 2).forEach(yearGroup => {
+    const year = yearGroup.year;
+    const papers = yearGroup.papers;
+
+    html += `<article class="pub-card">`;
+    html += `<div class="pub-year">${year}</div>`;
+    html += `<div class="pub-content">`;
+
+    // 显示前 3 篇
+    papers.slice(0, 5).forEach(p => {
+      html += `
+      <div class="pub-item">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">
+            ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}
+          </div>
         </div>
+        <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+        <p class="pub-venue">${p.venue}</p>
       </div>`;
     });
-    fundsContainer.innerHTML = fundsHTML;
-  }
 
-  // 渲染新闻
-  const newsContainer = document.getElementById('cfg-news');
-  if (newsContainer && cfg.news) {
-    newsContainer.innerHTML = cfg.news.map(item => `
-      <div class="news-item">
-        <span class="news-date">${item.date}</span>
-        <p class="news-content">${item.content}</p>
-      </div>
-    `).join('');
-  }
-
-  // 渲染教育经历
-  const eduContainer = document.getElementById('cfg-education');
-  if (eduContainer && cfg.education) {
-    eduContainer.innerHTML = cfg.education.map(item => `
-      <div class="exp-item">
-        <div class="exp-period">${item.period}</div>
-        <div class="exp-details">
-          <h4>${item.degree}</h4>
-          <p>${item.school}</p>
+    // 多于 3 篇，显示 more 按钮
+    if (papers.length > 5) {
+      html += `
+      <div class="more-wrapper">
+        <button class="more-btn" onclick="togglePapers(this)">more <span>▼</span></button>
+        <div class="papers-hidden">
+          ${papers.slice(5).map(p => `
+          <div class="pub-item">
+            <div class="pub-header">
+              <h3 class="pub-title">${p.title}</h3>
+              <div class="pub-links">
+                ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}
+              </div>
+            </div>
+            <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+            <p class="pub-venue">${p.venue}</p>
+          </div>`).join('')}
         </div>
+      </div>`;
+    }
+
+    html += `</div></article>`;
+  });
+
+  // ==============================
+  // 关键：剩余年份（从第3个开始）放到一个 "更多年份" 的折叠块里
+  // ==============================
+  if (cfg.publications.length > 2) {
+    html += `
+    <div class="more-years-wrapper">
+      <button class="more-btn" onclick="toggleYears(this)">
+        more years <span>▼</span>
+      </button>
+      <div class="years-hidden">
+        ${cfg.publications.slice(2).map(yearGroup => {
+          const year = yearGroup.year;
+          return `
+          <article class="pub-card">
+            <div class="pub-year">${year}</div>
+            <div class="pub-content">
+              ${yearGroup.papers.map(p => `
+              <div class="pub-item">
+                <div class="pub-header">
+                  <h3 class="pub-title">${p.title}</h3>
+                  <div class="pub-links">
+                    ${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}
+                  </div>
+                </div>
+                <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+                <p class="pub-venue">${p.venue}</p>
+              </div>`).join('')}
+            </div>
+          </article>`;
+        }).join('')}
       </div>
-    `).join('');
+    </div>`;
   }
 
-  // 渲染工作经历
-  const workContainer = document.getElementById('cfg-work');
-  if (workContainer && cfg.workExperience) {
-    workContainer.innerHTML = cfg.workExperience.map(item => `
-      <div class="exp-item">
-        <div class="exp-period">${item.period}</div>
-        <div class="exp-details">
-          <h4>${item.position}</h4>
-          <p>${item.company}</p>
+  // 渲染专利（无 undefined 版本）
+const patentsList = document.getElementById('cfg-patents');
+if (patentsList && cfg.patents) {
+  let patentsHTML = '';
+  cfg.patents.forEach(yearGroup => {
+    patentsHTML += `<article class="pub-card">`;
+    patentsHTML += `<div class="pub-year">${yearGroup.year}</div>`;
+    patentsHTML += `<div class="pub-content">`;
+
+    yearGroup.list.forEach(p => {
+      // 拼接专利号和状态，状态为空时只显示专利号
+      let venueText = `专利号: ${p.number}`;
+      if (p.status) {
+        venueText += ` | ${p.status}`;
+      }
+
+      patentsHTML += `
+      <div class="pub-item">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">
+            ${p.links ? Object.entries(p.links).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('') : ''}
+          </div>
         </div>
-      </div>
-    `).join('');
-  }
+        <p class="pub-authors">${p.authors}</p>
+        <p class="pub-venue">${venueText}</p>
+      </div>`;
+    });
+
+    patentsHTML += `</div></article>`;
+  });
+  patentsList.innerHTML = patentsHTML;
 }
 
-// ==========================
-// 页面加载初始化
-// ==========================
-document.addEventListener('DOMContentLoaded', () => {
-  // 初始化主题
-  if (localStorage.getItem('theme')) {
-    document.documentElement.dataset.theme = localStorage.getItem('theme');
+
+  pubList.innerHTML = html;
+}
+
+
+
+  const projGrid = document.getElementById('cfg-projects');
+  if (projGrid && cfg.projects?.length) {
+    projGrid.innerHTML = cfg.projects.map(p => `
+      <article class="project-card">
+        <h3 class="project-title">${p.name}</h3>
+        <p class="project-desc">${p.desc}</p>
+        <div class="project-tags">${(p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </article>`).join('');
   }
-  // 初始化语言
-  applyLang();
-  // 渲染所有数据
-  if (typeof USER_CONFIG !== 'undefined') {
-    populateLists(USER_CONFIG);
+  const newsList = document.getElementById('cfg-news');
+  if (newsList && cfg.news?.length) {
+    newsList.innerHTML = cfg.news.map(n => `
+      <div class="news-item">
+        <span class="news-date">${n.date}</span>
+        <div class="news-content">
+          <span class="news-badge">${n.badge}</span>
+          <span class="news-text">${n.text}</span>
+        </div>
+      </div>`).join('');
   }
-  // 语言切换按钮
-  const langBtn = document.getElementById('langSwitch');
-  if (langBtn) {
-    langBtn.addEventListener('click', () => {
-      currentLang = currentLang === 'en' ? 'zh' : 'en';
-      localStorage.setItem('lang', currentLang);
-      applyLang();
+  const expGrid = document.getElementById('cfg-experience');
+  if (expGrid) {
+    const edu = cfg.education||[], exp = cfg.experience||[];
+    let html = '';
+    if (edu.length) html += `<div class="exp-category"><h3>Education</h3>${edu.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.degree}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
+    if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
+    if (html) expGrid.innerHTML = html;
+  }
+
+
+
+
+
+// 切换论文展开/收起
+function togglePapers(btn) {
+  const hidden = btn.nextElementSibling;
+  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+  btn.innerHTML = btn.innerHTML.includes('more') ? 'less <span>▲</span>' : 'more <span>▼</span>';
+}
+
+// 切换年份折叠/展开
+function toggleYears(btn) {
+  const hidden = btn.nextElementSibling;
+  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+  btn.innerHTML = btn.innerHTML.includes('more') ? '收起年份 <span>▲</span>' : '更多年份 <span>▼</span>';
+}
+
+
+
+// 切换论文/专利选项卡
+function switchTab(tab) {
+    // 切换按钮高亮
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
     });
-  }
+    document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+
+    // 切换内容显示
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`${tab}-tab`).classList.add('active');
+}
+
+
+
+
+
+
+// ========== 经历模块渲染 ==========
+// 切换选项卡
+function switchExpTab(tabName) {
+    const container = document.getElementById('experience');
+    if (!container) return;
+
+    // 切换按钮状态
+    container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    container.querySelector(`.tab-btn[onclick="switchExpTab('${tabName}')"]`).classList.add('active');
+
+    // 切换内容
+    container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(`${tabName}Tab`).classList.add('active');
+}
+
+// 渲染数据
+function renderExperience(cfg) {
+    // 教育经历
+    const eduContainer = document.getElementById('cfg-education');
+    if (eduContainer && cfg.education?.length) {
+        eduContainer.innerHTML = cfg.education.map(item => `
+            <div class="exp-item">
+                <div class="exp-period">${item.period}</div>
+                <div class="exp-details">
+                    <h4>${item.degree}</h4>
+                    <p>${item.school}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 工作经历
+    const workContainer = document.getElementById('cfg-work');
+    if (workContainer && cfg.workExperience?.length) {
+        workContainer.innerHTML = cfg.workExperience.map(item => `
+            <div class="exp-item">
+                <div class="exp-period">${item.period}</div>
+                <div class="exp-details">
+                    <h4>${item.position}</h4>
+                    <p>${item.company}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+// 页面加载完成后自动执行
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof USER_CONFIG !== 'undefined') {
+        renderExperience(USER_CONFIG);
+    }
+});
+
+
+
+// ========== 基金项目渲染（Projects 内） ==========
+function renderFundsInProjects(cfg) {
+    const container = document.getElementById('cfg-projects');
+    if (!container || !cfg.funds) return;
+
+    const html = cfg.funds.map(item => `
+        <div class="fund-item">
+            <div class="fund-time">${item.time}</div>
+            <div class="fund-info">
+                <h4 class="fund-name">${item.name}</h4>
+                <p class="fund-number">编号：${item.number}</p>
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateLists(USER_CONFIG);
+    if (typeof USER_CONFIG !== 'undefined') {
+        renderFundsInProjects(USER_CONFIG);
+    }
 });
