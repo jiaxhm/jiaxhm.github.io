@@ -306,10 +306,50 @@ if (patentsList && cfg.patents) {
   });
   patentsList.innerHTML = patentsHTML;
 }
+  // 渲染基金项目
+  const fundsContainer = document.getElementById('cfg-projects');
+  if (fundsContainer && cfg.funds) {
+    let fundsHTML = '';
+    cfg.funds.forEach(item => {
+      fundsHTML += `
+      <div class="fund-item">
+        <div class="fund-time">${item.time}</div>
+        <div class="fund-info">
+          <h4 class="fund-name">${item.name}</h4>
+          <p class="fund-number">编号：${item.number}</p>
+        </div>
+      </div>`;
+    });
+    fundsContainer.innerHTML = fundsHTML;
+  }
 
+  // 渲染新闻
+  const newsList = document.getElementById('cfg-news');
+  if (newsList && cfg.news?.length) {
+    newsList.innerHTML = cfg.news.map(n => `
+      <div class="news-item">
+        <span class="news-date">${n.date}</span>
+        <div class="news-content">
+          <span class="news-badge">${n.badge}</span>
+          <span class="news-text">${n.text}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  // 渲染经历
+  const expGrid = document.getElementById('cfg-experience');
+  if (expGrid) {
+    const edu = cfg.education||[], exp = cfg.experience||[];
+    let html = '';
+    if (edu.length) html += `<div class="exp-category"><h3>Education</h3>${edu.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.degree}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
+    if (exp.length) html += `<div class="exp-category"><h3>Experience</h3>${exp.map(e=>`<div class="exp-item"><div class="exp-period">${e.period}</div><div class="exp-details"><h4>${e.role}</h4><p>${e.institution}</p></div></div>`).join('')}</div>`;
+    if (html) expGrid.innerHTML = html;
+  }
 
   pubList.innerHTML = html;
 }
+
+ 
 
 
 
@@ -389,82 +429,3 @@ function switchTab(tab) {
 
 
 
-// ========== 经历模块渲染 ==========
-// 切换选项卡
-function switchExpTab(tabName) {
-    const container = document.getElementById('experience');
-    if (!container) return;
-
-    // 切换按钮状态
-    container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    container.querySelector(`.tab-btn[onclick="switchExpTab('${tabName}')"]`).classList.add('active');
-
-    // 切换内容
-    container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    document.getElementById(`${tabName}Tab`).classList.add('active');
-}
-
-// 渲染数据
-function renderExperience(cfg) {
-    // 教育经历
-    const eduContainer = document.getElementById('cfg-education');
-    if (eduContainer && cfg.education?.length) {
-        eduContainer.innerHTML = cfg.education.map(item => `
-            <div class="exp-item">
-                <div class="exp-period">${item.period}</div>
-                <div class="exp-details">
-                    <h4>${item.degree}</h4>
-                    <p>${item.school}</p>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // 工作经历
-    const workContainer = document.getElementById('cfg-work');
-    if (workContainer && cfg.workExperience?.length) {
-        workContainer.innerHTML = cfg.workExperience.map(item => `
-            <div class="exp-item">
-                <div class="exp-period">${item.period}</div>
-                <div class="exp-details">
-                    <h4>${item.position}</h4>
-                    <p>${item.company}</p>
-                </div>
-            </div>
-        `).join('');
-    }
-}
-
-// 页面加载完成后自动执行
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof USER_CONFIG !== 'undefined') {
-        renderExperience(USER_CONFIG);
-    }
-});
-
-
-
-// ========== 基金项目渲染（Projects 内） ==========
-function renderFundsInProjects(cfg) {
-    const container = document.getElementById('cfg-projects');
-    if (!container || !cfg.funds) return;
-
-    const html = cfg.funds.map(item => `
-        <div class="fund-item">
-            <div class="fund-time">${item.time}</div>
-            <div class="fund-info">
-                <h4 class="fund-name">${item.name}</h4>
-                <p class="fund-number">编号：${item.number}</p>
-            </div>
-        </div>
-    `).join('');
-
-    container.innerHTML = html;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  populateLists(USER_CONFIG);
-    if (typeof USER_CONFIG !== 'undefined') {
-        renderFundsInProjects(USER_CONFIG);
-    }
-});
