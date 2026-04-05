@@ -421,14 +421,15 @@ if (studentsContainer && cfg.students?.length) {
 
 
 // 渲染联系信息
-const contactMessage = document.getElementById("contact-message");
-const contactEmail = document.getElementById("contact-email");
-const contactTel = document.getElementById("contact-tel");
+if (typeof USER_CONFIG !== 'undefined' && USER_CONFIG.contact) {
+  const cfg = USER_CONFIG.contact;
+  const msgEl = document.getElementById('contact-message');
+  const emailEl = document.getElementById('contact-email');
+  const telEl = document.getElementById('contact-tel');
 
-if (contactMessage && contactEmail && contactTel && config.contact) {
-  contactMessage.textContent = config.contact.message;
-  contactEmail.innerHTML = `Email: <a href="mailto:${config.contact.email}">${config.contact.email}</a>`;
-  contactTel.innerHTML = `Tel: ${config.contact.tel}`;
+  if (msgEl) msgEl.textContent = cfg.message;
+  if (emailEl) emailEl.innerHTML = `Email: <a href="mailto:${cfg.email}">${cfg.email}</a>`;
+  if (telEl) telEl.textContent = `Tel: ${cfg.tel}`;
 }
 
   pubList.innerHTML = html;
