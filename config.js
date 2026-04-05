@@ -118,7 +118,7 @@ news: [
         title:    "Fuzzy Student’s t-distribution model based on richer spatial combination",
       authors:  "Tao Lei, Xiaohong Jia, Dinghua Xue, Qi Wang, Hongying Meng, Asoke K. Nandi",
       venue:    "IEEE Transactions on Fuzzy Systems 2022",
-      links:    { pdf: "#" },
+      links:    { pdf: "#" , code: "#" },
       
     },
   
