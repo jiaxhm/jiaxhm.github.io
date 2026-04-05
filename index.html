@@ -179,19 +179,21 @@
       <span data-locale="teachingTitle">Teaching</span>
     </h2>
 
-    <!-- 和论文完全一样的按钮组 -->
+    <!-- 两个按钮，招生信息默认选中 -->
     <div class="tab-group">
       <button class="tab-btn active" onclick="switchTeachingTab('admission')">招生信息</button>
       <button class="tab-btn" onclick="switchTeachingTab('students')">学生信息</button>
     </div>
 
     <div class="tab-content-wrapper">
+      <!-- 招生信息内容默认显示 -->
       <div id="admission" class="tab-content active">
         <div class="pub-item">
           <p>每年招收硕士研究生，从事数据挖掘和图像处理的工程实践与理论研究，请通过邮件联系相关事宜，并附上个人简历。</p>
         </div>
       </div>
 
+      <!-- 学生信息内容默认隐藏 -->
       <div id="students" class="tab-content">
         <div id="cfg-students"></div>
       </div>

@@ -1249,29 +1249,29 @@ img {
 
 
 
-/* 按钮样式和论文1:1复刻 */
-.tab-group {
+/* 强制和论文按钮样式一致 */
+#teaching .tab-group {
   display: flex;
   gap: 1rem;
   margin: 1.5rem 0;
 }
-.tab-btn {
+#teaching .tab-btn {
   padding: 0.8rem 2rem;
   border: 1px solid var(--border-color);
-  background: #fff;
+  background: white;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
   font-size: 1rem;
+  color: var(--text-color);
 }
-.tab-btn.active {
-  background: var(--accent-primary); /* 蓝色背景 */
-  color: #fff; /* 白色文字 */
+#teaching .tab-btn.active {
+  background: var(--accent-primary);
+  color: white;
   border-color: var(--accent-primary);
 }
-.tab-content {
+#teaching .tab-content {
   display: none;
 }
-.tab-content.active {
+#teaching .tab-content.active {
   display: block;
 }

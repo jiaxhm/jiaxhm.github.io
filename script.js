@@ -495,21 +495,22 @@ function switchExpTab(tabName) {
 
 
 function switchTeachingTab(tabName) {
+  // 切换按钮高亮
   const container = document.getElementById('teaching');
   if (!container) return;
-
-  // 清除所有按钮高亮
+  
+  // 清除所有按钮的 active
   container.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.remove('active');
   });
-  // 给当前点击的按钮加上高亮
+  // 给当前点击的按钮加上 active
   container.querySelector(`.tab-btn[onclick="switchTeachingTab('${tabName}')"]`).classList.add('active');
 
   // 切换内容显示
   container.querySelectorAll('.tab-content').forEach(content => {
     content.classList.remove('active');
   });
-  document.getElementById(`${tabName}-tab`).classList.add('active');
+  document.getElementById(tabName).classList.add('active');
 }
 
 
