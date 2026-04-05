@@ -307,21 +307,22 @@ if (patentsList && cfg.patents) {
   patentsList.innerHTML = patentsHTML;
 }
   // 渲染基金项目
-  const fundsContainer = document.getElementById('cfg-projects');
-  if (fundsContainer && cfg.funds) {
-    let fundsHTML = '';
-    cfg.funds.forEach(item => {
-      fundsHTML += `
-      <div class="fund-item">
-        <div class="fund-time">${item.time}</div>
-        <div class="fund-info">
-          <h4 class="fund-name">${item.name}</h4>
-          <p class="fund-number">编号：${item.number}</p>
-        </div>
-      </div>`;
-    });
-    fundsContainer.innerHTML = fundsHTML;
-  }
+ // 渲染基金项目（和论文格式一致：标题/编号+时间两行）
+const fundsContainer = document.getElementById('cfg-projects');
+if (fundsContainer && cfg.funds) {
+  let fundsHTML = '';
+  cfg.funds.forEach(item => {
+    fundsHTML += `
+    <div class="pub-item">
+      <div class="pub-header">
+        <h3 class="pub-title">${item.name}</h3>
+      </div>
+      <p class="pub-authors">编号：${item.number}</p>
+      <p class="pub-venue">${item.time}</p>
+    </div>`;
+  });
+  fundsContainer.innerHTML = fundsHTML;
+}
 
   // 渲染新闻
   const newsList = document.getElementById('cfg-news');
