@@ -309,22 +309,47 @@ if (patentsList && cfg.patents) {
   // 渲染基金项目
  // 渲染基金项目（和论文格式一致：标题/编号+时间两行）
 // ========== 基金板块渲染（修复版：一行一个） ==========
+// ========== 基金渲染（修复版：一行一个 + 超过5个折叠） ==========
 function renderFunds(cfg) {
-    const fundsContainer = document.getElementById('cfg-funds');
+    const fundsContainer = document.getElementById('cfg-projects');
     if (!fundsContainer || !cfg.funds?.length) return;
 
-    // 遍历基金数据，按行生成（每一行一个基金）
-    const fundsHTML = cfg.funds.map(item => `
-        <div class="fund-item">
-            <div class="fund-period">${item.period}</div>
-            <div class="fund-details">
-                <h4>${item.name}</h4>
-                <p>${item.description}</p>
-            </div>
+    // 显示前5个基金
+    let fundsHTML = cfg.funds.slice(0, 5).map(item => `
+    <div class="fund-item">
+        <div class="fund-name">${item.name}</div>
+        <div class="fund-info">
+            <p>编号：${item.number}</p>
+            <p>${item.time}</p>
         </div>
-    `).join('');
+    </div>`).join('');
+
+    // 如果超过5个，加折叠按钮和隐藏内容
+    if (cfg.funds.length > 5) {
+        fundsHTML += `
+        <div class="more-funds-wrapper">
+            <button class="more-btn" onclick="toggleFunds(this)">more <span>▼</span></button>
+            <div class="funds-hidden">
+                ${cfg.funds.slice(5).map(item => `
+                <div class="fund-item">
+                    <div class="fund-name">${item.name}</div>
+                    <div class="fund-info">
+                        <p>编号：${item.number}</p>
+                        <p>${item.time}</p>
+                    </div>
+                </div>`).join('')}
+            </div>
+        </div>`;
+    }
 
     fundsContainer.innerHTML = fundsHTML;
+}
+
+// 基金展开/收起
+function toggleFunds(btn) {
+    const hidden = btn.nextElementSibling;
+    hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+    btn.innerHTML = hidden.style.display === 'block' ? 'less <span>▲</span>' : 'more <span>▼</span>';
 }
 
   // 渲染新闻

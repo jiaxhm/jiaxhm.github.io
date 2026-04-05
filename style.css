@@ -1194,21 +1194,29 @@ img {
 
 /* 基金样式：一行一个 */
 .fund-item {
-    display: flex;
-    flex-direction: column; /* 上下排列 */
-    gap: 0.5rem;
-    padding: 1.5rem 0;
+    padding: 1.2rem 0;
     border-bottom: 1px solid var(--border-color);
 }
-.fund-period {
+.fund-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem 0;
+}
+.fund-info p {
+    margin: 0 0 0.2rem 0;
     color: var(--text-secondary);
-    font-weight: 500;
 }
-.fund-details h4 {
-    margin: 0 0 0.3rem 0;
-    font-size: 1.2rem;
+/* 折叠按钮 */
+.more-funds-wrapper {
+    margin-top: 1rem;
 }
-.fund-details p {
-    margin: 0;
-    color: var(--text-muted);
+.more-btn {
+    background: none;
+    border: none;
+    color: var(--accent-primary);
+    cursor: pointer;
+    font-size: 1rem;
+}
+.funds-hidden {
+    display: none;
 }
