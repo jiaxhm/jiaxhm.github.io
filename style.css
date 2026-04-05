@@ -1142,23 +1142,26 @@ img {
 
 
 
-/* 经历模块正常显示样式 */
-.exp-item {
-  display: flex;
-  gap: 2rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border-color);
+/* 修复经历选项卡按钮样式 */
+.tab-btn {
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
-.exp-period {
-  min-width: 180px;
-  color: var(--text-secondary);
+.tab-btn.active {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
 }
-.exp-details h4 {
-  margin: 0 0 0.3rem 0;
+.tab-content {
+    display: none;
+    margin-top: 1.5rem;
 }
-.exp-details p {
-  margin: 0;
-  color: var(--text-muted);
+.tab-content.active {
+    display: block;
 }
 
 

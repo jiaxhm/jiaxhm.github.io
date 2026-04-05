@@ -453,7 +453,23 @@ function toggleFunds(btn) {
   h.style.display = h.style.display === 'none' ? 'block' : 'none';
   btn.innerHTML = h.style.display === 'block' ? 'less ▲' : 'more ▼';
 }
+// 修复版：切换经历选项卡
+function switchExpTab(tabName) {
+    const container = document.getElementById('experience');
+    if (!container) return;
 
+    // 切换按钮高亮状态
+    container.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    container.querySelector(`.tab-btn[onclick="switchExpTab('${tabName}')"]`).classList.add('active');
+
+    // 切换内容显示
+    container.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`${tabName}Tab`).classList.add('active');
+}
 
 
 
