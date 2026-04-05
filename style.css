@@ -1196,6 +1196,7 @@ img {
 
 
 
+
 /* 基金项目列表样式 */
 .fund-item {
     padding: 1.2rem 0;
@@ -1241,4 +1242,29 @@ img {
   margin: 0 !important;
   padding: 12px 0 !important;
   border-bottom: 1px solid #ddd !important;
+}
+
+
+
+
+
+
+.tab-btn {
+  padding: 0.8rem 2rem;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
 }

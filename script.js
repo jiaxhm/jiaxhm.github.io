@@ -494,17 +494,21 @@ function switchExpTab(tabName) {
 
 
 
-// 教学板块选项卡切换
 function switchTeachingTab(tabName) {
   const container = document.getElementById('teaching');
   if (!container) return;
 
-  // 切换按钮高亮
-  container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  // 清除所有按钮高亮
+  container.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  // 给当前点击的按钮加上高亮
   container.querySelector(`.tab-btn[onclick="switchTeachingTab('${tabName}')"]`).classList.add('active');
 
-  // 切换内容
-  container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  // 切换内容显示
+  container.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
   document.getElementById(`${tabName}-tab`).classList.add('active');
 }
 
