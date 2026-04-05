@@ -170,6 +170,8 @@
     </div>
 </section>
 
+
+
 <section id="teaching" class="section">
   <div class="section-container">
     <h2 class="section-title">
@@ -177,20 +179,20 @@
       <span data-locale="teachingTitle">Teaching</span>
     </h2>
 
+    <!-- 和论文完全一样的按钮组 -->
     <div class="tab-group">
-  <button class="tab-btn active" onclick="switchTeachingTab('admission')">招生信息</button>
-  <button class="tab-btn" onclick="switchTeachingTab('students')">学生信息</button>
-</div>
+      <button class="tab-btn active" onclick="switchTeachingTab('admission')">招生信息</button>
+      <button class="tab-btn" onclick="switchTeachingTab('students')">学生信息</button>
+    </div>
 
-    <!-- 选项卡内容 -->
     <div class="tab-content-wrapper">
-      <div id="admission-tab" class="tab-content active">
+      <div id="admission" class="tab-content active">
         <div class="pub-item">
           <p>每年招收硕士研究生，从事数据挖掘和图像处理的工程实践与理论研究，请通过邮件联系相关事宜，并附上个人简历。</p>
         </div>
       </div>
 
-      <div id="students-tab" class="tab-content">
+      <div id="students" class="tab-content">
         <div id="cfg-students"></div>
       </div>
     </div>
