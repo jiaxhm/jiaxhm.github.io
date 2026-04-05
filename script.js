@@ -308,36 +308,44 @@ if (patentsList && cfg.patents) {
 }
  // ==========================
 // ✅ 基金项目渲染（最终修复版）
-// ==========================
+// --------------------------
+// 基金项目：一行一个 + 超过5个折叠
+// --------------------------
 const fundsContainer = document.getElementById('cfg-projects');
 if (fundsContainer && cfg.funds) {
-  let fundsHTML = '';
+    const maxShow = 5; // 控制显示条数
+    let fundsHTML = '';
 
-  // 显示前5个
-  cfg.funds.slice(0,5).forEach(item => {
-    fundsHTML += `
-    <div class="pub-item">
-      <h3 class="pub-title">${item.name}</h3>
-      <p class="pub-authors">编号：${item.number}  |  ${item.time}</p>
-    </div>`;
-  });
+    // 前5条直接显示
+    cfg.funds.slice(0, maxShow).forEach((item, index) => {
+        fundsHTML += `
+        <div class="fund-item">
+            <h3 class="fund-title">${index + 1}. ${item.name}</h3>
+            <p class="fund-details">编号：${item.number} | ${item.time}</p>
+        </div>`;
+    });
 
-  // 超过5条显示折叠
-  if (cfg.funds.length > 5) {
-    fundsHTML += `
-    <div class="more-wrapper">
-      <button class="more-btn" onclick="toggleFunds(this)">more ▼</button>
-      <div class="funds-hidden" style="display:none;">
-        ${cfg.funds.slice(5).map(item => `
-        <div class="pub-item">
-          <h3 class="pub-title">${item.name}</h3>
-          <p class="pub-authors">编号：${item.number}  |  ${item.time}</p>
-        </div>`).join('')}
-      </div>
-    </div>`;
-  }
+    // 超过5条的部分做折叠
+    if (cfg.funds.length > maxShow) {
+        fundsHTML += `
+        <div class="more-funds">
+            <button class="more-btn" onclick="toggleMoreFunds(this)">more ▼</button>
+            <div class="hidden-funds">`;
+        
+        cfg.funds.slice(maxShow).forEach((item, index) => {
+            fundsHTML += `
+            <div class="fund-item">
+                <h3 class="fund-title">${maxShow + index + 1}. ${item.name}</h3>
+                <p class="fund-details">编号：${item.number} | ${item.time}</p>
+            </div>`;
+        });
 
-  fundsContainer.innerHTML = fundsHTML;
+        fundsHTML += `
+            </div>
+        </div>`;
+    }
+
+    fundsContainer.innerHTML = fundsHTML;
 }
 
 // 基金展开收起
@@ -420,7 +428,17 @@ function switchTab(tab) {
     });
     document.getElementById(`${tab}-tab`).classList.add('active');
 }
-
+// 控制折叠/展开的函数（放在全局即可）
+function toggleMoreFunds(btn) {
+    const hidden = btn.nextElementSibling;
+    if (hidden.style.display === 'block') {
+        hidden.style.display = 'none';
+        btn.textContent = 'more ▼';
+    } else {
+        hidden.style.display = 'block';
+        btn.textContent = 'less ▲';
+    }
+}
 
 
 
