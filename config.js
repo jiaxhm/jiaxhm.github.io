@@ -42,7 +42,7 @@ news: [
       title:    "2. The design and application of steerable side window",
       authors:  "Xiaohong Jia, Tao Lei, Yingbo Wang, Xuejun Zhang, Guanghui Yan, Asoke K. Nandi",
       venue:    "Neural Computing and Applications 2026",
-      links:    { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "#" },
+      links:    { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "https://github.com/jiaxhm/SSW" },
       
       
     },
