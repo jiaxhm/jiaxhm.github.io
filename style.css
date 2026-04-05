@@ -1167,6 +1167,34 @@ img {
 
 
 
+/* 教育教学 */
+#teaching .tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+#teaching .tab-btn {
+  padding: 0.6rem 1.6rem;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#teaching .tab-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+#teaching .tab-content {
+  display: none;
+}
+#teaching .tab-content.active {
+  display: block;
+}
+
+
+
+
 
 /* 基金项目列表样式 */
 .fund-item {

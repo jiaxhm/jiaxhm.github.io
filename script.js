@@ -18,7 +18,9 @@ const langText = {
     projectsTitle: "Projects",
     experienceTitle: "Experience",
     contactTitle: "Contact",
-    feelFree: "Feel free to reach out!"
+    feelFree: "Feel free to reach out!",
+    teaching: "Teaching",
+    teachingTitle: "Teaching & Education"
   },
   zh: {
     about: "关于我",
@@ -34,7 +36,9 @@ const langText = {
     projectsTitle: "科研项目",
     experienceTitle: "教育经历",
     contactTitle: "联系方式",
-    feelFree: "欢迎随时联系！"
+    feelFree: "欢迎随时联系！",
+    teaching: "教育教学",
+    teachingTitle: "教育教学",
   }
 };
 
@@ -471,6 +475,19 @@ function switchExpTab(tabName) {
     document.getElementById(`${tabName}Tab`).classList.add('active');
 }
 
+
+
+
+
+
+
+// 教育教学选项卡切换
+function switchTeachTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(tab).classList.add('active');
+}
 
 
 
