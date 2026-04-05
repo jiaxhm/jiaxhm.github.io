@@ -456,6 +456,7 @@ function renderFundsInProjects(cfg) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  populateLists(USER_CONFIG);
     if (typeof USER_CONFIG !== 'undefined') {
         renderFundsInProjects(USER_CONFIG);
     }
