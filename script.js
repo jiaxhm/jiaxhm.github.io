@@ -306,43 +306,45 @@ if (patentsList && cfg.patents) {
   });
   patentsList.innerHTML = patentsHTML;
 }
-  // 渲染基金项目
- // 渲染基金项目（和论文格式一致：标题/编号+时间两行）
-// ========== 基金板块渲染（修复版：一行一个） ==========
-// ========== 基金渲染（修复版：一行一个 + 超过5个折叠） ==========
-function renderFunds(cfg) {
-    const fundsContainer = document.getElementById('cfg-projects');
-    if (!fundsContainer || !cfg.funds?.length) return;
+ // ==========================
+// ✅ 基金项目渲染（最终修复版）
+// ==========================
+const fundsContainer = document.getElementById('cfg-projects');
+if (fundsContainer && cfg.funds) {
+  let fundsHTML = '';
 
-    // 显示前5个基金
-    let fundsHTML = cfg.funds.slice(0, 5).map(item => `
-    <div class="fund-item">
-        <div class="fund-name">${item.name}</div>
-        <div class="fund-info">
-            <p>编号：${item.number}</p>
-            <p>${item.time}</p>
-        </div>
-    </div>`).join('');
+  // 显示前5个
+  cfg.funds.slice(0,5).forEach(item => {
+    fundsHTML += `
+    <div class="pub-item">
+      <h3 class="pub-title">${item.name}</h3>
+      <p class="pub-authors">编号：${item.number}  |  ${item.time}</p>
+    </div>`;
+  });
 
-    // 如果超过5个，加折叠按钮和隐藏内容
-    if (cfg.funds.length > 5) {
-        fundsHTML += `
-        <div class="more-funds-wrapper">
-            <button class="more-btn" onclick="toggleFunds(this)">more <span>▼</span></button>
-            <div class="funds-hidden">
-                ${cfg.funds.slice(5).map(item => `
-                <div class="fund-item">
-                    <div class="fund-name">${item.name}</div>
-                    <div class="fund-info">
-                        <p>编号：${item.number}</p>
-                        <p>${item.time}</p>
-                    </div>
-                </div>`).join('')}
-            </div>
-        </div>`;
-    }
+  // 超过5条显示折叠
+  if (cfg.funds.length > 5) {
+    fundsHTML += `
+    <div class="more-wrapper">
+      <button class="more-btn" onclick="toggleFunds(this)">more ▼</button>
+      <div class="funds-hidden" style="display:none;">
+        ${cfg.funds.slice(5).map(item => `
+        <div class="pub-item">
+          <h3 class="pub-title">${item.name}</h3>
+          <p class="pub-authors">编号：${item.number}  |  ${item.time}</p>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
 
-    fundsContainer.innerHTML = fundsHTML;
+  fundsContainer.innerHTML = fundsHTML;
+}
+
+// 基金展开收起
+function toggleFunds(btn) {
+  const el = btn.nextElementSibling;
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  btn.innerHTML = el.style.display === 'block' ? 'less ▲' : 'more ▼';
 }
 
 // 基金展开/收起
