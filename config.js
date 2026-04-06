@@ -223,7 +223,7 @@ contact: {
 
 
 // 软件著作权（你可以无限加）
-softwareCopyrights: [
+monographs: [
   {
     name: "",
     authors: "",

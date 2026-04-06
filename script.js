@@ -434,44 +434,20 @@ if (typeof USER_CONFIG !== 'undefined' && USER_CONFIG.contact) {
 
 // ==========================
 // 软件著作权渲染（带折叠）
-// ==========================
-const softwareContainer = document.getElementById('cfg-software');
-if (softwareContainer && cfg.softwareCopyrights?.length) {
-  const maxShow = 5;
-  const list = cfg.softwareCopyrights;
-
+// 渲染专著成果
+const monographsContainer = document.getElementById('cfg-monographs');
+if (monographsContainer && cfg.monographs?.length) {
   let html = '';
-
-  // 前5条
-  list.slice(0, maxShow).forEach((item, i) => {
+  cfg.monographs.forEach((item, index) => {
     html += `
     <div class="pub-item">
-      <h3 class="pub-title">${i+1}. ${item.name}</h3>
+      <h3 class="pub-title">${index + 1}. ${item.title}</h3>
       <p class="pub-authors">${item.authors}</p>
-      <p class="pub-venue">登记号：${item.number} | ${item.time}</p>
+      <p class="pub-venue">${item.press} | ${item.year}</p>
     </div>
     `;
   });
-
-  // 超过5条折叠
-  if (list.length > maxShow) {
-    html += `
-    <div class="more-wrapper">
-      <button class="more-btn" onclick="toggleSoftware(this)">more ▼</button>
-      <div class="software-hidden">
-        ${list.slice(maxShow).map((item, i) => `
-        <div class="pub-item">
-          <h3 class="pub-title">${maxShow + i +1}. ${item.name}</h3>
-          <p class="pub-authors">${item.authors}</p>
-          <p class="pub-venue">登记号：${item.number} | ${item.time}</p>
-        </div>
-        `).join('')}
-      </div>
-    </div>
-    `;
-  }
-
-  softwareContainer.innerHTML = html;
+  monographsContainer.innerHTML = html;
 }
 
   pubList.innerHTML = html;
@@ -495,19 +471,23 @@ function toggleYears(btn) {
 
 
 
-// 切换论文/专利选项卡
-function switchTab(tab) {
-    // 切换按钮高亮
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+// 研究板块切换：论文 / 专利 / 专著
+function switchResTab(tabName) {
+  // 1. 移除所有按钮的 active 样式
+  document.querySelectorAll('#research .tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
 
-    // 切换内容显示
-    document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-    });
-    document.getElementById(`${tab}-tab`).classList.add('active');
+  // 2. 给当前点击的按钮加上 active 样式
+  document.querySelector(`#research .tab-btn[onclick="switchResTab('${tabName}')"]`).classList.add('active');
+
+  // 3. 隐藏所有内容板块
+  document.querySelectorAll('#research .tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+
+  // 4. 显示当前选中的内容板块
+  document.getElementById(tabName).classList.add('active');
 }
 
 
@@ -573,9 +553,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// 软件著作展开/收起
-function toggleSoftware(btn) {
-  const hidden = btn.nextElementSibling;
-  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
-  btn.innerHTML = hidden.style.display === 'block' ? 'less ▲' : 'more ▼';
-}
