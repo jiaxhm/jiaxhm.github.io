@@ -471,35 +471,7 @@ function toggleYears(btn) {
 
 
 
-// 研究板块切换：论文 / 专利 / 专著
-// 研究板块切换：论文/专利/专著（最终修复版）
-function switchResTab(tabName) {
-    // 1. 找到按钮容器（必须用你页面上的实际父容器）
-    const tabContainer = document.querySelector('.tab-group');
-    if (!tabContainer) return;
 
-    // 2. 清除所有按钮的 active 状态
-    tabContainer.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-
-    // 3. 给当前点击的按钮加上 active 状态（关键修复：直接用 tabName 匹配，不用 onlick）
-    const activeBtn = Array.from(tabContainer.querySelectorAll('.tab-btn')).find(btn => {
-        return btn.getAttribute('onclick')?.includes(`'${tabName}'`);
-    });
-    if (activeBtn) activeBtn.classList.add('active');
-
-    // 4. 隐藏所有内容，只显示当前选中的
-    const contentContainer = document.querySelector('#research .tab-content-wrapper');
-    if (!contentContainer) return;
-
-    contentContainer.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-    });
-
-    const targetContent = document.getElementById(tabName);
-    if (targetContent) targetContent.classList.add('active');
-}
 
 // 页面加载完成后，默认显示第一个（论文成果）
 document.addEventListener('DOMContentLoaded', function() {
@@ -516,23 +488,6 @@ function toggleFunds(btn) {
   h.style.display = h.style.display === 'none' ? 'block' : 'none';
   btn.innerHTML = h.style.display === 'block' ? 'less ▲' : 'more ▼';
 }
-// 修复版：切换经历选项卡
-function switchExpTab(tabName) {
-    const container = document.getElementById('experience');
-    if (!container) return;
-
-    // 切换按钮高亮状态
-    container.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    container.querySelector(`.tab-btn[onclick="switchExpTab('${tabName}')"]`).classList.add('active');
-
-    // 切换内容显示
-    container.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-    });
-    document.getElementById(`${tabName}Tab`).classList.add('active');
-}
 
 
 
@@ -540,24 +495,7 @@ function switchExpTab(tabName) {
 
 
 
-function switchTeachingTab(tabName) {
-  // 切换按钮高亮
-  const container = document.getElementById('teaching');
-  if (!container) return;
-  
-  // 清除所有按钮的 active
-  container.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  // 给当前点击的按钮加上 active
-  container.querySelector(`.tab-btn[onclick="switchTeachingTab('${tabName}')"]`).classList.add('active');
 
-  // 切换内容显示
-  container.querySelectorAll('.tab-content').forEach(content => {
-    content.classList.remove('active');
-  });
-  document.getElementById(tabName).classList.add('active');
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     // 论文作者加粗
@@ -572,3 +510,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+// 通用选项卡切换（全部按钮都用这个，100%可用）
+function switchTab(tabName) {
+  const btnGroup = event.target.closest('.tab-buttons');
+  if (!btnGroup) return;
+
+  // 按钮高亮
+  btnGroup.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // 切换内容
+  const allContents = btnGroup.parentElement.querySelectorAll('.tab-content');
+  allContents.forEach(c => c.classList.remove('active'));
+
+  const target = document.getElementById(tabName);
+  if (target) target.classList.add('active');
+}

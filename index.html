@@ -138,30 +138,27 @@
     <div class="section-container">
         <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="pubsTitle">Research</span></h2>
         
-        <!-- 选项卡按钮：论文 / 专利 -->
+        <!-- 选项卡按钮：论文 / 专利 / 专著 -->
         <div class="tab-buttons">
             <button class="tab-btn active" onclick="switchTab('publications')">论文成果</button>
             <button class="tab-btn" onclick="switchTab('patents')">专利成果</button>
-            <button class="tab-btn" onclick="switchResTab('monographs')">专著成果</button>
+            <button class="tab-btn" onclick="switchTab('monographs')">专著成果</button>
         </div>
        
-        <!-- 论文板块 -->
-        <div id="publications-tab" class="tab-content active">
-            <div class="publications-list" id="cfg-publications">
-                <!-- 这里保留你原来的论文列表代码 -->
-            </div>
+        <!-- 论文 -->
+        <div id="publications" class="tab-content active">
+            <div class="publications-list" id="cfg-publications"></div>
         </div>
-        <!-- 专利板块（新增） -->
-        <div id="patents-tab" class="tab-content">
-            <div class="patents-list" id="cfg-patents">
-                <!-- 专利会从 config.js 动态渲染 -->
-            </div>
+
+        <!-- 专利 -->
+        <div id="patents" class="tab-content">
+            <div class="patents-list" id="cfg-patents"></div>
         </div>
-<div id="monographs" class="tab-content">
-  <div id="cfg-monographs"></div>
-</div>
-        
-        
+
+        <!-- 专著 -->
+        <div id="monographs" class="tab-content">
+            <div id="cfg-monographs"></div>
+        </div>
     </div>
 </section>
 
@@ -183,21 +180,18 @@
       <span data-locale="teachingTitle">Teaching</span>
     </h2>
 
-    <!-- 两个按钮，招生信息默认选中 -->
-    <div class="tab-group">
-      <button class="tab-btn active" onclick="switchTeachingTab('admission')">招生信息</button>
-      <button class="tab-btn" onclick="switchTeachingTab('students')">学生信息</button>
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab('admission')">招生信息</button>
+      <button class="tab-btn" onclick="switchTab('students')">学生信息</button>
     </div>
 
     <div class="tab-content-wrapper">
-      <!-- 招生信息内容默认显示 -->
       <div id="admission" class="tab-content active">
         <div class="pub-item">
           <p>每年招收硕士研究生，从事数据挖掘和图像处理的工程实践与理论研究，请通过邮件联系相关事宜，并附上个人简历。</p>
         </div>
       </div>
 
-      <!-- 学生信息内容默认隐藏 -->
       <div id="students" class="tab-content">
         <div id="cfg-students"></div>
       </div>
