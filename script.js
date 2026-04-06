@@ -519,13 +519,15 @@ function switchTeachingTab(tabName) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. 论文作者 Xiaohong Jia 加粗
+    // 论文作者加粗
     document.querySelectorAll('.pub-authors').forEach(el => {
         el.innerHTML = el.innerHTML.replace(/Xiaohong Jia/g, '<strong>Xiaohong Jia</strong>');
     });
 
-    // 2. 专利作者 加小红 加粗（更精准的方式）
-    document.querySelectorAll('#patents .pub-authors').forEach(el => {
-        el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
+    // 专利作者加粗（通用版）
+    document.querySelectorAll('.pub-authors').forEach(el => {
+        if (el.textContent.includes('加小红')) {
+            el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
+        }
     });
 });
