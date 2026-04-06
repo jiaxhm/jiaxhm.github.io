@@ -274,7 +274,8 @@ function populateLists(cfg) {
       </div>
     </div>`;
   }
-
+  pubList.innerHTML = html;
+}
   // 渲染专利（无 undefined 版本）
 const patentsList = document.getElementById('cfg-patents');
 if (patentsList && cfg.patents) {
@@ -450,8 +451,7 @@ if (monographsContainer && cfg.monographs?.length) {
   monographsContainer.innerHTML = html;
 }
 
-  pubList.innerHTML = html;
-}
+
 
 
 
