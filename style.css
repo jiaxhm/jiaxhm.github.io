@@ -1262,7 +1262,7 @@ img {
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  color: var(--text-color);
+  color: var(--accent-primary);
 }
 #teaching .tab-btn.active {
   background: var(--accent-primary);
