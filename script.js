@@ -472,23 +472,42 @@ function toggleYears(btn) {
 
 
 // 研究板块切换：论文 / 专利 / 专著
+// 研究板块切换：论文/专利/专著（最终修复版）
 function switchResTab(tabName) {
-  // 1. 移除所有按钮的 active 样式
-  document.querySelectorAll('#research .tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
+    // 1. 找到按钮容器（必须用你页面上的实际父容器）
+    const tabContainer = document.querySelector('.tab-group');
+    if (!tabContainer) return;
 
-  // 2. 给当前点击的按钮加上 active 样式
-  document.querySelector(`#research .tab-btn[onclick="switchResTab('${tabName}')"]`).classList.add('active');
+    // 2. 清除所有按钮的 active 状态
+    tabContainer.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
 
-  // 3. 隐藏所有内容板块
-  document.querySelectorAll('#research .tab-content').forEach(content => {
-    content.classList.remove('active');
-  });
+    // 3. 给当前点击的按钮加上 active 状态（关键修复：直接用 tabName 匹配，不用 onlick）
+    const activeBtn = Array.from(tabContainer.querySelectorAll('.tab-btn')).find(btn => {
+        return btn.getAttribute('onclick')?.includes(`'${tabName}'`);
+    });
+    if (activeBtn) activeBtn.classList.add('active');
 
-  // 4. 显示当前选中的内容板块
-  document.getElementById(tabName).classList.add('active');
+    // 4. 隐藏所有内容，只显示当前选中的
+    const contentContainer = document.querySelector('#research .tab-content-wrapper');
+    if (!contentContainer) return;
+
+    contentContainer.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+
+    const targetContent = document.getElementById(tabName);
+    if (targetContent) targetContent.classList.add('active');
 }
+
+// 页面加载完成后，默认显示第一个（论文成果）
+document.addEventListener('DOMContentLoaded', function() {
+    // 只执行一次，避免覆盖
+    if (! document.querySelector('#research .tab-content.active')) {
+        switchResTab('publications');
+    }
+});
 
 
 
