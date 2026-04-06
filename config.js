@@ -219,6 +219,24 @@ contact: {
     message: "欢迎随时联系！",
     email: "jiaxhm@163.com ",
     tel:18293132021
-}
+},
+
+
+// 软件著作权（你可以无限加）
+softwareCopyrights: [
+  {
+    name: "",
+    authors: "",
+    number: "",
+    time: "2025年03月"
+  },
+  {
+    name: "1",
+    authors: "",
+    number: "",
+    time: "2025年01月"
+  }
+  
+],
 
 };

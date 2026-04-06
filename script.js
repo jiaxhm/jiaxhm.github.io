@@ -432,6 +432,48 @@ if (typeof USER_CONFIG !== 'undefined' && USER_CONFIG.contact) {
   if (telEl) telEl.textContent = `Tel: ${cfg.tel}`;
 }
 
+// ==========================
+// 软件著作权渲染（带折叠）
+// ==========================
+const softwareContainer = document.getElementById('cfg-software');
+if (softwareContainer && cfg.softwareCopyrights?.length) {
+  const maxShow = 5;
+  const list = cfg.softwareCopyrights;
+
+  let html = '';
+
+  // 前5条
+  list.slice(0, maxShow).forEach((item, i) => {
+    html += `
+    <div class="pub-item">
+      <h3 class="pub-title">${i+1}. ${item.name}</h3>
+      <p class="pub-authors">${item.authors}</p>
+      <p class="pub-venue">登记号：${item.number} | ${item.time}</p>
+    </div>
+    `;
+  });
+
+  // 超过5条折叠
+  if (list.length > maxShow) {
+    html += `
+    <div class="more-wrapper">
+      <button class="more-btn" onclick="toggleSoftware(this)">more ▼</button>
+      <div class="software-hidden">
+        ${list.slice(maxShow).map((item, i) => `
+        <div class="pub-item">
+          <h3 class="pub-title">${maxShow + i +1}. ${item.name}</h3>
+          <p class="pub-authors">${item.authors}</p>
+          <p class="pub-venue">登记号：${item.number} | ${item.time}</p>
+        </div>
+        `).join('')}
+      </div>
+    </div>
+    `;
+  }
+
+  softwareContainer.innerHTML = html;
+}
+
   pubList.innerHTML = html;
 }
 
@@ -531,3 +573,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// 软件著作展开/收起
+function toggleSoftware(btn) {
+  const hidden = btn.nextElementSibling;
+  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+  btn.innerHTML = hidden.style.display === 'block' ? 'less ▲' : 'more ▼';
+}
