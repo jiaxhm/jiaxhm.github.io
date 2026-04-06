@@ -518,18 +518,14 @@ function switchTeachingTab(tabName) {
   document.getElementById(tabName).classList.add('active');
 }
 
-// ==============================
-// 自动加粗论文里的名字
-// ==============================
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.pub-authors').forEach(el => {
-    el.innerHTML = el.innerHTML.replace(/Xiaohong Jia/g, '<strong>Xiaohong Jia</strong>');
-  });
-});
-
-// 专利作者加粗（按文本内容匹配）
-    document.querySelectorAll('p').forEach(el => {
-        if (el.textContent.includes('加小红')) {
-            el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
-        }
+    // 1. 论文作者 Xiaohong Jia 加粗
+    document.querySelectorAll('.pub-authors').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/Xiaohong Jia/g, '<strong>Xiaohong Jia</strong>');
     });
+
+    // 2. 专利作者 加小红 加粗（更精准的方式）
+    document.querySelectorAll('#patents .pub-authors').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
+    });
+});
