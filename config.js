@@ -225,18 +225,19 @@ contact: {
 // 软件著作权（你可以无限加）
 monographs: [
   {
-    name: "",
-    authors: "",
-    number: "",
-    time: "2025年03月"
+    name: "高光谱遥感图像特征提取与分类智能分析软件",
+    number: "15722631",
+    copyrightHolder: "兰州交通大学", // 著作权人
+    developers: "孟鹏宇，闫光辉，加小红",      // 开发人员
+    time: "2025.06.23"
   },
   {
-    name: "1",
-    authors: "",
-    number: "",
-    time: "2025年01月"
+    name: "基于深度学习的自习室预约系统",
+    number: "15346971",
+    copyrightHolder: "兰州交通大学",
+    developers: "孟鹏宇，闫光辉，加小红",
+    time: "2025.04.27"
   }
-  
 ],
 
 };

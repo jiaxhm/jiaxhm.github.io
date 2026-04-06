@@ -250,21 +250,22 @@ function populateLists(cfg) {
   }
 
   // --------------------
-  // 专著
-  // --------------------
-  const monographsContainer = document.getElementById('cfg-monographs');
-  if (monographsContainer && cfg.monographs) {
-    let mhtml = '';
-    cfg.monographs.forEach((item, i) => {
-      mhtml += `
-      <div class="pub-item">
-        <h3 class="pub-title">${i+1}. ${item.title}</h3>
-        <p class="pub-authors">${item.authors}</p>
-        <p class="pub-venue">${item.press} | ${item.year}</p>
-      </div>`;
-    });
-    monographsContainer.innerHTML = mhtml;
-  }
+  // 专著渲染
+const monographsContainer = document.getElementById('cfg-monographs');
+if (monographsContainer && cfg.monographs?.length) {
+  let html = '';
+  cfg.monographs.forEach((item, index) => {
+    html += `
+    <div class="pub-item">
+      <h3 class="pub-title">${index + 1}. ${item.name}</h3>
+      <p class="pub-authors">著作权人：${item.copyrightHolder}</p>
+      <p class="pub-authors">开发人员：${item.developers}</p>
+      <p class="pub-venue">登记号：${item.number} | ${item.time}</p>
+    </div>
+    `;
+  });
+  monographsContainer.innerHTML = html;
+}
 
   // --------------------
   // 基金项目
