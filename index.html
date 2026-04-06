@@ -179,28 +179,42 @@
   <div class="section-container">
     <h2 class="section-title">
       <span class="title-icon">//</span>
-      <span data-locale="teachingTitle">Teaching</span>
+      <span data-locale="teachingTitle">教育教学</span>
     </h2>
 
     <div class="tab-buttons">
       <button class="tab-btn active" onclick="switchTab('admission')">招生信息</button>
       <button class="tab-btn" onclick="switchTab('students')">学生信息</button>
+      <button class="tab-btn" onclick="switchTab('courses')">教学信息</button>
     </div>
 
     <div class="tab-content-wrapper">
+      <!-- 招生信息 -->
       <div id="admission" class="tab-content active">
         <div class="pub-item">
           <p>每年招收硕士研究生，从事数据挖掘和图像处理的工程实践与理论研究，请通过邮件联系相关事宜，并附上个人简历。</p>
         </div>
       </div>
 
+      <!-- 学生信息 -->
       <div id="students" class="tab-content">
         <div id="cfg-students"></div>
+      </div>
+
+      <!-- 教学信息（新增） -->
+      <div id="courses" class="tab-content">
+        <div class="pub-item">
+          <p style="color: #007bff; font-weight: bold;">本科生课程：</p>
+          <p>数字图像处理</p>
+        </div>
+        <div class="pub-item">
+          <p style="color: #007bff; font-weight: bold;">研究生课程：</p>
+          <p>嵌入式系统设计</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <section id="contact" class="section">
   <div class="section-container">
