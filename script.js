@@ -527,3 +527,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// 专利作者加粗（按文本内容匹配）
+    document.querySelectorAll('p').forEach(el => {
+        if (el.textContent.includes('加小红')) {
+            el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
+        }
+    });
