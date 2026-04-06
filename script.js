@@ -473,16 +473,6 @@ function toggleYears(btn) {
 
 
 
-// 页面加载完成后，默认显示第一个（论文成果）
-document.addEventListener('DOMContentLoaded', function() {
-    // 只执行一次，避免覆盖
-    if (! document.querySelector('#research .tab-content.active')) {
-        switchResTab('publications');
-    }
-});
-
-
-
 function toggleFunds(btn) {
   const h = btn.nextElementSibling;
   h.style.display = h.style.display === 'none' ? 'block' : 'none';
@@ -513,18 +503,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // 通用选项卡切换（全部按钮都用这个，100%可用）
+// 🌟 通用选项卡切换：Experience / Research / Teaching 全部共用
 function switchTab(tabName) {
-  const btnGroup = event.target.closest('.tab-buttons');
+  const btnGroup = event.target.closest('.tab-buttons') || event.target.closest('.tab-group');
   if (!btnGroup) return;
 
-  // 按钮高亮
   btnGroup.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   event.target.classList.add('active');
 
-  // 切换内容
-  const allContents = btnGroup.parentElement.querySelectorAll('.tab-content');
-  allContents.forEach(c => c.classList.remove('active'));
-
+  const contentWrapper = btnGroup.parentElement;
+  if (!contentWrapper) return;
+  
+  contentWrapper.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   const target = document.getElementById(tabName);
   if (target) target.classList.add('active');
 }

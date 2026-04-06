@@ -24,14 +24,14 @@
             </button>
 
             <div class="nav-links">
-                <a href="#about" data-locale="about">About Me</a>
-                <a href="#experience" data-locale="experience">Experience</a>
-                <a href="#publications" data-locale="publications">Publications</a>
-                <a href="#news" data-locale="news">News</a>
-                <a href="#projects" data-locale="projects">Projects</a>
-                <a href="#teaching" data-locale="teaching">Teaching</a>
+                <a href="#about" data-locale="about">关于我</a>
+                <a href="#experience" data-locale="experience">经历</a>
+                <a href="#news" data-locale="news">新闻动态</a>
+                <a href="#publications" data-locale="publications">科研成果</a>
+                <a href="#projects" data-locale="projects">科研项目</a>
+                <a href="#teaching" data-locale="teaching">教育教学</a>
                 
-                <a href="#contact" data-locale="contact">Contact</a>
+                <a href="#contact" data-locale="contact">联系方式</a>
             </div>
             <div class="nav-controls">
                 <button type="button" class="nav-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -79,8 +79,8 @@
                     </div>
                 </div>
                 <div class="hero-cta">
-                    <a href="#publications" class="btn btn-primary" data-locale="viewPubs">View Publications</a>
-                    <a href="#contact" class="btn btn-secondary" data-locale="getInTouch">Get in Touch</a>
+                    <a href="#publications" class="btn btn-primary" data-locale="viewPubs">查看科研成果</a>
+                    <a href="#contact" class="btn btn-secondary" data-locale="getInTouch">联系我</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -99,17 +99,20 @@
 
 <section id="experience" class="section">
     <div class="section-container">
-        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="experienceTitle">Experience</span></h2>
+        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="experienceTitle">个人经历</span></h2>
+        
+        <!-- 按钮：统一用 switchTab -->
         <div class="tab-buttons">
-            <button class="tab-btn active" onclick="switchExpTab('education')">Education</button>
-            <button class="tab-btn" onclick="switchExpTab('work')">Work</button>
+            <button class="tab-btn active" onclick="switchTab('education')">教育经历</button>
+            <button class="tab-btn" onclick="switchTab('work')">工作经历</button>
         </div>
 
-        <div id="educationTab" class="tab-content active">
+        <!-- 内容 ID 必须匹配：education / work -->
+        <div id="education" class="tab-content active">
             <div class="exp-list" id="cfg-education"></div>
         </div>
 
-        <div id="workTab" class="tab-content">
+        <div id="work" class="tab-content">
             <div class="exp-list" id="cfg-work"></div>
         </div>
     </div>
@@ -118,7 +121,7 @@
 
 <section id="news" class="section">
     <div class="section-container">
-        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="newsTitle">News</span></h2>
+        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="newsTitle">新闻动态</span></h2>
         <div class="news-list" id="cfg-news">
             <div class="news-item">
                 <span class="news-date">2026.03.21</span>
@@ -136,7 +139,7 @@
 
 <section id="publications" class="section">
     <div class="section-container">
-        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="pubsTitle">Research</span></h2>
+        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="pubsTitle">科研成果</span></h2>
         
         <!-- 选项卡按钮：论文 / 专利 / 专著 -->
         <div class="tab-buttons">
@@ -164,7 +167,7 @@
 
 <section id="projects" class="section section-alt">
     <div class="section-container">
-        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="projectsTitle">Projects</span></h2>
+        <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="projectsTitle">科研项目</span></h2>
         <div class="projects-grid" id="cfg-projects">
             <!-- 由 JS 自动渲染 -->
         </div>
@@ -202,7 +205,7 @@
 
 <section id="contact" class="section">
   <div class="section-container">
-    <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="contactTitle">Contact</span></h2>
+    <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="contactTitle">联系方式</span></h2>
     <div class="contact-content">
       <p id="contact-message"></p>
       <p id="contact-email"></p>
