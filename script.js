@@ -19,7 +19,7 @@ const langText = {
     experienceTitle: "Experience",
     contactTitle: "Contact",
     feelFree: "Feel free to reach out!",
-    teachingTitle: "Teaching"
+    teaching: "Teaching"
   },
   zh: {
     about: "关于我",
@@ -36,7 +36,7 @@ const langText = {
     experienceTitle: "教育经历",
     contactTitle: "联系方式",
     feelFree: "欢迎随时联系！",
-    teachingTitle: "教育教学"
+    teaching: "教育教学"
   }
 };
 
