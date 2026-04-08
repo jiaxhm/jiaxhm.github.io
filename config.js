@@ -99,7 +99,7 @@ news: [
         title: "MAS-Net: Multi-Attention hybrid network for superpixel segmentation",
         authors: "Guanghui Yan, Chenzhen Wei, Xiaohong Jia, Yonghui Li, Wenwen Chang",
         venue: "Symmetry 2024",
-        links: { pdf: "#", code: "#" }
+        links: { pdf: "https://doi.org/10.3390/sym16081000", code: "#" }
       }
     ]
   },
@@ -110,7 +110,7 @@ news: [
         title: "Fuzzy Student's t-distribution model based on richer spatial combination",
         authors: "Tao Lei, Xiaohong Jia, Dinghua Xue, Qi Wang, Hongying Meng, Asoke K. Nandi",
         venue: "IEEE Transactions on Fuzzy Systems 2022",
-        links: { pdf: "#", code: "#" }
+        links: { pdf: " https://doi.org/10.1109/TFUZZ.2021.3099560", code: "#" }
       }
     ]
   }
