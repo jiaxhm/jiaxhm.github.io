@@ -173,60 +173,82 @@ function populateLists(cfg) {
   // --------------------
   // 论文
   // --------------------
-  const pubList = document.getElementById('cfg-publications');
-  if (pubList && cfg.publications) {
-    let html = '';
-    cfg.publications.slice(0, 2).forEach(yearGroup => {
-      html += `<article class="pub-card">`;
-      html += `<div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
-      yearGroup.papers.slice(0,5).forEach(p => {
-        html += `
-        <div class="pub-item">
-          <div class="pub-header">
-            <h3 class="pub-title">${p.title}</h3>
-            <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}</div>
-          </div>
-          <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-          <p class="pub-venue">${p.venue}</p>
-        </div>`;
-      });
-      if (yearGroup.papers.length > 5) {
-        html += `
-        <div class="more-wrapper">
-          <button class="more-btn" onclick="togglePapers(this)">more ▼</button>
-          <div class="papers-hidden">${yearGroup.papers.slice(5).map(p => `
-          <div class="pub-item">
-            <div class="pub-header">
-              <h3 class="pub-title">${p.title}</h3>
-              <div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" class="pub-link">${k}</a>`).join('')}</div>
-            </div>
-            <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-            <p class="pub-venue">${p.venue}</p>
-          </div>`).join('')}
-          </div>
-        </div>`;
+// 论文渲染（修复pdf/code按钮显示）
+// --------------------
+const pubList = document.getElementById('cfg-publications');
+if (pubList && cfg.publications) {
+  let html = '';
+  cfg.publications.slice(0, 2).forEach(yearGroup => {
+    html += `<article class="pub-card">`;
+    html += `<div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
+    yearGroup.papers.slice(0,5).forEach(p => {
+      // 生成pdf/code按钮
+      let linkHtml = '';
+      if (p.links) {
+        if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+        if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
       }
-      html += `</div></article>`;
-    });
-    if (cfg.publications.length > 2) {
+      
       html += `
-      <div class="more-years-wrapper">
-        <button class="more-btn" onclick="toggleYears(this)">more years ▼</button>
-        <div class="years-hidden">${cfg.publications.slice(2).map(y => `
-        <article class="pub-card">
-          <div class="pub-year">${y.year}</div>
-          <div class="pub-content">${y.papers.map(p => `
+      <div class="pub-item">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">${linkHtml}</div>
+        </div>
+        <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+        <p class="pub-venue">${p.venue}</p>
+      </div>`;
+    });
+    if (yearGroup.papers.length > 5) {
+      html += `
+      <div class="more-wrapper">
+        <button class="more-btn" onclick="togglePapers(this)">more ▼</button>
+        <div class="papers-hidden">${yearGroup.papers.slice(5).map(p => {
+          let linkHtml = '';
+          if (p.links) {
+            if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+            if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+          }
+          return `
           <div class="pub-item">
-            <div class="pub-header"><h3 class="pub-title">${p.title}</h3></div>
+            <div class="pub-header"><h3 class="pub-title">${p.title}</h3><div class="pub-links">${linkHtml}</div></div>
             <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
             <p class="pub-venue">${p.venue}</p>
-          </div>`).join('')}</div>
-        </article>`).join('')}
+          </div>`;
+        }).join('')}
         </div>
       </div>`;
     }
-    pubList.innerHTML = html;
+    html += `</div></article>`;
+  });
+  if (cfg.publications.length > 2) {
+    html += `
+    <div class="more-years-wrapper">
+      <button class="more-btn" onclick="toggleYears(this)">more years ▼</button>
+      <div class="years-hidden">${cfg.publications.slice(2).map(y => {
+        return `
+        <article class="pub-card">
+          <div class="pub-year">${y.year}</div>
+          <div class="pub-content">${y.papers.map(p => {
+            let linkHtml = '';
+            if (p.links) {
+              if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+              if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+            }
+            return `
+            <div class="pub-item">
+              <div class="pub-header"><h3 class="pub-title">${p.title}</h3><div class="pub-links">${linkHtml}</div></div>
+              <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+              <p class="pub-venue">${p.venue}</p>
+            </div>`;
+          }).join('')}</div>
+        </article>`;
+      }).join('')}
+      </div>
+    </div>`;
   }
+  pubList.innerHTML = html;
+}
 
   // --------------------
   // 专利
