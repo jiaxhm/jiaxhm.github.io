@@ -1372,3 +1372,47 @@ img {
 .news-text {
   color: var(--text-color);
 }
+
+
+
+/* 🌟 新闻滚动容器：设置高度，强制滚动 */
+.news-scroll-container {
+  max-height: 200px; /* 控制显示几条新闻，超过就滚动 */
+  overflow-y: auto; /* 垂直滚动 */
+  overflow-x: hidden; /* 禁止横向滚动 */
+  padding-right: 0.5rem; /* 给滚动条留空间 */
+}
+
+/* 美化滚动条（可选） */
+.news-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+.news-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+.news-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 新闻项样式（保持你现在的布局） */
+.news-item {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+.news-date {
+  min-width: 90px;
+  font-weight: 500;
+}
+.news-badge {
+  background: var(--accent-primary, #007bff);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 8px;
+}

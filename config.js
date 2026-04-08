@@ -76,7 +76,7 @@ news: [
         title: "2. Fuzzy C-means clustering with region constraints for superpixel generation",
         authors: "Xiaohong Jia, Yao Zhao, Bin Zhang, Xuejun Zhang, Ganghui Yan",
         venue: "International Journal of Fuzzy Systems 2025",
-        links: { pdf: "https://doi.org/10.1007/s40815-025-02017-w", code: "#" }
+        links: { pdf: "https://doi.org/10.1007/s40815-025-02017-w", code: "https://github.com/jiaxhm/RCFCMS" }
       },
       {
         title: "3. Unsupervised region-based image editing of denoising diffusion models",
@@ -117,18 +117,7 @@ news: [
 ],
   
 
-  education: [
-    {
-      period: "2018 - 2022",
-      degree: "计算机科学与技术 本科",
-      school: "XX大学"
-    },
-    {
-      period: "2022 - 2025",
-      degree: "计算机应用技术 硕士",
-      school: "YY大学"
-    }
-  ],
+  
   workExperience: [
      {
       period: "2026.01-至今",
