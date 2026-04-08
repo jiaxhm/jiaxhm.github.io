@@ -47,19 +47,19 @@ news: [
         title: "3. Wavelet pooling group swin transformer for superpixel segmentation",
         authors: "Xiaohong Jia, Yonghui Li, Xiaomei Guo, Yao Zhao, Guanghui Yan, Zhengwen Huang",
         venue: "IEEE International Conference on Acoustics, Speech, and Signal Processing 2026",
-        links: { pdf: "", code: "#" }
+        links: { pdf: "#", code: "#" }
       },
       {
         title: "4. KAN-Based superpixel segmentation with boundary constraint and semantic guidance",
         authors: "Xiaohong Jia, Fuhai Wang, Tong Tong, Long Ma, Guanghui Yan",
         venue: "International Joint Conference on Neural Networks 2026",
-        links: { pdf: "", code: "#" }
+        links: { pdf: "#", code: "#" }
       },
       {
         title: "5. Simple multiple kernel k-means with heat kernel diffusion",
         authors: "Zhiwei Xia, Xiaohong Jia, Xuejun Zhang, Yao Zhao, Wenqian Yu",
         venue: "IEEE International Joint Conference on Neural Network 2026",
-        links: { pdf: "", code: "#" }
+        links: { pdf: "#", code: "#" }
       }
     ]
   },
@@ -70,7 +70,7 @@ news: [
         title: "1. SSMamba: Superpixel segmentation with Mamba",
         authors: "Xiaohong Jia, Yonghui Li, Jianjun Jiao, Yao Zhao, Zhiwei Xia",
         venue: "IEEE Signal Processing Letters 2025",
-        links: { pdf: "", code: "https://github.com/jiaxhm/SSMamba" }
+        links: { pdf: "#", code: "https://github.com/jiaxhm/SSMamba" }
       },
       {
         title: "2. Fuzzy C-means clustering with region constraints for superpixel generation",
@@ -82,13 +82,13 @@ news: [
         title: "3. Unsupervised region-based image editing of denoising diffusion models",
         authors: "Zixiang Li, Yue Song, Renshuai Tao, Xiaohong Jia, Yao Zhao, Wei Wang",
         venue: "in Proceedings of the AAAI Conference on Artificial Intelligence 2025",
-        links: { pdf: "", code: "#" }
+        links: { pdf: "#", code: "#" }
       },
       {
         title: "4. CNN与Transformer协同的多模态边缘检测网络",
         authors: "李永辉, 赵耀, 加小红, 魏琛珍, 常文文",
         venue: "计算机工程与应用 2025",
-        links: { pdf: "", code: "#" }
+        links: { pdf: "#", code: "#" }
       }
     ]
   },
