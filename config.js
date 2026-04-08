@@ -47,7 +47,7 @@ news: [
       
     },
     {
-      title:    "3. Wavelet pooling group Swin Transformer for superpixel segmentation",
+      title:    "3. Wavelet pooling group swin transformer for superpixel segmentation",
       authors:  "Xiaohong Jia, Yonghui Li, Xiaomei Guo, Yao Zhao, Guanghui Yan, Zhengwen Huang",
       venue:    "IEEE International Conference on Acoustics, Speech, and Signal Processing 2026",
       links:    { pdf: "", code: "#" },
@@ -72,32 +72,33 @@ news: [
    { 
     year:     2025,
       papers:[
-      {
-      title:    "1. Unsupervised region-based image editing of denoising diffusion models",
-      authors:  "Zixiang Li, Yue Song, Renshuai Tao, Xiaohong Jia, Yao Zhao, Wei Wang",
-      venue:    "in Proceedings of the AAAI Conference on Artificial Intelligence 2025",
-      links:    { pdf: "", code: "#" },
-    },
-    {
-      title:    "2. CNN与Transformer协同的多模态边缘检测网络",
-      authors:  "李永辉, 赵耀, 加小红, 魏琛珍, 常文文",
-      venue:    "计算机工程与应用 2025",
-      links:    { pdf: "", code: "#" },
-    },
-    {
-      title:    "3. SSMamba: Superpixel segmentation with Mamba",
+        {
+      title:    "1. SSMamba: Superpixel segmentation with Mamba",
       authors:  "Xiaohong Jia, Yonghui Li, Jianjun Jiao, Yao Zhao, Zhiwei Xia",
       venue:    "IEEE Signal Processing Letters 2025",
       links:    { pdf: "", code: "https://github.com/jiaxhm/SSMamba" },
       
     },
-{
-      title:    "4. Fuzzy C-means clustering with region constraints for superpixel generation",
+       {
+      title:    "2. Fuzzy C-means clustering with region constraints for superpixel generation",
       authors:  "Xiaohong Jia, Yao Zhao, Bin Zhang, Xuejun Zhang, Ganghui Yan",
       venue:    "International Journal of Fuzzy Systems 2025",
       links:    { pdf: "https://doi.org/10.1007/s40815-025-02017-w", code: "#"  },
       
     },
+      {
+      title:    "3. Unsupervised region-based image editing of denoising diffusion models",
+      authors:  "Zixiang Li, Yue Song, Renshuai Tao, Xiaohong Jia, Yao Zhao, Wei Wang",
+      venue:    "in Proceedings of the AAAI Conference on Artificial Intelligence 2025",
+      links:    { pdf: "", code: "#" },
+    },
+    {
+      title:    "4. CNN与Transformer协同的多模态边缘检测网络",
+      authors:  "李永辉, 赵耀, 加小红, 魏琛珍, 常文文",
+      venue:    "计算机工程与应用 2025",
+      links:    { pdf: "", code: "#" },
+    },
+    
   ],
 },
  { year:     2024, 
