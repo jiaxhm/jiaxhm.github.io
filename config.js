@@ -70,7 +70,7 @@ news: [
         title: "1. SSMamba: Superpixel segmentation with Mamba",
         authors: "Xiaohong Jia, Yonghui Li, Jianjun Jiao, Yao Zhao, Zhiwei Xia",
         venue: "IEEE Signal Processing Letters 2025",
-        links: { pdf: "#", code: "https://github.com/jiaxhm/SSMamba" }
+        links: { pdf: "https://doi.org/10.1109/LSP.2025.3559425", code: "https://github.com/jiaxhm/SSMamba" }
       },
       {
         title: "2. Fuzzy C-means clustering with region constraints for superpixel generation",
@@ -82,13 +82,13 @@ news: [
         title: "3. Unsupervised region-based image editing of denoising diffusion models",
         authors: "Zixiang Li, Yue Song, Renshuai Tao, Xiaohong Jia, Yao Zhao, Wei Wang",
         venue: "in Proceedings of the AAAI Conference on Artificial Intelligence 2025",
-        links: { pdf: "#", code: "#" }
+        links: { pdf: "https://doi.org/10.1609/aaai.v39i17.34051", code: "#" }
       },
       {
         title: "4. CNN与Transformer协同的多模态边缘检测网络",
         authors: "李永辉, 赵耀, 加小红, 魏琛珍, 常文文",
         venue: "计算机工程与应用 2025",
-        links: { pdf: "#", code: "#" }
+        links: { pdf: "https://doi.org/10.3778/j.issn.1002-8331.2412-0150", code: "#" }
       }
     ]
   },
