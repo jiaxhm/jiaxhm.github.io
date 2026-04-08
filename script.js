@@ -315,14 +315,22 @@ if (monographsContainer && cfg.monographs?.length) {
   // --------------------
   // 新闻
   // --------------------
-  const newsList = document.getElementById('cfg-news');
-  if (newsList && cfg.news) {
-    newsList.innerHTML = cfg.news.map(n => `
-      <div class="news-item">
-        <span class="news-date">${n.date}</span>
-        <div class="news-content"><span class="news-badge">${n.badge}</span><span class="news-text">${n.text}</span></div>
-      </div>`).join('');
-  }
+  // 渲染新闻（适配论文卡片样式）
+const newsList = document.getElementById('cfg-news');
+if (newsList && cfg.news?.length) {
+  let newsHTML = '';
+  cfg.news.forEach(n => {
+    newsHTML += `
+    <div class="news-item">
+      <span class="news-date">${n.date}</span>
+      <div class="news-content">
+        <span class="news-badge">${n.badge}</span>
+        <span class="news-text">${n.text}</span>
+      </div>
+    </div>`;
+  });
+  newsList.innerHTML = newsHTML;
+}
 
   // --------------------
   // 教育 & 工作
