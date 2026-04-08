@@ -54,7 +54,7 @@ news: [
     
     },
       {
-      title:    "4. KAN-Based Superpixel Segmentation with Boundary Constraint and Semantic Guidance",
+      title:    "4. KAN-Based superpixel segmentation with boundary constraint and semantic guidance",
       authors:  "Xiaohong Jia, Fuhai Wang, Tong Tong, Long Ma, Guanghui Yan",
       venue:    "International Joint Conference on Neural Networks 2026",
       links:    { pdf: "", code: "#" },
@@ -103,7 +103,7 @@ news: [
  { year:     2024, 
   papers:[ 
 {
-  title:    "MAS-Net: Multi-Attention Hybrid Network for Superpixel Segmentation",
+  title:    "MAS-Net: Multi-Attention hybrid network for superpixel segmentation",
       authors:  "Guanghui Yan, Chenzhen Wei, Xiaohong Jia, Yonghui Li, Wenwen Chang",
       venue:    "Symmetry 2024",
       links:    { pdf: "#" , code: "#" },

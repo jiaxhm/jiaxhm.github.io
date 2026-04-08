@@ -101,18 +101,13 @@
     <div class="section-container">
         <h2 class="section-title"><span class="title-icon">//</span> <span data-locale="experienceTitle">个人经历</span></h2>
         
-        <!-- 按钮：统一用 switchTab -->
+        <!-- 只保留工作经历按钮，默认选中 -->
         <div class="tab-buttons">
-            <button class="tab-btn active" onclick="switchTab('education')">教育经历</button>
-            <button class="tab-btn" onclick="switchTab('work')">工作经历</button>
+            <button class="tab-btn active" onclick="switchTab('work')">工作经历</button>
         </div>
 
-        <!-- 内容 ID 必须匹配：education / work -->
-        <div id="education" class="tab-content active">
-            <div class="exp-list" id="cfg-education"></div>
-        </div>
-
-        <div id="work" class="tab-content">
+        <!-- 只保留工作经历内容，默认显示 -->
+        <div id="work" class="tab-content active">
             <div class="exp-list" id="cfg-work"></div>
         </div>
     </div>
@@ -205,10 +200,10 @@
       <!-- 教学信息内容 -->
 <div id="courses" class="tab-content">
   <div class="pub-item">
-    <p><span style="color: #007bff; font-weight: bold;">本科生课程：</span>数字图像处理</p>
+    <p><span style="color: #000000; font-weight: bold;">本科生课程：</span>数字图像处理</p>
   </div>
   <div class="pub-item">
-    <p><span style="color: #007bff; font-weight: bold;">研究生课程：</span>嵌入式系统设计</p>
+    <p><span style="color: #000000; font-weight: bold;">研究生课程：</span>嵌入式系统设计</p>
   </div>
 </div>
     </div>
