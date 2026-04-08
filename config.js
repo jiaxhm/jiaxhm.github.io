@@ -26,8 +26,6 @@ const USER_CONFIG = {
 news: [
     { date: "2026.03.21", badge: "New",   text: "Two papers have been accepted to IJCNN 2026 (CCF-C). Congratulations to Zhiwei Xia and Fuhai Wang!" },
     { date: "2026.01.16", badge: "New",   text: "One paper has been accepted to IEEE ICASSP 2026 (CCF-B). Congratulations to Yonghui Li!" },
-    { date: "2026.01.16", badge: "New",   text: "One paper has been accepted to IEEE ICASSP 2026 (CCF-B). Congratulations to Yonghui Li!" },
-    { date: "2026.01.16", badge: "New",   text: "One paper has been accepted to IEEE ICASSP 2026 (CCF-B). Congratulations to Yonghui Li!" },
   ],
    publications: [
   {
