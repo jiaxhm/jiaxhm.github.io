@@ -326,16 +326,37 @@ if (monographsContainer && cfg.monographs?.length) {
   // --------------------
   // 学生
   // --------------------
-  const studentsContainer = document.getElementById('cfg-students');
-  if (studentsContainer && cfg.students) {
-    let shtml = '';
-    cfg.students.forEach(g => {
-      shtml += `<div class="pub-item"><p style="color:red;font-weight:bold;">${g.title}</p>`;
-      g.list.forEach(t => shtml += `<p>${t}</p>`);
-      shtml += `</div>`;
+  // 渲染学生信息（已修复：标题黑色 + 超过8个折叠）
+const studentsContainer = document.getElementById('cfg-students');
+if (studentsContainer && cfg.students?.length) {
+  let studentsHTML = '';
+  cfg.students.forEach(group => {
+    studentsHTML += `<div class="pub-item">`;
+    // 标题改成黑色，去掉蓝色样式
+    studentsHTML += `<p style="color: #000; font-weight:bold;">${group.title}</p>`;
+    
+    // 前8个正常显示
+    const showList = group.list.slice(0, 8);
+    const hiddenList = group.list.slice(8);
+    
+    showList.forEach(item => {
+      studentsHTML += `<p>${item}</p>`;
     });
-    studentsContainer.innerHTML = shtml;
-  }
+
+    // 超过8个，显示more按钮折叠
+    if (hiddenList.length > 0) {
+      studentsHTML += `
+      <div class="more-wrapper">
+        <button class="more-btn" onclick="toggleStudents(this)">more <span>▼</span></button>
+        <div class="students-hidden" style="display:none;">
+          ${hiddenList.map(item => `<p>${item}</p>`).join('')}
+        </div>
+      </div>`;
+    }
+    studentsHTML += `</div>`;
+  });
+  studentsContainer.innerHTML = studentsHTML;
+}
 
   // --------------------
   // 联系信息
@@ -364,6 +385,12 @@ function toggleYears(btn) {
   const h = btn.nextElementSibling;
   h.style.display = h.style.display === 'block' ? 'none' : 'block';
   btn.innerHTML = h.style.display === 'block' ? 'less years ▲' : 'more years ▼';
+}
+// 学生列表展开/收起
+function toggleStudents(btn) {
+  const hidden = btn.nextElementSibling;
+  hidden.style.display = hidden.style.display === 'block' ? 'none' : 'block';
+  btn.innerHTML = hidden.style.display === 'block' ? 'less <span>▲</span>' : 'more <span>▼</span>';
 }
 
 function toggleFunds(btn) {
