@@ -1335,3 +1335,40 @@ img {
   margin: 0; /* 去掉默认 margin */
   padding: 0;
 }
+
+
+/* 🌟 修复新闻布局：日期和内容分开，左对齐日期 */
+.news-item {
+  display: flex;
+  align-items: flex-start; /* 顶部对齐 */
+  margin-bottom: 1.2rem;   /* 保留新闻之间的间距 */
+}
+
+/* 日期样式：固定靠左，宽度统一 */
+.news-date {
+  min-width: 90px;        /* 固定宽度，防止日期长短不一错位 */
+  margin-right: 1rem;     /* 日期和内容之间的间距 */
+  font-weight: 500;       /* 字体加粗 */
+  color: var(--text-color); /* 继承主文字颜色 */
+}
+
+/* 新闻内容样式：自动换行，不挤压日期 */
+.news-content {
+  flex: 1;                /* 占满剩余宽度 */
+  line-height: 1.6;       /* 行高保持舒适 */
+}
+
+/* NEW 标签样式：保持你截图里的蓝色圆角 */
+.news-badge {
+  background-color: var(--accent-primary, #007bff);
+  color: white;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+/* 新闻文字样式 */
+.news-text {
+  color: var(--text-color);
+}
