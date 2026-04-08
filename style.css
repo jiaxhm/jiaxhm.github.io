@@ -1303,3 +1303,35 @@ img {
   cursor: pointer;
   margin-top: 0.5rem;
 }
+
+
+/* 🌟 学生信息折叠按钮及内容左对齐 */
+.more-wrapper {
+  text-align: left; /* 确保按钮和内容整体左对齐 */
+  margin-top: 0.5rem; /* 稍微保留一点间距 */
+}
+
+/* 按钮本身左对齐 + 去掉背景/边框 */
+.more-btn {
+  background: none !important; /* 去掉默认背景 */
+  border: none !important;    /* 去掉默认边框 */
+  color: var(--accent-primary); /* 保留蓝色文字 */
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.8rem; /* 内边距 */
+  text-align: left; /* 文字左对齐 */
+}
+
+/* 展开后的内容容器 */
+.students-hidden {
+  text-align: left !important; /* 强制内容左对齐 */
+  padding-left: 0; /* 去掉多余内边距 */
+  margin-top: 0.3rem;
+}
+
+/* 展开后的每一行学生 */
+.students-hidden p {
+  text-align: left !important; /* 强制文字左对齐 */
+  margin: 0; /* 去掉默认 margin */
+  padding: 0;
+}
