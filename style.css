@@ -307,7 +307,7 @@ img {
     margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: 1fr 400px;
     gap: var(--space-2xl);
     align-items: center;
     background: var(--module-bg);
@@ -435,8 +435,8 @@ img {
 }
 
 .image-frame {
-    width: 280px;
-    height: 320px;
+    width: 340px;
+    height: 420px;
     border-radius: var(--radius-xl);
     overflow: hidden;
     background: var(--bg-tertiary);
@@ -466,9 +466,7 @@ img {
     padding: var(--space-md) var(--space-xl);
 }
 
-.section-alt {
-    /* No background change - bento modules handle their own bg */
-}
+
 
 .section-container {
     max-width: 1200px;
