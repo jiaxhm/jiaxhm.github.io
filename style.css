@@ -1414,3 +1414,45 @@ img {
   font-size: 0.8rem;
   margin-right: 8px;
 }
+
+
+
+/* 年份下拉选择框 */
+.pub-year-selector {
+  margin-bottom: 16px;
+}
+.year-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 论文滚动区域：最多显示5条，超出滚动 */
+.pub-scroll-wrapper {
+  max-height: 480px; /* 约5条论文高度 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+}
+.pub-scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 美化滚动条 */
+.pub-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.pub-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.pub-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
