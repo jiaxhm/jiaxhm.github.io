@@ -176,13 +176,13 @@ function populateLists(cfg) {
 // 论文渲染（修复pdf/code按钮显示）
 // --------------------
 // --------------------
-// 论文渲染：年份下拉选择 + 右侧滚动条（超过5条滚动）
+// 论文渲染：年份下拉选择 + 论文同款缩进排版 + 滚动条
 // --------------------
 const pubList = document.getElementById('cfg-publications');
 if (pubList && cfg.publications) {
   let html = '';
 
-  // 1. 年份下拉选择框
+  // 1. 年份下拉选择菜单（顶部）
   html += `
   <div class="pub-year-selector">
     <select class="year-select" id="yearSelect" onchange="switchYear(this.value)">
@@ -192,7 +192,7 @@ if (pubList && cfg.publications) {
   });
   html += `</select></div>`;
 
-  // 2. 带滚动条的论文容器（最多显示5条）
+  // 2. 带滚动条的论文容器（最多显示5条，超出滚动）
   html += `
   <div class="pub-scroll-wrapper">
     <div class="pub-scroll-content" id="pubScrollContent">
@@ -201,23 +201,25 @@ if (pubList && cfg.publications) {
 
   pubList.innerHTML = html;
 
-  // 首次加载默认显示第一年
+  // 首次加载默认显示第一个年份
   switchYear(cfg.publications[0].year);
 }
 
-// 年份切换
+// 年份切换函数
 function switchYear(year) {
   const content = document.getElementById('pubScrollContent');
-  const target = cfg.publications.find(item => item.year == year);
-  if (!target) return;
+  const targetYear = cfg.publications.find(item => item.year == year);
+  if (!targetYear) return;
 
   let html = '';
-  target.papers.forEach(p => {
+  targetYear.papers.forEach(p => {
+    // 生成pdf/code按钮
     let linkHtml = '';
     if (p.links) {
       if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
       if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
     }
+
     html += `
     <div class="pub-item">
       <div class="pub-header">

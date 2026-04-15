@@ -1417,42 +1417,78 @@ img {
 
 
 
-/* 年份下拉选择框 */
+/* ======================================
+   论文模块：年份下拉 + 滚动条 + 排版适配
+   ====================================== */
+
+/* 1. 年份下拉选择菜单样式 */
 .pub-year-selector {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 .year-select {
-  padding: 8px 12px;
+  padding: 8px 16px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background: var(--bg-card);
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
   outline: none;
   cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.year-select:hover {
+  border-color: var(--accent-primary);
 }
 
-/* 论文滚动区域：最多显示5条，超出滚动 */
+/* 2. 论文滚动容器（最多显示5条，超出滚动） */
 .pub-scroll-wrapper {
-  max-height: 480px; /* 约5条论文高度 */
+  max-height: 520px; /* 约5条论文的高度，可按需调整 */
   overflow-y: auto;
   overflow-x: hidden;
-  padding-right: 6px;
+  padding-right: 8px;
 }
 .pub-scroll-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px; /* 论文之间的间距，和你现在一致 */
 }
 
-/* 美化滚动条 */
+/* 3. 滚动条美化（和页面风格统一） */
 .pub-scroll-wrapper::-webkit-scrollbar {
   width: 6px;
 }
 .pub-scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background-color: #ccc;
   border-radius: 3px;
 }
 .pub-scroll-wrapper::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* 4. 确保论文排版完全沿用你现在的样式 */
+.pub-year {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-primary) !important;
+  margin: 0 0 16px 0 !important;
+  text-align: left !important;
+}
+.pub-title {
+  margin: 0 0 6px 0 !important;
+  padding-left: 2em !important;
+  font-size: 1.1rem !important;
+  line-height: 1.4 !important;
+}
+.pub-authors, .pub-venue {
+  margin: 0 0 4px 0 !important;
+  padding-left: 4em !important;
+  color: var(--text-secondary) !important;
+}
+.pub-venue {
+  color: var(--text-muted) !important;
+}
+.pub-item {
+  margin-bottom: 20px !important;
 }
