@@ -174,14 +174,32 @@ function populateLists(cfg) {
   // 论文
   // --------------------
 // --------------------
-// 论文渲染：保留现有排版，仅年份改为下拉选择 + 滚动条
+// --------------------
+// 论文渲染：年份固定不滚动 + 内容滚动 + 年份下拉
 // --------------------
 const pubList = document.getElementById('cfg-publications');
 if (pubList && cfg.publications) {
   let html = `
-  <div class="pub-scroll-wrapper">
-    <div class="pub-scroll-content" id="pubScrollContent"></div>
+  <div class="pub-fixed-container">
+    <!-- 年份固定区域（不滚动） -->
+    <div class="pub-year-fixed">
+      <select class="year-select" id="yearSelect" onchange="switchYear(this.value)">
+  `;
+  
+  // 遍历所有年份生成下拉选项
+  cfg.publications.forEach(yItem => {
+    html += `<option value="${yItem.year}">${yItem.year}</option>`;
+  });
+
+  html += `
+      </select>
+    </div>
+    <!-- 论文内容滚动区域 -->
+    <div class="pub-scroll-wrapper">
+      <div class="pub-scroll-content" id="pubScrollContent"></div>
+    </div>
   </div>`;
+
   pubList.innerHTML = html;
   // 首次加载默认显示第一个年份
   switchYear(cfg.publications[0].year);
@@ -193,23 +211,7 @@ function switchYear(year) {
   const targetYear = cfg.publications.find(item => item.year == year);
   if (!targetYear) return;
 
-  let html = `
-  <div class="pub-card">
-    <!-- 年份下拉选择框，保留现有排版位置 -->
-    <div class="pub-year">
-      <select class="year-select" onchange="switchYear(this.value)">`;
-  
-  // 遍历所有年份生成下拉选项
-  cfg.publications.forEach(yItem => {
-    html += `<option value="${yItem.year}" ${yItem.year == year ? 'selected' : ''}>${yItem.year}</option>`;
-  });
-
-  html += `
-      </select>
-    </div>
-    <div class="pub-content">`;
-
-  // 遍历当前年份的论文，完全保留现有排版
+  let html = '';
   targetYear.papers.forEach(p => {
     let linkHtml = '';
     if (p.links) {
@@ -227,10 +229,6 @@ function switchYear(year) {
       <p class="pub-venue">${p.venue}</p>
     </div>`;
   });
-
-  html += `
-    </div>
-  </div>`;
 
   content.innerHTML = html;
 }

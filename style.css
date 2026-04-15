@@ -1418,10 +1418,54 @@ img {
 
 
 /* ======================================
-   论文年份下拉样式：完全保留现有排版，仅修改年份为可点击
+   论文样式：年份固定不滚动 + 内容滚动 + 排版不变
    ====================================== */
 
-/* 滚动容器：超过5篇自动滚动 */
+/* 外层容器：年份+内容两栏布局 */
+.pub-fixed-container {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* 年份固定区域：不随滚动移动 */
+.pub-year-fixed {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  z-index: 10;
+  background: var(--module-bg); /* 匹配卡片背景，防止内容透过来 */
+  padding-top: 4px;
+}
+
+/* 年份下拉框：完全复刻原年份样式 */
+.year-select {
+  font-size: 2.8rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-primary) !important;
+  line-height: 1.2 !important;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  /* 自定义下拉箭头 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 20px;
+  padding-right: 24px;
+}
+.year-select option {
+  font-size: 1rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* 论文内容滚动容器：超过5篇自动滚动 */
 .pub-scroll-wrapper {
   max-height: 580px; /* 适配5篇论文高度，可按需调整 */
   overflow-y: auto;
@@ -1431,7 +1475,7 @@ img {
 .pub-scroll-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
 }
 
 /* 滚动条美化 */
@@ -1446,51 +1490,7 @@ img {
   background: transparent;
 }
 
-/* 年份下拉框：完全复刻原年份样式 */
-.pub-year {
-  font-size: 2.2rem !important;
-  font-weight: 700 !important;
-  color: var(--accent-primary) !important;
-  line-height: 1.2 !important;
-  text-align: left !important;
-  min-width: 120px;
-}
-.year-select {
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  appearance: none;
-  padding: 0;
-  margin: 0;
-  /* 自定义下拉箭头，和原样式融合 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 16px;
-  padding-right: 20px;
-}
-.year-select option {
-  font-size: 1rem;
-  background: var(--bg-card);
-  color: var(--text-primary);
-}
-
 /* 完全保留你现有的论文排版样式 */
-.pub-card {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 16px;
-  align-items: flex-start;
-}
-.pub-content {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
 .pub-item {
   width: 100%;
 }
