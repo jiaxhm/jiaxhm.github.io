@@ -176,44 +176,41 @@ function populateLists(cfg) {
 // 论文渲染（修复pdf/code按钮显示）
 // --------------------
 // --------------------
-// 论文渲染：年份下拉选择 + 论文同款缩进排版 + 滚动条
+// --------------------
+// 论文：和专利完全一样的排版 + 点击年份下拉选择 + 滚动条
 // --------------------
 const pubList = document.getElementById('cfg-publications');
 if (pubList && cfg.publications) {
-  let html = '';
-
-  // 1. 年份下拉选择菜单（顶部）
-  html += `
-  <div class="pub-year-selector">
-    <select class="year-select" id="yearSelect" onchange="switchYear(this.value)">
-  `;
-  cfg.publications.forEach((yItem) => {
-    html += `<option value="${yItem.year}">${yItem.year} 年</option>`;
-  });
-  html += `</select></div>`;
-
-  // 2. 带滚动条的论文容器（最多显示5条，超出滚动）
-  html += `
+  let html = `
   <div class="pub-scroll-wrapper">
     <div class="pub-scroll-content" id="pubScrollContent">
     </div>
   </div>`;
 
   pubList.innerHTML = html;
-
-  // 首次加载默认显示第一个年份
   switchYear(cfg.publications[0].year);
 }
 
-// 年份切换函数
 function switchYear(year) {
   const content = document.getElementById('pubScrollContent');
-  const targetYear = cfg.publications.find(item => item.year == year);
-  if (!targetYear) return;
+  const target = cfg.publications.find(item => item.year == year);
+  if (!target) return;
 
-  let html = '';
-  targetYear.papers.forEach(p => {
-    // 生成pdf/code按钮
+  let html = `
+  <div class="pub-item">
+    <div class="pub-year-dropdown">
+      <select class="year-select" onchange="switchYear(this.value)">`;
+
+  cfg.publications.forEach(y => {
+    html += `<option value="${y.year}" ${y.year == year ? 'selected' : ''}>${y.year}</option>`;
+  });
+
+  html += `
+      </select>
+    </div>
+    <div class="pub-list-group">`;
+
+  target.papers.forEach(p => {
     let linkHtml = '';
     if (p.links) {
       if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
@@ -221,15 +218,20 @@ function switchYear(year) {
     }
 
     html += `
-    <div class="pub-item">
-      <div class="pub-header">
-        <h3 class="pub-title">${p.title}</h3>
-        <div class="pub-links">${linkHtml}</div>
-      </div>
-      <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-      <p class="pub-venue">${p.venue}</p>
-    </div>`;
+      <div class="pub-single">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">${linkHtml}</div>
+        </div>
+        <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+        <p class="pub-venue">${p.venue}</p>
+      </div>`;
   });
+
+  html += `
+    </div>
+  </div>`;
+
   content.innerHTML = html;
 }
 
