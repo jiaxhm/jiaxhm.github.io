@@ -173,64 +173,81 @@ function populateLists(cfg) {
   // --------------------
   // 论文
   // --------------------
-// --------------------
-// --------------------
-// 论文渲染：年份固定不滚动 + 内容滚动 + 年份下拉
+// 论文渲染（修复pdf/code按钮显示）
 // --------------------
 const pubList = document.getElementById('cfg-publications');
 if (pubList && cfg.publications) {
-  let html = `
-  <div class="pub-fixed-container">
-    <!-- 年份固定区域（不滚动） -->
-    <div class="pub-year-fixed">
-      <select class="year-select" id="yearSelect" onchange="switchYear(this.value)">
-  `;
-  
-  // 遍历所有年份生成下拉选项
-  cfg.publications.forEach(yItem => {
-    html += `<option value="${yItem.year}">${yItem.year}</option>`;
-  });
-
-  html += `
-      </select>
-    </div>
-    <!-- 论文内容滚动区域 -->
-    <div class="pub-scroll-wrapper">
-      <div class="pub-scroll-content" id="pubScrollContent"></div>
-    </div>
-  </div>`;
-
-  pubList.innerHTML = html;
-  // 首次加载默认显示第一个年份
-  switchYear(cfg.publications[0].year);
-}
-
-// 年份切换函数
-function switchYear(year) {
-  const content = document.getElementById('pubScrollContent');
-  const targetYear = cfg.publications.find(item => item.year == year);
-  if (!targetYear) return;
-
   let html = '';
-  targetYear.papers.forEach(p => {
-    let linkHtml = '';
-    if (p.links) {
-      if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
-      if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+  cfg.publications.slice(0, 2).forEach(yearGroup => {
+    html += `<article class="pub-card">`;
+    html += `<div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
+    yearGroup.papers.slice(0,5).forEach(p => {
+      // 生成pdf/code按钮
+      let linkHtml = '';
+      if (p.links) {
+        if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+        if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+      }
+      
+      html += `
+      <div class="pub-item">
+        <div class="pub-header">
+          <h3 class="pub-title">${p.title}</h3>
+          <div class="pub-links">${linkHtml}</div>
+        </div>
+        <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+        <p class="pub-venue">${p.venue}</p>
+      </div>`;
+    });
+    if (yearGroup.papers.length > 5) {
+      html += `
+      <div class="more-wrapper">
+        <button class="more-btn" onclick="togglePapers(this)">more ▼</button>
+        <div class="papers-hidden">${yearGroup.papers.slice(5).map(p => {
+          let linkHtml = '';
+          if (p.links) {
+            if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+            if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+          }
+          return `
+          <div class="pub-item">
+            <div class="pub-header"><h3 class="pub-title">${p.title}</h3><div class="pub-links">${linkHtml}</div></div>
+            <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+            <p class="pub-venue">${p.venue}</p>
+          </div>`;
+        }).join('')}
+        </div>
+      </div>`;
     }
-
-    html += `
-    <div class="pub-item">
-      <div class="pub-header">
-        <h3 class="pub-title">${p.title}</h3>
-        <div class="pub-links">${linkHtml}</div>
-      </div>
-      <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-      <p class="pub-venue">${p.venue}</p>
-    </div>`;
+    html += `</div></article>`;
   });
-
-  content.innerHTML = html;
+  if (cfg.publications.length > 2) {
+    html += `
+    <div class="more-years-wrapper">
+      <button class="more-btn" onclick="toggleYears(this)">more years ▼</button>
+      <div class="years-hidden">${cfg.publications.slice(2).map(y => {
+        return `
+        <article class="pub-card">
+          <div class="pub-year">${y.year}</div>
+          <div class="pub-content">${y.papers.map(p => {
+            let linkHtml = '';
+            if (p.links) {
+              if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+              if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+            }
+            return `
+            <div class="pub-item">
+              <div class="pub-header"><h3 class="pub-title">${p.title}</h3><div class="pub-links">${linkHtml}</div></div>
+              <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+              <p class="pub-venue">${p.venue}</p>
+            </div>`;
+          }).join('')}</div>
+        </article>`;
+      }).join('')}
+      </div>
+    </div>`;
+  }
+  pubList.innerHTML = html;
 }
 
   // --------------------
