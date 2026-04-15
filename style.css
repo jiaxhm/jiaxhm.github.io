@@ -1414,3 +1414,135 @@ img {
   font-size: 0.8rem;
   margin-right: 8px;
 }
+
+
+
+/* ======================================
+   论文年份下拉样式：完全保留现有排版，仅修改年份为可点击
+   ====================================== */
+
+/* 滚动容器：超过5篇自动滚动 */
+.pub-scroll-wrapper {
+  max-height: 580px; /* 适配5篇论文高度，可按需调整 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+.pub-scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 滚动条美化 */
+.pub-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.pub-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+.pub-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 年份下拉框：完全复刻原年份样式 */
+.pub-year {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-primary) !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  min-width: 120px;
+}
+.year-select {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  /* 自定义下拉箭头，和原样式融合 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 16px;
+  padding-right: 20px;
+}
+.year-select option {
+  font-size: 1rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* 完全保留你现有的论文排版样式 */
+.pub-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: flex-start;
+}
+.pub-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.pub-item {
+  width: 100%;
+}
+.pub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.pub-title {
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 8px 0 !important;
+}
+.pub-links {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.pub-authors {
+  font-size: 1.1rem !important;
+  line-height: 1.5 !important;
+  color: var(--text-secondary) !important;
+  margin: 0 0 6px 0 !important;
+}
+.pub-authors strong {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+}
+.pub-venue {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  color: var(--text-muted) !important;
+  margin: 0 0 0 0 !important;
+  font-style: italic;
+}
+.pub-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  padding: 6px 14px;
+  border: 1px solid var(--accent-primary);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+.pub-link:hover {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
