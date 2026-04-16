@@ -205,12 +205,19 @@ if (pubList && cfg.publications) {
   switchYear(cfg.publications[0].year);
 }
 
-// 年份切换函数（完全保留现有论文渲染逻辑）
+// 年份切换函数（确保下拉框正确渲染）
 function switchYear(year) {
   const content = document.getElementById('pubScrollContent');
   const targetYear = cfg.publications.find(item => item.year == year);
   if (!targetYear) return;
 
+  // 重新渲染年份下拉框，确保选中状态正确
+  const yearSelect = document.getElementById('yearSelect');
+  if (yearSelect) {
+    yearSelect.value = year;
+  }
+
+  // 渲染论文内容（完全保留原逻辑）
   let html = '';
   targetYear.papers.forEach(p => {
     let linkHtml = '';
@@ -219,7 +226,6 @@ function switchYear(year) {
       if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
     }
 
-    // 完全沿用你现有的论文HTML结构，不动任何样式
     html += `
     <div class="pub-item">
       <div class="pub-header">
