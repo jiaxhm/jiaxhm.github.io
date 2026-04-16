@@ -427,3 +427,32 @@ document.addEventListener('DOMContentLoaded', function() {
     el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
   });
 });
+
+
+
+
+
+// ======================================
+// 论文年份下拉交互逻辑
+// ======================================
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听年份下拉框变化
+  document.addEventListener('change', function(e) {
+    if (e.target.classList.contains('year-select')) {
+      const selectedYear = e.target.value;
+      // 获取所有论文项容器
+      const pubItems = document.querySelectorAll('.pub-item');
+      
+      pubItems.forEach(item => {
+        // 获取当前论文项的年份数据
+        const itemYear = item.dataset.year;
+        // 如果选中的年份和当前项年份一致，显示；否则隐藏
+        if (selectedYear === itemYear) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  });
+});

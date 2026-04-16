@@ -30,7 +30,12 @@ news: [
   ],
    publications: [
   {
-    year: 2026,
+    year: year: `<select class="year-select">
+  <option value="2026" selected>2026</option>
+  <option value="2025">2025</option>
+  <option value="2024">2024</option>
+  <option value="2022">2022</option>
+</select>`,
     papers: [
       {
         title: "1. Super-aware fuzzy c-means clustering for hyperspectral image segmentation",
@@ -72,7 +77,12 @@ news: [
     ]
   },
   {
-    year: 2025,
+    year: year: `<select class="year-select">
+  <option value="2026" selected>2026</option>
+  <option value="2025">2025</option>
+  <option value="2024">2024</option>
+  <option value="2022">2022</option>
+</select>`,
     papers: [
       {
         title: "1. SSMamba: Superpixel segmentation with Mamba",
@@ -101,7 +111,12 @@ news: [
     ]
   },
   {
-    year: 2024,
+    year: year: `<select class="year-select">
+  <option value="2026" selected>2026</option>
+  <option value="2025">2025</option>
+  <option value="2024">2024</option>
+  <option value="2023">2023</option>
+</select>`,
     papers: [
       {
         title: "MAS-Net: Multi-Attention hybrid network for superpixel segmentation",
@@ -112,7 +127,12 @@ news: [
     ]
   },
   {
-    year: 2022,
+    year: year: `<select class="year-select">
+  <option value="2026" selected>2026</option>
+  <option value="2025">2025</option>
+  <option value="2024">2024</option>
+  <option value="2022">2022</option>
+</select>`,
     papers: [
       {
         title: "Fuzzy Student's t-distribution model based on richer spatial combination",
@@ -228,3 +248,6 @@ monographs: [
 ],
 
 };
+
+
+
