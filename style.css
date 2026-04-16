@@ -1454,7 +1454,7 @@ img {
 /* 2. 年份下拉框：100%复刻原年份的蓝色、大小、字体 */
 .year-select {
   /* 强制完全覆盖select默认样式，1:1还原原年份 */
-  font-size: 2.8rem !important;
+  font-size: 1.4rem !important;
   font-weight: 700 !important;
   color: #0071e3 !important; /* 原年份的蓝色，和截图完全一致 */
   line-height: 1.2 !important;
