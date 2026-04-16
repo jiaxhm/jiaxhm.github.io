@@ -1511,20 +1511,18 @@ img {
   padding: 0 !important;
   margin: 0 !important;
 }
-/* 仅在2026年份右侧添加下拉箭头，不改变任何原有样式 */
+/* 年份箭头：紧贴在 2026 后面 */
 .pub-year::after {
-  content: '';
+  content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
   vertical-align: middle;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20px;
 }
-
 /* 2. 年份下拉框：100%复刻原年份的蓝色、大小、字体 */
 /* 2. 年份下拉框：100%保留原年份样式，仅在右侧加下拉箭头 */
 .year-select {
@@ -1570,4 +1568,19 @@ img {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   padding-right: 8px !important;
+}
+
+
+
+
+
+
+
+/* 🔥 最简单：自动给所有作者里的 Xiaohong Jia 加粗 */
+.pub-authors {
+  font-weight: normal;
+}
+.pub-authors strong {
+  font-weight: 700;
+  color: var(--text-primary);
 }
