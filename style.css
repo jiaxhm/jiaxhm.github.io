@@ -1500,19 +1500,24 @@ img {
 
 
 
-/* 1. 仅给论文列表的年份加箭头（专利/专著不受影响） */
+/* ======================================
+   最终修复：仅论文年份加箭头，专利/专著不加，箭头紧贴年份右侧
+   ====================================== */
+
+/* 1. 论文年份：改为行内块，高度仅包裹文字，箭头垂直居中 */
 #publications-tab .pub-year {
-  position: relative !important;
   display: inline-block !important;
-  padding-right: 28px !important; /* 给箭头留位置 */
+  position: relative !important;
+  padding-right: 28px !important;
   font-size: 1.4rem !important;
   font-weight: 700 !important;
   color: var(--accent-primary) !important;
   margin: 0 0 16px 0 !important;
   text-align: left !important;
+  line-height: 1.2 !important;
 }
 
-/* 2. 论文年份的下拉箭头：紧贴在年份右侧，垂直居中 */
+/* 2. 论文年份箭头：紧贴文字右侧，完美垂直居中 */
 #publications-tab .pub-year::after {
   content: "";
   position: absolute;
@@ -1539,7 +1544,7 @@ img {
   content: none !important;
 }
 
-/* 4. 全局加粗 Xiaohong Jia / 加小红（保持你要的效果） */
+/* 4. 全局加粗 Xiaohong Jia / 加小红 */
 .pub-authors strong {
   font-weight: 700 !important;
   color: var(--text-primary) !important;
