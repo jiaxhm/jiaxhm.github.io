@@ -1521,8 +1521,8 @@ img {
 #publications-tab .pub-year::after {
   content: "";
   position: absolute;
-  right: 0;
-  top: 50%;
+  right: 2px;
+  top: 40%;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
