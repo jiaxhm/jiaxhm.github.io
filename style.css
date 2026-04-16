@@ -1452,35 +1452,35 @@ img {
 }
 
 /* 2. 年份下拉框：100%复刻原年份的蓝色、大小、字体 */
+/* 2. 年份下拉框：100%保留原年份样式，仅在右侧加下拉箭头 */
 .year-select {
-  /* 强制完全覆盖select默认样式，1:1还原原年份 */
+  /* 完全保留原年份的字体、大小、颜色 */
   font-size: 1.4rem !important;
   font-weight: 700 !important;
-  color: #0071e3 !important; /* 原年份的蓝色，和截图完全一致 */
+  color: #0071e3 !important;
   line-height: 1.2 !important;
   text-align: left !important;
   font-family: inherit !important;
   
-  /* 仅保留交互，完全去掉select默认样式 */
+  /* 仅修改交互样式，完全去掉select默认边框/背景 */
   background: transparent !important;
   border: none !important;
   outline: none !important;
   cursor: pointer;
   appearance: none !important;
   -webkit-appearance: none !important;
-  padding: 0 30px 0 0 !important; /* 给下拉箭头留空间 */
+  padding: 0 28px 0 0 !important; /* 给下拉箭头留空间 */
   margin: 0 !important;
   width: auto !important;
   min-width: auto !important;
   box-shadow: none !important;
   
-  /* 自定义下拉箭头：和原年份蓝色完全匹配，位置在年份右侧 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  /* 自定义下拉箭头：放在年份右侧，和原年份蓝色完全匹配 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right center;
-  background-size: 20px;
+  background-size: 18px;
 }
-
 /* 3. 下拉选项：强制居中，样式统一，不影响原年份 */
 .year-select option {
   text-align: center !important;
