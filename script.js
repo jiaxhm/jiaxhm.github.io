@@ -175,79 +175,87 @@ function populateLists(cfg) {
   // --------------------
 // 论文渲染（修复pdf/code按钮显示）
 // --------------------
+// 论文：年份下拉 + 固定不滚动 + 完全保留原排版
+// --------------------
 const pubList = document.getElementById('cfg-publications');
 if (pubList && cfg.publications) {
   let html = '';
-  cfg.publications.slice(0, 2).forEach(yearGroup => {
-    html += `<article class="pub-card">`;
-    html += `<div class="pub-year">${yearGroup.year}</div><div class="pub-content">`;
-    yearGroup.papers.slice(0,5).forEach(p => {
-      // 生成pdf/code按钮
-      let linkHtml = '';
-      if (p.links) {
-        if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
-        if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
-      }
-      
-      html += `
-      <div class="pub-item">
-        <div class="pub-header">
-          <h3 class="pub-title">${p.title}</h3>
-          <div class="pub-links">${linkHtml}</div>
-        </div>
-        <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-        <p class="pub-venue">${p.venue}</p>
-      </div>`;
-    });
-    if (yearGroup.papers.length > 5) {
-      html += `
-      <div class="more-wrapper">
-        <button class="more-btn" onclick="togglePapers(this)">more ▼</button>
-        <div class="papers-hidden">${yearGroup.papers.slice(5).map(p => {
-          let linkHtml = '';
-          if (p.links) {
-            if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
-            if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
-          }
-          return `
-          <div class="pub-item">
-            <div class="pub-header"><h3 class="pub-title">${p.title}</h3><div class="pub-links">${linkHtml}</div></div>
-            <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-            <p class="pub-venue">${p.venue}</p>
-          </div>`;
-        }).join('')}
-        </div>
-      </div>`;
-    }
-    html += `</div></article>`;
+
+  // 年份下拉（放在原来年份的位置，样式完全一样）
+  html += `
+  <article class="pub-card">
+    <div class="pub-year">
+      <select class="year-select" id="yearSelect">`;
+  cfg.publications.forEach(y => {
+    html += `<option value="${y.year}">${y.year}</option>`;
   });
-  if (cfg.publications.length > 2) {
+  html += `
+      </select>
+    </div>
+    <div class="pub-content" id="pub-list-container">
+    </div>
+  </article>`;
+
+  pubList.innerHTML = html;
+
+  // 初始加载第一年
+  renderPapersByYear(cfg.publications[0].year);
+
+  // 切换年份
+  document.getElementById('yearSelect').addEventListener('change', function () {
+    renderPapersByYear(this.value);
+  });
+}
+
+// 按年份渲染论文
+function renderPapersByYear(selectedYear) {
+  const container = document.getElementById('pub-list-container');
+  const target = cfg.publications.find(item => item.year == selectedYear);
+  if (!target) return;
+
+  let html = '';
+  target.papers.slice(0, 5).forEach(p => {
+    let linkHtml = '';
+    if (p.links) {
+      if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+      if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+    }
+
     html += `
-    <div class="more-years-wrapper">
-      <button class="more-btn" onclick="toggleYears(this)">more years ▼</button>
-      <div class="years-hidden">${cfg.publications.slice(2).map(y => {
-        return `
-        <article class="pub-card">
-          <div class="pub-year">${y.year}</div>
-          <div class="pub-content">${y.papers.map(p => {
-            let linkHtml = '';
-            if (p.links) {
-              if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
-              if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
-            }
-            return `
-            <div class="pub-item">
-              <div class="pub-header"><h3 class="pub-title">${p.title}</h3><div class="pub-links">${linkHtml}</div></div>
-              <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-              <p class="pub-venue">${p.venue}</p>
-            </div>`;
-          }).join('')}</div>
-        </article>`;
-      }).join('')}
+    <div class="pub-item">
+      <div class="pub-header">
+        <h3 class="pub-title">${p.title}</h3>
+        <div class="pub-links">${linkHtml}</div>
       </div>
+      <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+      <p class="pub-venue">${p.venue}</p>
+    </div>`;
+  });
+
+  // 超过5条显示滚动
+  if (target.papers.length > 5) {
+    html += `
+    <div class="papers-scroll-container">
+      ${target.papers.slice(5).map(p => {
+        let linkHtml = '';
+        if (p.links) {
+          if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
+          if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
+        }
+        return `
+        <div class="pub-item">
+          <div class="pub-header">
+            <h3 class="pub-title">${p.title}</h3>
+            <div class="pub-links">${linkHtml}</div>
+          </div>
+          <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+          <p class="pub-venue">${p.venue}</p>
+        </div>`;
+      }).join('')}
     </div>`;
   }
-  pubList.innerHTML = html;
+
+  container.innerHTML = html;
 }
 
   // --------------------

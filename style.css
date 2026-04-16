@@ -1414,3 +1414,22 @@ img {
   font-size: 0.8rem;
   margin-right: 8px;
 }
+
+
+
+/* 只做：年份下拉 + 固定 + 选项居中，不改动任何原有样式 */
+.pub-year {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.year-select {
+  width: 100%;
+  text-align: center;
+  text-align-last: center;
+}
+.papers-scroll-container {
+  max-height: calc(5 * 100px);
+  overflow-y: auto;
+  margin-top: 10px;
+}
