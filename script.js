@@ -172,16 +172,11 @@ function populateLists(cfg) {
 
   // --------------------
   // 论文
-  // --------------------
-// 论文渲染（修复pdf/code按钮显示）
-// --------------------
-// 论文：年份下拉 + 固定不滚动 + 完全保留原排版
-// --------------------
 const pubList = document.getElementById('cfg-publications');
 if (pubList && cfg.publications) {
   let html = '';
 
-  // 年份下拉（放在原来年份的位置，样式完全一样）
+  // 年份下拉（完全保留原有灰色卡片、排版）
   html += `
   <article class="pub-card">
     <div class="pub-year">
@@ -197,24 +192,20 @@ if (pubList && cfg.publications) {
   </article>`;
 
   pubList.innerHTML = html;
-
-  // 初始加载第一年
   renderPapersByYear(cfg.publications[0].year);
 
-  // 切换年份
   document.getElementById('yearSelect').addEventListener('change', function () {
     renderPapersByYear(this.value);
   });
 }
 
-// 按年份渲染论文
 function renderPapersByYear(selectedYear) {
   const container = document.getElementById('pub-list-container');
   const target = cfg.publications.find(item => item.year == selectedYear);
   if (!target) return;
 
   let html = '';
-  target.papers.slice(0, 5).forEach(p => {
+  target.papers.forEach(p => {
     let linkHtml = '';
     if (p.links) {
       if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
@@ -227,33 +218,10 @@ function renderPapersByYear(selectedYear) {
         <h3 class="pub-title">${p.title}</h3>
         <div class="pub-links">${linkHtml}</div>
       </div>
-      <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
+      <p class="pub-authors">${boldName(p.authors, USER_CONFIG.name)}</p>
       <p class="pub-venue">${p.venue}</p>
     </div>`;
   });
-
-  // 超过5条显示滚动
-  if (target.papers.length > 5) {
-    html += `
-    <div class="papers-scroll-container">
-      ${target.papers.slice(5).map(p => {
-        let linkHtml = '';
-        if (p.links) {
-          if (p.links.pdf) linkHtml += `<a href="${p.links.pdf}" class="pub-link" target="_blank">pdf</a>`;
-          if (p.links.code) linkHtml += `<a href="${p.links.code}" class="pub-link" target="_blank">code</a>`;
-        }
-        return `
-        <div class="pub-item">
-          <div class="pub-header">
-            <h3 class="pub-title">${p.title}</h3>
-            <div class="pub-links">${linkHtml}</div>
-          </div>
-          <p class="pub-authors">${boldName(p.authors, cfg.name)}</p>
-          <p class="pub-venue">${p.venue}</p>
-        </div>`;
-      }).join('')}
-    </div>`;
-  }
 
   container.innerHTML = html;
 }

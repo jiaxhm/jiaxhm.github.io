@@ -1433,3 +1433,84 @@ img {
   overflow-y: auto;
   margin-top: 10px;
 }
+
+
+
+
+/* ======================================
+   论文年份下拉终极修复：100%还原原样式，仅加下拉功能
+   ====================================== */
+
+/* 1. 年份固定不滚动：完全贴合原位置 */
+.pub-year {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  background: transparent !important; /* 完全透明，不挡内容 */
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 2. 年份下拉框：100%复刻原年份的蓝色、大小、字体 */
+.year-select {
+  /* 强制完全覆盖select默认样式，1:1还原原年份 */
+  font-size: 2.8rem !important;
+  font-weight: 700 !important;
+  color: #0071e3 !important; /* 原年份的蓝色，和截图完全一致 */
+  line-height: 1.2 !important;
+  text-align: left !important;
+  font-family: inherit !important;
+  
+  /* 仅保留交互，完全去掉select默认样式 */
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  padding: 0 30px 0 0 !important; /* 给下拉箭头留空间 */
+  margin: 0 !important;
+  width: auto !important;
+  min-width: auto !important;
+  box-shadow: none !important;
+  
+  /* 自定义下拉箭头：和原年份蓝色完全匹配，位置在年份右侧 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 20px;
+}
+
+/* 3. 下拉选项：强制居中，样式统一，不影响原年份 */
+.year-select option {
+  text-align: center !important;
+  font-size: 1rem !important;
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  padding: 6px 0 !important;
+}
+
+/* 4. 论文内容滚动容器：完全保留原排版，只加滚动 */
+.pub-content {
+  max-height: 580px !important; /* 适配5篇论文高度，可按需调整 */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 8px !important;
+}
+
+/* 5. 滚动条美化：不影响排版 */
+.pub-content::-webkit-scrollbar {
+  width: 6px;
+}
+.pub-content::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+.pub-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 6. 强制覆盖所有冲突样式，确保原年份不变 */
+.pub-year > span {
+  display: none !important; /* 隐藏原年份文本，避免和select重叠 */
+}
