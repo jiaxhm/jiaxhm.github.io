@@ -1498,45 +1498,49 @@ img {
   padding-right: 8px !important;
 }
 
-/* ======================================
-   论文年份下拉终极修复：100%还原原样式，仅加下拉功能
-   ====================================== */
 
-/* ======================================
-   最终生效代码：2026 右侧箭头 + 全局加粗
-   ====================================== */
 
-/* 1. 年份样式：放大、醒目 + 右侧下拉箭头 */
-.pub-year {
+/* 1. 仅给论文列表的年份加箭头（专利/专著不受影响） */
+#publications-tab .pub-year {
+  position: relative !important;
+  display: inline-block !important;
+  padding-right: 28px !important; /* 给箭头留位置 */
   font-size: 1.4rem !important;
   font-weight: 700 !important;
   color: var(--accent-primary) !important;
   margin: 0 0 16px 0 !important;
   text-align: left !important;
-  position: relative; /* 为箭头做定位 */
-  padding-right: 25px; /* 给箭头留出位置，防止遮挡 */
 }
 
-/* 2. 放置下拉箭头 */
-.pub-year::after {
+/* 2. 论文年份的下拉箭头：紧贴在年份右侧，垂直居中 */
+#publications-tab .pub-year::after {
   content: "";
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px;
+  background-size: 18px;
 }
 
-/* 3. 全局加粗 Xiaohong Jia (如果 config 里加了 <strong> 标签) */
-.pub-authors {
-  font-weight: normal;
+/* 3. 专利/专著年份：完全去掉箭头，保持原样 */
+#patents .pub-year,
+#monographs .pub-year {
+  position: static !important;
+  padding-right: 0 !important;
 }
+#patents .pub-year::after,
+#monographs .pub-year::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 4. 全局加粗 Xiaohong Jia / 加小红（保持你要的效果） */
 .pub-authors strong {
-  font-weight: 700;
-  color: var(--text-primary);
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
 }
