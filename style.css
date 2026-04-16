@@ -1522,7 +1522,7 @@ img {
   content: "";
   position: absolute;
   right: 0;
-  top: 0;
+  top: 5%;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
