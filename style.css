@@ -1502,81 +1502,37 @@ img {
    论文年份下拉终极修复：100%还原原样式，仅加下拉功能
    ====================================== */
 
-/* 1. 年份固定不滚动：完全贴合原位置 */
+/* ======================================
+   最终生效代码：2026 右侧箭头 + 全局加粗
+   ====================================== */
+
+/* 1. 年份样式：放大、醒目 + 右侧下拉箭头 */
 .pub-year {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 10 !important;
-  background: transparent !important; /* 完全透明，不挡内容 */
-  padding: 0 !important;
-  margin: 0 !important;
-}
-/* 年份箭头：紧贴在 2026 后面 */
-.pub-year::after {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
-  vertical-align: middle;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-/* 2. 年份下拉框：100%复刻原年份的蓝色、大小、字体 */
-/* 2. 年份下拉框：100%保留原年份样式，仅在右侧加下拉箭头 */
-.year-select {
-  /* 完全保留原年份的字体、大小、颜色 */
   font-size: 1.4rem !important;
   font-weight: 700 !important;
   color: var(--accent-primary) !important;
-  line-height: 1.2 !important;
+  margin: 0 0 16px 0 !important;
   text-align: left !important;
-  font-family: inherit !important;
-  
-  /* 仅修改交互样式，完全去掉select默认边框/背景 */
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
-  cursor: pointer;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  padding: 0 28px 0 0 !important; /* 给下拉箭头留空间 */
-  margin: 0 !important;
-  width: auto !important;
-  min-width: auto !important;
-  box-shadow: none !important;
-  
-  /* 自定义下拉箭头：放在年份右侧，和原年份蓝色完全匹配 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  position: relative; /* 为箭头做定位 */
+  padding-right: 25px; /* 给箭头留出位置，防止遮挡 */
+}
+
+/* 2. 放置下拉箭头 */
+.pub-year::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 18px;
-}
-/* 3. 下拉选项：强制居中，样式统一，不影响原年份 */
-.year-select option {
-  text-align: center !important;
-  font-size: 1rem !important;
-  background: var(--bg-card) !important;
-  color: var(--text-primary) !important;
-  padding: 6px 0 !important;
+  background-position: center;
+  background-size: 16px;
 }
 
-/* 4. 论文内容滚动容器：完全保留原排版，只加滚动 */
-.pub-content {
-  max-height: 580px !important; /* 适配5篇论文高度，可按需调整 */
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  padding-right: 8px !important;
-}
-
-
-
-
-
-
-
-/* 🔥 最简单：自动给所有作者里的 Xiaohong Jia 加粗 */
+/* 3. 全局加粗 Xiaohong Jia (如果 config 里加了 <strong> 标签) */
 .pub-authors {
   font-weight: normal;
 }
