@@ -24,6 +24,7 @@ const USER_CONFIG = {
     cv:      "assets/cv.pdf",
   },
 news: [
+    { date: "2026.04.16", badge: "New",   text: "One paper has been accepted to ACM ICMR 2026 (CCF-B). Congratulations to Zhiwei Xia!" },
     { date: "2026.03.21", badge: "New",   text: "Two papers have been accepted to IJCNN 2026 (CCF-C). Congratulations to Zhiwei Xia and Fuhai Wang!" },
     { date: "2026.01.16", badge: "New",   text: "One paper has been accepted to IEEE ICASSP 2026 (CCF-B). Congratulations to Yonghui Li!" },
   ],
@@ -50,17 +51,24 @@ news: [
         links: { pdf: "#", code: "#" }
       },
       {
-        title: "4. KAN-Based superpixel segmentation with boundary constraint and semantic guidance",
+        title: "4. Entropy regularized simple multiple kernel k-Means with adaptive deviation correction",
+        authors: "Xiaohong Jia, Zhiwei Xia, Baijing Wu, Yunchao Wei, Yao Zhao",
+        venue: "ACM International Conference on Multimedia Retrieval 2026",
+        links: { pdf: "#", code: "#" }
+      },
+      {
+        title: "5. KAN-Based superpixel segmentation with boundary constraint and semantic guidance",
         authors: "Xiaohong Jia, Fuhai Wang, Tong Tong, Long Ma, Guanghui Yan",
         venue: "International Joint Conference on Neural Networks 2026",
         links: { pdf: "#", code: "#" }
       },
       {
-        title: "5. Simple multiple kernel k-means with heat kernel diffusion",
+        title: "6. Simple multiple kernel k-means with heat kernel diffusion",
         authors: "Zhiwei Xia, Xiaohong Jia, Xuejun Zhang, Yao Zhao, Wenqian Yu",
         venue: "IEEE International Joint Conference on Neural Network 2026",
         links: { pdf: "#", code: "#" }
-      }
+      },
+      
     ]
   },
   {

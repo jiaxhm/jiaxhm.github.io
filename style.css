@@ -1414,3 +1414,88 @@ img {
   font-size: 0.8rem;
   margin-right: 8px;
 }
+
+
+
+/* ======================================
+   仅新增：年份下拉+固定不滚动+下拉选项居中
+   完全不修改你现有的论文排版、字体、样式
+   ====================================== */
+
+/* 外层容器：年份固定+内容滚动两栏布局，和原排版对齐 */
+.pub-fixed-container {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* 年份固定区域：sticky定位，不随滚动移动 */
+.pub-year-fixed {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  z-index: 10;
+  background: var(--module-bg); /* 匹配卡片背景，防止内容透显 */
+  padding-top: 4px;
+}
+
+/* 年份下拉框：100%复刻原年份样式，仅加下拉箭头 */
+.year-select {
+  /* 完全继承原年份的字体、大小、颜色、样式 */
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  line-height: inherit !important;
+  text-align: left !important;
+  
+  /* 仅修改交互样式，不动视觉 */
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  
+  /* 自定义下拉箭头，和原年份蓝色完全匹配 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230071e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 20px;
+  padding-right: 24px;
+}
+
+/* 下拉选项：强制每一行居中 */
+.year-select option {
+  text-align: center !important;
+  font-size: 1rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  padding: 4px 0;
+}
+
+/* 论文内容滚动容器：超过5篇自动滚动 */
+.pub-scroll-wrapper {
+  max-height: 580px; /* 适配5篇论文高度，可按需调整 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+.pub-scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* 完全沿用你现有的论文间距 */
+}
+
+/* 滚动条美化（和页面风格统一，不影响排版） */
+.pub-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.pub-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+.pub-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
