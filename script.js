@@ -224,6 +224,9 @@ function renderPapersByYear(selectedYear) {
   });
 
   container.innerHTML = html;
+  document.querySelectorAll('.pub-authors').forEach(el => {
+    el.innerHTML = el.innerHTML.replace(/Xiaohong Jia/g, '<strong>Xiaohong Jia</strong>');
+  });
 }
 
   // --------------------
