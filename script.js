@@ -25,8 +25,8 @@ const langText = {
     teachingTitle: "Teaching",
     researchTitle: "Research Interests",
     res1: "Machine Learning",
-    res2: "Image Segmentation",
-    res3: "Deep Learning",
+    res2: "Deep Learning",
+    res3: "Image Segmentation",
   },
   zh: {
     about: "关于我",
@@ -48,8 +48,8 @@ const langText = {
     researchTitle: "研究方向",
     research: "研究方向",
     res1: "机器学习",
-    res2: "图像分割",
-    res3: "深度学习"
+    res2: "深度学习",
+    res3: "图像分割"
   }
 };
 
