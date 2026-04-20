@@ -134,17 +134,63 @@
             <span class="title-icon">//</span>
             <span data-locale="researchTitle">研究方向</span>
         </h2>
-        <div class="pub-item">
-            <p>主要从事以下方向的研究工作：</p>
-            <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
-                <li>机器学习与模式识别（多内核聚类、模糊聚类）</li>
-                <li>图像分割与计算机视觉（超像素分割、高光谱图像处理）</li>
-                <li>深度学习与神经网络（Transformer、Mamba、KAN）</li>
-            </ul>
+        
+        <!-- 🔥 3个方向按钮（严格控制在4个字内） -->
+        <div class="tab-buttons" id="researchButtons">
+            <button class="tab-btn active" onclick="switchResearchTab(0)">
+                <div data-locale="res1">机器学习</div>
+                <img src="https://via.placeholder.com/120x80/0071e3/ffffff?text=ML" alt="机器学习" class="research-img">
+            </button>
+            <button class="tab-btn" onclick="switchResearchTab(1)">
+                <div data-locale="res2">图像分割</div>
+                <img src="https://via.placeholder.com/120x80/0071e3/ffffff?text=Segment" alt="图像分割" class="research-img">
+            </button>
+            <button class="tab-btn" onclick="switchResearchTab(2)">
+                <div data-locale="res3">深度学习</div>
+                <img src="https://via.placeholder.com/120x80/0071e3/ffffff?text=DL" alt="深度学习" class="research-img">
+            </button>
+        </div>
+
+        <!-- 🔥 内容容器 -->
+        <div class="research-content" id="researchContent">
+            <!-- 1. 机器学习 -->
+            <div class="research-tab active">
+                <p>主要从事以下方向的研究工作：</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
+                    <li>机器学习与模式识别（多内核聚类、模糊聚类）</li>
+                </ul>
+                <!-- 👇 插入你第一张图 -->
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <img src="assets/previews/Data mining.png" alt="机器学习架构图" style="max-width: 100%; border-radius: 12px;">
+                </div>
+            </div>
+            
+            <!-- 2. 图像分割 -->
+            <div class="research-tab">
+                <p>主要从事以下方向的研究工作：</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
+                    <li>图像分割与计算机视觉（超像素分割、高光谱图像处理）</li>
+                </ul>
+                <!-- 👇 插入你第二张图 -->
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <img src="assets/previews/Image segmentation.png" alt="图像分割结果" style="max-width: 100%; border-radius: 12px;">
+                </div>
+            </div>
+            
+            <!-- 3. 深度学习 -->
+            <div class="research-tab">
+                <p>主要从事以下方向的研究工作：</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
+                    <li>深度学习与神经网络（Transformer、Mamba、KAN）</li>
+                </ul>
+                <!-- 👇 插入你第三张图 -->
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <img src="assets/previews/Hyperspectral.png" alt="深度学习架构" style="max-width: 100%; border-radius: 12px;">
+                </div>
+            </div>
         </div>
     </div>
 </section>
-
 
 <section id="publications" class="section">
     <div class="section-container">

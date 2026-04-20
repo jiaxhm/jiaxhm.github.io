@@ -24,6 +24,9 @@ const langText = {
     teaching: "Teaching",
     teachingTitle: "Teaching",
     researchTitle: "Research Interests",
+    res1: "ML",
+    res2: "Segment",
+    res3: "DL",
   },
   zh: {
     about: "关于我",
@@ -44,6 +47,9 @@ const langText = {
     teachingTitle: "教育教学",
     researchTitle: "研究方向",
     research: "研究方向",
+    res1: "机器学习",
+    res2: "图像分割",
+    res3: "深度学习"
   }
 };
 
@@ -435,3 +441,23 @@ document.addEventListener('DOMContentLoaded', function() {
     el.innerHTML = el.innerHTML.replace(/加小红/g, '<strong>加小红</strong>');
   });
 });
+
+
+
+
+
+
+// ==========================
+// 研究方向切换
+// ==========================
+function switchResearchTab(index) {
+  // 切换按钮状态
+  const buttons = document.querySelectorAll('#researchButtons .tab-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  buttons[index].classList.add('active');
+
+  // 切换内容
+  const tabs = document.querySelectorAll('.research-tab');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabs[index].classList.add('active');
+}
