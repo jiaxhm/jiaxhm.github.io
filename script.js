@@ -25,8 +25,8 @@ const langText = {
     teachingTitle: "Teaching",
     researchTitle: "Research Interests",
     res1: "Machine Learning",
-    res2: "Image segmentation",
-    res3: "Deep learning",
+    res2: "Image Segmentation",
+    res3: "Deep Learning",
   },
   zh: {
     about: "关于我",
