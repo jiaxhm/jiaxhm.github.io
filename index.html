@@ -136,21 +136,17 @@
         </h2>
         
         <!-- 🔥 3个方向按钮（严格控制在4个字内） -->
-        <div class="tab-buttons" id="researchButtons">
-            <button class="tab-btn active" onclick="switchResearchTab(0)">
-                <div data-locale="res1">机器学习</div>
-               
-            </button>
-            <button class="tab-btn" onclick="switchResearchTab(1)">
-                <div data-locale="res3">深度学习</div>
-                
-            </button>
-            <button class="tab-btn" onclick="switchResearchTab(2)">
-                <div data-locale="res2">图像分割</div>
-               
-            </button>
-            
-        </div>
+        <div class="tab-buttons research-tab-buttons" id="researchButtons">
+    <button class="tab-btn active" onclick="switchResearchTab(0)">
+        <div data-locale="res1">Machine Learning</div>
+    </button>
+    <button class="tab-btn" onclick="switchResearchTab(1)">
+        <div data-locale="res2">Image Segmentation</div>
+    </button>
+    <button class="tab-btn" onclick="switchResearchTab(2)">
+        <div data-locale="res3">Deep Learning</div>
+    </button>
+</div>
 
         <!-- 🔥 内容容器 -->
         <div class="research-content" id="researchContent">
