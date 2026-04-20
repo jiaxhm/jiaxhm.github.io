@@ -1607,26 +1607,25 @@ img {
 
 
 
-/* ======================================
-   研究方向按钮：手机端自动换行，不超出屏幕
-   ====================================== */
+/* 研究方向按钮：仅按内容宽度，靠左排列 */
 .research-tab-buttons {
   display: flex;
-  flex-wrap: wrap; /* 关键：手机端自动换行 */
-  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* 强制靠左 */
+  align-items: center;
+  gap: 12px; /* 按钮之间的间距 */
   margin-bottom: 1.5rem;
 }
 
 .research-tab-buttons .tab-btn {
-  flex: 1 1 auto; /* 按钮自动均分宽度 */
-  min-width: 120px; /* 最小宽度，防止挤得太窄 */
-  max-width: 100%; /* 不超过屏幕宽度 */
-  padding: 0.8rem 1.2rem;
+  flex: none !important; /* 关键：禁止自动拉伸 */
+  padding: 0.6rem 1.2rem; /* 内边距，控制按钮大小 */
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   background: var(--bg-card);
   transition: all var(--transition-fast);
   text-align: center;
+  white-space: nowrap; /* 文字不换行 */
 }
 
 .research-tab-buttons .tab-btn.active {
@@ -1639,17 +1638,13 @@ img {
   background: var(--bg-tertiary);
 }
 
-/* 手机端适配：屏幕小于768px时 */
+/* 手机端适配：自动换行，不溢出 */
 @media (max-width: 768px) {
   .research-tab-buttons {
-    flex-direction: row;
-    justify-content: center;
     gap: 8px;
   }
   .research-tab-buttons .tab-btn {
-    flex: 1 1 calc(33.33% - 8px); /* 三列布局 */
-    min-width: 100px;
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
   }
 }
