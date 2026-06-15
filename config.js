@@ -25,6 +25,7 @@ const USER_CONFIG = {
   },
 news: [
     { date: "2026.06.15", badge: "New",   text: "One paper has been accepted to Laser & Optoelectronics Progress 2026 (EI). Congratulations to Pengyu Meng!" },
+    { date: "2026.06.15", badge: "New",   text: "恭喜王唯琦,贾元麟获得甘肃省教育厅一等奖!" },
     { date: "2026.04.16", badge: "New",   text: "One paper has been accepted to ACM ICMR 2026 (CCF-B). Congratulations to Zhiwei Xia!" },
     { date: "2026.03.21", badge: "New",   text: "Two papers have been accepted to IJCNN 2026 (CCF-C). Congratulations to Zhiwei Xia and Fuhai Wang!" },
     { date: "2026.01.16", badge: "New",   text: "One paper has been accepted to IEEE ICASSP 2026 (CCF-B). Congratulations to Yonghui Li!" },
@@ -195,10 +196,10 @@ funds: [
        "陆新飞(2024年秋入学,在读）",
        "王福海(2024年秋入学,在读）",
        "孟鹏宇(2024年秋入学,在读）",
-       "孙  赫(2023年秋入学,在读)",
-       "李永辉(2023年秋入学,在读)",
-       "杜昊炜(2023年秋入学,在读)",
-       "魏琛珍(2022年秋入学,已毕业)",
+       "孙  赫(2023年秋入学,已毕业,就业于中国铁路哈尔滨局集团有限公司)",
+       "李永辉(2023年秋入学,已毕业,升博至西安电子科技大学)",
+       "杜昊炜(2023年秋入学,已毕业)",
+       "魏琛珍(2022年秋入学,已毕业,就业于中国移动)",
        
      
     ]
