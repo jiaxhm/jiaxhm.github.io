@@ -74,7 +74,7 @@ news: [
      {
         title: "7. ",
         authors: "",
-        venue: "",
+        venue: "激光与光电子学进展",
         links: { pdf: "#", code: "#" }
       }, 
       
