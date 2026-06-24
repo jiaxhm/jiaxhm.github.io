@@ -24,7 +24,7 @@ const USER_CONFIG = {
     cv:      "assets/cv.pdf",
   },
 news: [
-    { date: "2026.06.23", badge: "New",   text: "One paper has been accepted to IEEE Sensors Letters 2026 (EI). Congratulations to  Yonghui Li!" },
+    { date: "2026.06.23", badge: "New",   text: "One paper has been accepted to IEEE Sensors Letters 2026. Congratulations to  Yonghui Li!" },
     { date: "2026.06.15", badge: "New",   text: "One paper has been accepted to 《激光与光电子学进展》 2026 (EI). Congratulations to Pengyu Meng!" },
     { date: "2026.06.15", badge: "New",   text: "恭喜王唯琦,贾元麟获得甘肃省教育厅一等奖!" },
     { date: "2026.04.16", badge: "New",   text: "One paper has been accepted to ACM ICMR 2026 (CCF-B). Congratulations to Zhiwei Xia!" },
