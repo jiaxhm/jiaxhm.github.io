@@ -24,6 +24,7 @@ const USER_CONFIG = {
     cv:      "assets/cv.pdf",
   },
 news: [
+    { date: "2026.06.23", badge: "New",   text: "One paper has been accepted to IEEE Sensors Letters 2026 (EI). Congratulations to  Yonghui Li!" },
     { date: "2026.06.15", badge: "New",   text: "One paper has been accepted to 《激光与光电子学进展》 2026 (EI). Congratulations to Pengyu Meng!" },
     { date: "2026.06.15", badge: "New",   text: "恭喜王唯琦,贾元麟获得甘肃省教育厅一等奖!" },
     { date: "2026.04.16", badge: "New",   text: "One paper has been accepted to ACM ICMR 2026 (CCF-B). Congratulations to Zhiwei Xia!" },
@@ -48,31 +49,37 @@ news: [
         links: { pdf: "https://doi.org/10.1007/s00521-025-11819-w", code: "https://github.com/jiaxhm/SSW" }
       },
       {
-        title: "3. Wavelet pooling group swin transformer for superpixel segmentation",
+        title: "3. Adaptive fusion of CNN-Transformer for superpixel segmentation",
+        authors: "Xiaohong Jia, Yonghui Li, Chaoneng Li, Yao Zhao, Zhengwen Huang",
+        venue: "IEEE Sensors Letters 2026",
+        links: { pdf: "#", code: "#" }
+      },
+      {
+        title: "4. Wavelet pooling group swin transformer for superpixel segmentation",
         authors: "Xiaohong Jia, Yonghui Li, Xiaomei Guo, Yao Zhao, Guanghui Yan, Zhengwen Huang",
         venue: "IEEE International Conference on Acoustics, Speech, and Signal Processing 2026",
         links: { pdf: "#", code: "#" }
       },
       {
-        title: "4. Entropy regularized simple multiple kernel k-Means with adaptive deviation correction",
+        title: "5. Entropy regularized simple multiple kernel k-Means with adaptive deviation correction",
         authors: "Xiaohong Jia, Zhiwei Xia, Baijing Wu, Yunchao Wei, Yao Zhao",
         venue: "ACM International Conference on Multimedia Retrieval 2026",
         links: { pdf: "#", code: "#" }
       },
       {
-        title: "5. KAN-Based superpixel segmentation with boundary constraint and semantic guidance",
+        title: "6. KAN-Based superpixel segmentation with boundary constraint and semantic guidance",
         authors: "Xiaohong Jia, Fuhai Wang, Tong Tong, Long Ma, Guanghui Yan",
         venue: "International Joint Conference on Neural Networks 2026",
         links: { pdf: "#", code: "#" }
       },
       {
-        title: "6. Simple multiple kernel k-means with heat kernel diffusion",
+        title: "7. Simple multiple kernel k-means with heat kernel diffusion",
         authors: "Zhiwei Xia, Xiaohong Jia, Xuejun Zhang, Yao Zhao, Wenqian Yu",
         venue: "IEEE International Joint Conference on Neural Network 2026",
         links: { pdf: "#", code: "#" }
       },
      {
-        title: "7.空谱双分支Mamba与交叉融合的高光谱图像分类方法 ",
+        title: "8.空谱双分支Mamba与交叉融合的高光谱图像分类方法 ",
         authors: "闫光辉, 孟鹏宇, 加小红, 李永辉, 覃楷超",
         venue: "激光与光电子学进展",
         links: { pdf: "#", code: "#" }
